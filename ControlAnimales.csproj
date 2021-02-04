@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Imagenes\logo.png" />
+    <None Remove="Imagenes\logo2.jpg" />
+    <None Remove="Imagenes\pug.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Imagenes\logo.png" />
+    <Resource Include="Imagenes\logo2.jpg" />
+    <Resource Include="Imagenes\pug.jpg" />
+  </ItemGroup>
+
+</Project>

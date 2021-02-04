@@ -1,0 +1,16 @@
+﻿<Window x:Name="mouse" x:Class="ControlAnimales.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ControlAnimales"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" MouseDown="click"
+       >
+    <Grid Background="#75E6D3E8"  >
+        <Image Margin="108,33,82,80" Source="/Imagenes/logo.png" />
+        <Label Background="#669D5369" Content="         REALIZADO POR: Allende Eguía del Valle y Aida Vicente Martín                    &#x9;&#x9;&#x9;         2º-DAM CEIP Santa Catalina" HorizontalAlignment="Center" Margin="0,381,0,0" VerticalAlignment="Top" Width="800" Height="35"/>
+
+
+    </Grid>
+</Window>
