@@ -49,14 +49,7 @@ namespace ControlAnimales
                 txt_cartilla.Focus() || txt_chip.Focus() || txt_fecha_adopcion.Focus() || txt_lugar_adopcion.Focus())
             {
 
-                //comentario
-                txt_nombre.Text = "";
-                txt_fecha.Text = "";
-                txt_edad.Text = "";
-                txt_color.Text = "";
-                txt_cartilla.Text = "";
-                txt_chip.Text = "";
-                txt_fecha_adopcion.Text = "";
+               
                 txt_lugar_adopcion.Text = "";
 
 
