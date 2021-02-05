@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ControlAnimales"
         mc:Ignorable="d"
-        Title="Window1" Height="450" Width="800">
+        Title="Mascotas" Height="450" Width="800">
     <Grid Margin="0,0,0,369">
         <ToolBar Background="#FF9E8682" >
             <Button x:Name="añadir_mascota" Height="48" Width="96" Content="Añadir mascota" Background="White" Click="añadir_mascota_Click"/>
@@ -17,18 +17,21 @@
             <Image Width="172" />
         </ToolBar>
 
-        <Canvas x:Name="img_principal">
+        <Canvas x:Name="img_principal" Visibility="Hidden">
             <Image x:Name="img_princ" Source="/imagenes/pug.jpg" Height="444" Width="800" Canvas.Top="33" Canvas.Left="2"/>
         </Canvas>
-        <TabControl x:Name="agregarMasc" Margin="0,65,0,-364" Visibility="Hidden">
+        <TabControl x:Name="agregarMasc" Margin="0,65,0,-364" Visibility="Visible">
             <TabItem Header="TabItem" Margin="-2,-2,-2,2">
-                <Canvas x:Name="ventana" Visibility="Hidden" Background="#FFE5E5E5" Margin="2,39,-2,12">
-                    <Label Content="Label" Canvas.Left="22" Canvas.Top="10"/>
-                    <Label Content="Label" Canvas.Left="22" Canvas.Top="41"/>
-                    <Label Content="Label" Canvas.Left="22" Canvas.Top="67"/>
-                    <Label Content="Label" Canvas.Left="22" Canvas.Top="93"/>
-                    <Label Content="Label" Canvas.Left="22" Canvas.Top="125" RenderTransformOrigin="0.658,4.626"/>
-
+                <Canvas x:Name="ventana" Visibility="Visible" Background="#FFE5E5E5" Margin="2,39,-2,12">
+                    <TextBox x:Name="txt_nombre"  Text="Nombre" TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157" IsMouseCapturedChanged="foco"/>
+                    <TextBox x:Name="txt_fecha" Text="Fecha Nacimiento" TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157" IsMouseCapturedChanged="foco"/>
+                    <TextBox x:Name="txt_edad" Text="Edad" TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157" IsMouseCapturedChanged="foco"/>
+                    <TextBox x:Name="txt_color" Text="Color" TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157" IsMouseCapturedChanged="foco"/>
+                    <TextBox x:Name="txt_cartilla" Text="Num cartilla sanitaria" TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157" IsMouseCapturedChanged="foco"/>
+                    <TextBox x:Name="txt_chip" Text="Num Chip" TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157" IsMouseCapturedChanged="foco"/>
+                    <TextBox x:Name="txt_fecha_adopcion" Text="Fecha adopción" TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157" IsMouseCapturedChanged="foco"/>
+                    <TextBox x:Name="txt_lugar_adopcion" Text="Lugar de adopción" TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157" IsMouseCapturedChanged="foco"/>
+                   
                 </Canvas>
             </TabItem>
             <TabItem Header="TabItem">

@@ -23,7 +23,8 @@ namespace ControlAnimales
 
         }
 
-        private void añadir_mascota_Click(object sender, RoutedEventArgs e) {
+        private void añadir_mascota_Click(object sender, RoutedEventArgs e)
+        {
 
             img_principal.Visibility = Visibility.Hidden;
             agregarMasc.Visibility = Visibility.Visible;
@@ -38,5 +39,29 @@ namespace ControlAnimales
         {
 
         }
-    }
-}
+
+
+
+        private void foco(object sender, DependencyPropertyChangedEventArgs e){
+
+            switch
+            if (txt_nombre.Focus() || txt_fecha.Focus() || txt_edad.Focus() || txt_color.Focus() ||
+                txt_cartilla.Focus() || txt_chip.Focus() || txt_fecha_adopcion.Focus() || txt_lugar_adopcion.Focus())
+            {
+
+
+                txt_nombre.Text = "";
+                txt_fecha.Text = "";
+                txt_edad.Text = "";
+                txt_color.Text = "";
+                txt_cartilla.Text = "";
+                txt_chip.Text = "";
+                txt_fecha_adopcion.Text = "";
+                txt_lugar_adopcion.Text = "";
+
+
+            }
+        }
+    
+    }                                                  
+                                      
