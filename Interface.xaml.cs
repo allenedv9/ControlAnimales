@@ -44,11 +44,17 @@ namespace ControlAnimales
 
         private void foco(object sender, DependencyPropertyChangedEventArgs e)
         {
-            if (txt_nombre.Focus()) {
-                txt_nombre.Text = "";
-            } else{
-                txt_fecha = txt_fecha.Text();
+            if (txt_nombre.Focus())
             {
+                txt_nombre.Text = "";
+            }
+            else
+            {
+                txt_fecha = txt_fecha;
+            }
+
+
+           /* {
                 txt_fecha.Text = "";
             } else if (txt_edad.Focus())
             {
@@ -64,7 +70,7 @@ namespace ControlAnimales
             } else if ( txt_lugar_adopcion.Focus())
             {
                 txt_lugar_adopcion.Text = "";
-            }
+            }*/
         }
 
         private void txt_fecha_adopcion_TextChanged(object sender, TextChangedEventArgs e)
