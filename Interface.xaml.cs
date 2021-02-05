@@ -60,7 +60,7 @@ namespace ControlAnimales
                 txt_fecha_adopcion.Text = "";
                 txt_lugar_adopcion.Text = "";
 
-
+                /////FUNCIONA!!!!
             }
         }
 
