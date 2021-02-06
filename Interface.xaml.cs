@@ -57,9 +57,9 @@ namespace ControlAnimales
             if (txt_edad.IsFocused) {
                 txt_edad.Text = "";
             }
-            if (txt_edad.IsFocused){
-                txt_edad.Text = "";
-            }
+           // if (txt_edad.IsFocused){
+           //     txt_edad.Text = "";
+            //}
             if (txt_color.IsFocused) {
                 txt_color.Text = "";
             }
@@ -78,24 +78,10 @@ namespace ControlAnimales
            
         }
 
-     
-
-        private void cargar_fecha_nac(object sender, RoutedEventArgs e)
-        {
-           // DateTime fecha_actual = DateTime.Parse(txt_fecha.Text);
-           // MessageBox.Show(fecha_actual.ToString());
-           //  txt_fecha.Text =
-              String fechaActual = fecha.DisplayDate.ToString();
-           // txt_edad.Text;
-                String fechaNacimineto = fecha.DisplayDate.ToString();
-
-
-    
-        }
-
         private void perder_foco(object sender, RoutedEventArgs e)
         {
-            if (txt_nombre.Text==""){
+            if (txt_nombre.Text == "")
+            {
                 txt_nombre.Text = "Nombre";
             }
             if (txt_fecha.Text == "")
@@ -127,6 +113,33 @@ namespace ControlAnimales
                 txt_lugar_adopcion.Text = "Lugar Adopción";
             }
         }
+
+        private void cargar_fecha_nac(object sender, RoutedEventArgs e)
+        {
+            String anoActual = DateTime.Today.ToString("yyyy");
+            fecha.DisplayDate.Year.ToString();
+            String anoNacimiento = fecha.DisplayDate.Year.ToString();
+            txt_fecha.Text = anoNacimiento;
+
+            int anos =Int32.Parse(anoActual) - Int32.Parse(anoNacimiento);
+            //MessageBox.Show(anos.ToString());
+
+
+            String mesActual = DateTime.Today.ToString("MM");
+            fecha.DisplayDate.Month.ToString();
+            String mesNacimiento = fecha.DisplayDate.Month.ToString();
+          
+            int meses = Int32.Parse(mesActual) - Int32.Parse(mesNacimiento);
+            //MessageBox.Show(anos.ToString());
+
+
+            if (anos >= 2) { 
+                 txt_edad.Text = anos.ToString() + " años" + meses;
+            }else
+                txt_edad.Text = anos.ToString() + " año" + meses;
+        }
+
+      
 
         
     }
