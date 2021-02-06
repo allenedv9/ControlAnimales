@@ -53,12 +53,7 @@ namespace ControlAnimales
             if (txt_fecha.IsFocused){
                 txt_fecha.Text = "";
             }
-            if (txt_edad.IsFocused) {
-                txt_edad.Text = "";
-            }
-           // if (txt_edad.IsFocused){
-           //     txt_edad.Text = "";
-            //}
+           
             if (txt_color.IsFocused) {
                 txt_color.Text = "";
             }
