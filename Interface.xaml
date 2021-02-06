@@ -23,17 +23,18 @@
         <TabControl x:Name="agregarMasc" Margin="0,65,0,-364" Visibility="Visible">
             <TabItem Header="Nueva Mascota" Margin="-2,-2,-2,2">
                 <Canvas x:Name="ventana" Visibility="Visible" Background="#FFE5E5E5" Margin="2,39,-2,12">
-                    <TextBox x:Name="txt_nombre"  Text="Nombre" TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157"  Canvas.Left="90" Canvas.Top="35"  GotFocus="foco"/>
-                    <TextBox x:Name="txt_fecha" Text="Fecha Nacimiento" TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157"  Canvas.Left="614" Canvas.Top="10" GotFocus="foco"/>
-                    <TextBox x:Name="txt_edad" Text="Edad" TextWrapping="Wrap" Width="180" Height="35" RenderTransformOrigin="0.75,2.157"  Canvas.Left="90" Canvas.Top="130" GotFocus="foco"/>
-                    <TextBox x:Name="txt_color" Text="Color" TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157" GotFocus="foco" Canvas.Left="90" Canvas.Top="225"/>
-                    <TextBox x:Name="txt_cartilla" Text="Num cartilla sanitaria" TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157" GotFocus="foco" Canvas.Left="397" Canvas.Top="70"/>
-                    <TextBox x:Name="txt_chip" Text="Num Chip" TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157" GotFocus="foco" Canvas.Left="397" Canvas.Top="117"/>
-                    <TextBox x:Name="txt_fecha_adopcion" Text="Fecha adopción" TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157" GotFocus="foco" Canvas.Left="397" Canvas.Top="158" />
-                    <TextBox x:Name="txt_lugar_adopcion" Text="Lugar de adopción" TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157" GotFocus="foco" Canvas.Left="397" Canvas.Top="195"/>
+                    <TextBox x:Name="txt_nombre"  Text="Nombre" TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157"  Canvas.Left="90" Canvas.Top="35"  GotFocus="foco" LostFocus="perder_foco"/>
+                    <TextBox x:Name="txt_fecha" Text="Fecha Nacimiento" TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157"  Canvas.Left="614" Canvas.Top="10" GotFocus="foco" LostFocus="perder_foco"/>
+                    <TextBox x:Name="txt_edad" Text="Edad" TextWrapping="Wrap" Width="180" Height="35" RenderTransformOrigin="0.75,2.157"  Canvas.Left="90" Canvas.Top="130" GotFocus="foco" LostFocus="perder_foco"/>
+                    <TextBox x:Name="txt_color" Text="Color" TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157" GotFocus="foco" Canvas.Left="90" Canvas.Top="225" LostFocus="perder_foco"/>
+                    <TextBox x:Name="txt_cartilla" Text="Num cartilla sanitaria" TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157" GotFocus="foco" Canvas.Left="397" Canvas.Top="70" LostFocus="perder_foco"/>
+                    <TextBox x:Name="txt_chip" Text="Num Chip" TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157" GotFocus="foco" Canvas.Left="397" Canvas.Top="117" LostFocus="perder_foco"/>
+                    <TextBox x:Name="txt_fecha_adopcion" Text="Fecha adopción" TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157" GotFocus="foco" Canvas.Left="397" Canvas.Top="158" LostFocus="perder_foco"/>
+                    <TextBox x:Name="txt_lugar_adopcion" Text="Lugar de adopción" TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157" GotFocus="foco" Canvas.Left="397" Canvas.Top="195" LostFocus="perder_foco"/>
                     <DatePicker x:Name="fecha" Height="32" Width="180" Canvas.Left="90" Canvas.Top="83">
-                        
-                        <!-- Style="{StaticResource calendario}">
+                       
+                      <!--   </DatePicker.BlackoutDates>
+                        Style="{StaticResource calendario}">
                         <DatePicker.SelectedDate>
                             <Binding Path="Fecha" Source="{StaticResource modeloValidar}"
                          ValidatesOnExceptions="True"
