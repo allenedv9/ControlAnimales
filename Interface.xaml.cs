@@ -17,9 +17,12 @@ namespace ControlAnimales
     /// </summary>
     public partial class Interface : Window
     {
+        DatePicker datPicker=new DatePicker();
         public Interface()
         {
             InitializeComponent();
+
+          //  datPicker =fecha.SelectedDate.Value.ToString();
 
         }
 
@@ -82,7 +85,7 @@ namespace ControlAnimales
            // DateTime fecha_actual = DateTime.Parse(txt_fecha.Text);
            // MessageBox.Show(fecha_actual.ToString());
              txt_fecha.Text = fecha.DisplayDate.ToString();
-
+             txt_edad.Text = fecha.DisplayDate.Year.ToString();
     
         }
 
@@ -120,5 +123,7 @@ namespace ControlAnimales
                 txt_lugar_adopcion.Text = "Lugar Adopción";
             }
         }
+
+        
     }
 }                         
