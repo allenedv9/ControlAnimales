@@ -114,33 +114,50 @@ namespace ControlAnimales
             }
         }
 
+        //este Metodo calcula la edad de nuestra mascota  meses y años
         private void cargar_fecha_nac(object sender, RoutedEventArgs e)
         {
+            //recojo mes y año actual
             String anoActual = DateTime.Today.ToString("yyyy");
             fecha.DisplayDate.Year.ToString();
             String anoNacimiento = fecha.DisplayDate.Year.ToString();
             txt_fecha.Text = anoNacimiento;
-
-            int anos =Int32.Parse(anoActual) - Int32.Parse(anoNacimiento);
-            //MessageBox.Show(anos.ToString());
-
-
+           
+          
+            //recojo mes y año nacimiento
             String mesActual = DateTime.Today.ToString("MM");
             fecha.DisplayDate.Month.ToString();
             String mesNacimiento = fecha.DisplayDate.Month.ToString();
-          
+            
+            //calcula tiempo transcurrido
+            int anos = Int32.Parse(anoActual) - Int32.Parse(anoNacimiento);
             int meses = Int32.Parse(mesActual) - Int32.Parse(mesNacimiento);
-            //MessageBox.Show(anos.ToString());
+          
 
+            //Muestra edad en años y meses y si es menor de un año solo meses
+            if (meses < 0)
+            {
+                anos = anos - 1;
+                meses = 12 + meses;
 
-            if (anos >= 2) { 
-                 txt_edad.Text = anos.ToString() + " años" + meses;
-            }else
-                txt_edad.Text = anos.ToString() + " año" + meses;
+                if (anos == 0){
+                    txt_edad.Text = meses.ToString() + " meses";
+                }else  if (anos >= 2)
+                {
+                    txt_edad.Text = anos.ToString() + " años y " + meses.ToString() + " meses.";
+                }
+                else
+                    txt_edad.Text = anos.ToString() + " año y " + meses.ToString() + " meses.";
+            } else
+            {
+                if (anos >= 2)
+                {
+                    txt_edad.Text = anos.ToString() + " años y " + meses.ToString() + "meses";
+                }
+                else
+                    txt_edad.Text = anos.ToString() + " año y " + meses.ToString() + "meses";
+            }
+
         }
-
-      
-
-        
     }
 }                         
