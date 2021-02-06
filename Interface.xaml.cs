@@ -17,13 +17,12 @@ namespace ControlAnimales
     /// </summary>
     public partial class Interface : Window
     {
-        DatePicker datPicker=new DatePicker();
+       
         public Interface()
         {
             InitializeComponent();
 
-          //  datPicker =fecha.SelectedDate.Value.ToString();
-
+         
         }
 
         private void añadir_mascota_Click(object sender, RoutedEventArgs e)
@@ -80,17 +79,9 @@ namespace ControlAnimales
 
      
 
-        private void cargar_fecha_nac(object sender, RoutedEventArgs e)
-        {
-           // DateTime fecha_actual = DateTime.Parse(txt_fecha.Text);
-           // MessageBox.Show(fecha_actual.ToString());
-           //  txt_fecha.Text =
-              String fechaActual = fecha.DisplayDate.ToString();
-           // txt_edad.Text;
-                String fechaNacimineto = fecha.DisplayDate.ToString();
+        private void cargar_fecha_nac(object sender, RoutedEventArgs e) {
 
-
-    
+         
         }
 
         private void perder_foco(object sender, RoutedEventArgs e)

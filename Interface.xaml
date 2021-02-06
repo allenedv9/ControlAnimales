@@ -31,20 +31,7 @@
                     <TextBox x:Name="txt_chip" Text="Num Chip" TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157" GotFocus="foco" Canvas.Left="397" Canvas.Top="117" LostFocus="perder_foco"/>
                     <TextBox x:Name="txt_fecha_adopcion" Text="Fecha adopción" TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157" GotFocus="foco" Canvas.Left="397" Canvas.Top="158" LostFocus="perder_foco"/>
                     <TextBox x:Name="txt_lugar_adopcion" Text="Lugar de adopción" TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157" GotFocus="foco" Canvas.Left="397" Canvas.Top="195" LostFocus="perder_foco"/>
-                    <DatePicker x:Name="fecha" Height="32" Width="180" Canvas.Left="90" Canvas.Top="83" CalendarClosed="cargar_fecha_nac" >
-                       
-                      <!--   </DatePicker.BlackoutDates>
-                        Style="{StaticResource calendario}">
-                        <DatePicker.SelectedDate>
-                            <Binding Path="Fecha" Source="{StaticResource modeloValidar}"
-                         ValidatesOnExceptions="True"
-                         UpdateSourceTrigger="PropertyChanged">
-                                <Binding.ValidationRules>
-                                    <DataErrorValidationRule/>
-                                </Binding.ValidationRules>
-                            </Binding>
-                        </DatePicker.SelectedDate>-->
-                    </DatePicker>
+                    <DatePicker x:Name="fecha" Height="32" Width="180" Canvas.Left="90" Canvas.Top="83" CalendarClosed="cargar_fecha_nac" > </DatePicker>
                 </Canvas>
             </TabItem>
             <TabItem Header="TabItem">
