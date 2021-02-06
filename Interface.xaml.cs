@@ -84,8 +84,12 @@ namespace ControlAnimales
         {
            // DateTime fecha_actual = DateTime.Parse(txt_fecha.Text);
            // MessageBox.Show(fecha_actual.ToString());
-             txt_fecha.Text = fecha.DisplayDate.ToString();
-             txt_edad.Text = fecha.DisplayDate.Year.ToString();
+           //  txt_fecha.Text =
+              String fechaActual = fecha.DisplayDate.ToString();
+           // txt_edad.Text;
+                String fechaNacimineto = fecha.DisplayDate.ToString();
+
+
     
         }
 
