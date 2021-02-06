@@ -17,13 +17,12 @@ namespace ControlAnimales
     /// </summary>
     public partial class Interface : Window
     {
-        DatePicker datPicker=new DatePicker();
+       
         public Interface()
         {
             InitializeComponent();
 
-          //  datPicker =fecha.SelectedDate.Value.ToString();
-
+         
         }
 
         private void añadir_mascota_Click(object sender, RoutedEventArgs e)
@@ -77,6 +76,7 @@ namespace ControlAnimales
             }
            
         }
+
 
         private void perder_foco(object sender, RoutedEventArgs e)
         {
