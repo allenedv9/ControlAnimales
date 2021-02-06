@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -42,34 +42,8 @@ namespace ControlAnimales
 
 
 
-     /*   private void foco(object sender, DependencyPropertyChangedEventArgs e)
-        {
-           if (txt_nombre.Focus()) {
-                txt_nombre.Text = "";
-            } 
-            if (txt_fecha.Focus()) {
-                txt_fecha.Text = "";
-            }  if (txt_edad.Focus())
-            {
-                txt_edad.Text = "";
-            }/*else if (txt_color.Focus()){
-                txt_color.Text = "";
-            }else if (txt_cartilla.Focus()){
-                txt_cartilla.Text = "";
-            }
-            if (txt_chip.Focus()){
-                txt_chip.Text = "";
-            }
-            if (txt_fecha_adopcion.Focus()){
-                txt_fecha_adopcion.Text = "";
-            }
-            if ( txt_lugar_adopcion.Focus())
-            {
-                txt_lugar_adopcion.Text = "";
-            }
-        }*/
-    
-       
+  
+
 
         private void foco(object sender, RoutedEventArgs e)
         {
