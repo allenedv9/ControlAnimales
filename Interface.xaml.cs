@@ -42,28 +42,69 @@ namespace ControlAnimales
 
 
 
-  
-
-
         private void foco(object sender, RoutedEventArgs e)
         {
-            TextBox tt = new TextBox();
-            tt = (TextBox)sender;
-            if (tt.IsFocused) { }
-            tt.Text = "";
-          /*  MessageBox.Show(tt.Text);
-            if (txt_nombre.Focus())
-            {
+          //  TextBox tt = new TextBox();
+         //   tt = (TextBox)sender;
+            if (txt_nombre.IsFocused) {
                 txt_nombre.Text = "";
             }
-            if (txt_fecha.Focus())
-            {
+            if (txt_fecha.IsFocused){
                 txt_fecha.Text = "";
             }
-            if (txt_edad.Focus())
+            if (txt_edad.IsFocused) {
+                txt_edad.Text = "";
+            }
+            if (txt_edad.IsFocused)
             {
                 txt_edad.Text = "";
-            }*/
+            }
+            if (txt_color.IsFocused)
+            {
+                txt_color.Text = "";
+            }
+            if (txt_cartilla.IsFocused)
+            {
+                txt_cartilla.Text = "";
+            }
+            if (txt_chip.IsFocused)
+            {
+                txt_chip.Text = "";
+            }
+            if (txt_fecha_adopcion.IsFocused)
+            {
+                txt_fecha_adopcion.Text = "";
+            }
+            if (txt_lugar_adopcion.IsFocused)
+            {
+                txt_lugar_adopcion.Text = "";
+            }
+            // tt.Text = "";
+
+            /*  MessageBox.Show(tt.Text);
+              if (txt_nombre.Focus())
+              {
+                  txt_nombre.Text = "";
+              }
+              if (txt_fecha.Focus())
+              {
+                  txt_fecha.Text = "";
+              }
+              if (txt_edad.Focus())
+              {
+                  txt_edad.Text = "";
+              }*/
+        }
+
+     
+
+        private void cargar_fecha_nac(object sender, RoutedEventArgs e)
+        {
+           // DateTime fecha_actual = DateTime.Parse(txt_fecha.Text);
+           // MessageBox.Show(fecha_actual.ToString());
+             txt_fecha.Text = fecha.DisplayDate.ToString();
+
+    
         }
     }
 }                         
