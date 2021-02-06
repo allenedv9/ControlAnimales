@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ControlAnimales"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" MouseDown="click"
+        Title="Control Mascotas" Height="700" Width="1000" MouseDown="click"
+        ResizeMode="CanMinimize"
        >
     <Grid Background="#75E6D3E8"  >
         <Image Margin="108,33,82,80" Source="/Imagenes/logo.png" />
