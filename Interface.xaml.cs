@@ -44,8 +44,7 @@ namespace ControlAnimales
 
         private void foco(object sender, RoutedEventArgs e)
         {
-          //  TextBox tt = new TextBox();
-         //   tt = (TextBox)sender;
+       
             if (txt_nombre.IsFocused) {
                 txt_nombre.Text = "";
             }
@@ -55,45 +54,25 @@ namespace ControlAnimales
             if (txt_edad.IsFocused) {
                 txt_edad.Text = "";
             }
-            if (txt_edad.IsFocused)
-            {
+            if (txt_edad.IsFocused){
                 txt_edad.Text = "";
             }
-            if (txt_color.IsFocused)
-            {
+            if (txt_color.IsFocused) {
                 txt_color.Text = "";
             }
-            if (txt_cartilla.IsFocused)
-            {
+            if (txt_cartilla.IsFocused){
                 txt_cartilla.Text = "";
             }
-            if (txt_chip.IsFocused)
-            {
+            if (txt_chip.IsFocused) {
                 txt_chip.Text = "";
             }
-            if (txt_fecha_adopcion.IsFocused)
-            {
+            if (txt_fecha_adopcion.IsFocused){
                 txt_fecha_adopcion.Text = "";
             }
-            if (txt_lugar_adopcion.IsFocused)
-            {
+            if (txt_lugar_adopcion.IsFocused){
                 txt_lugar_adopcion.Text = "";
             }
-            // tt.Text = "";
-
-            /*  MessageBox.Show(tt.Text);
-              if (txt_nombre.Focus())
-              {
-                  txt_nombre.Text = "";
-              }
-              if (txt_fecha.Focus())
-              {
-                  txt_fecha.Text = "";
-              }
-              if (txt_edad.Focus())
-              {
-                  txt_edad.Text = "";
-              }*/
+           
         }
 
      
@@ -105,6 +84,41 @@ namespace ControlAnimales
              txt_fecha.Text = fecha.DisplayDate.ToString();
 
     
+        }
+
+        private void perder_foco(object sender, RoutedEventArgs e)
+        {
+            if (txt_nombre.Text==""){
+                txt_nombre.Text = "Nombre";
+            }
+            if (txt_fecha.Text == "")
+            {
+                txt_fecha.Text = "Fecha Nacimineto";
+            }
+            if (txt_edad.Text == "")
+            {
+                txt_edad.Text = "Edad";
+            }
+            if (txt_color.Text == "")
+            {
+                txt_color.Text = "Color";
+            }
+            if (txt_cartilla.Text == "")
+            {
+                txt_cartilla.Text = "Cartilla";
+            }
+            if (txt_chip.Text == "")
+            {
+                txt_chip.Text = "Chip";
+            }
+            if (txt_fecha_adopcion.Text == "")
+            {
+                txt_fecha_adopcion.Text = "";
+            }
+            if (txt_lugar_adopcion.Text == "")
+            {
+                txt_lugar_adopcion.Text = "Lugar Adopción";
+            }
         }
     }
 }                         
