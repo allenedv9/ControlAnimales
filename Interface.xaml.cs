@@ -211,13 +211,13 @@ namespace ControlAnimales
 
         }
 
+        //abre ventana de dialogo para seleccionar imagen si lo desea
         private void abre_seleccion_imagen(object sender, RoutedEventArgs e)
         {
             if (check_imagen.IsChecked == true)
             {
                 //Cuadro de dialogo para imcluir imagen mascota
-                Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog
-                {
+                Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog{
                     // Set filter for file extension and default file extension 
                     DefaultExt = ".jpg",
                     Filter = "Todos (*.*)|*.*|PNG (*.png)|*.png|JPG (*.jpg)|*.jpg"
@@ -225,8 +225,7 @@ namespace ControlAnimales
 
                 Nullable<bool> result = dlg.ShowDialog();
 
-                if (result == true)
-                {
+                if (result == true){
                     string imagenFichero = dlg.FileName;
 
                     ruta_imagen.Text = imagenFichero;
@@ -235,12 +234,7 @@ namespace ControlAnimales
                     bitmap.BeginInit();
                     bitmap.UriSource = new Uri(imagenFichero);
                     bitmap.EndInit();
-
-                    imagenMascota.Width = imagenMascota.Width;
-                    imagenMascota.Height = imagenMascota.Height;
                     imagenMascota.Source = bitmap;
-
-
                 }
             }
         }

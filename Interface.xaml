@@ -7,12 +7,12 @@
         mc:Ignorable="d"
         Title="Mascotas" Height="700" Width="1000">
     <Grid Margin="0,0,0,369">
-        <ToolBar Background="#FF9E8682" >
-            <Button x:Name="añadir_mascota" Height="48" Width="96" Content="Añadir mascota" Background="White" Click="añadir_mascota_Click"/>
+        <ToolBar Background="#FF9E8682" Margin="0,0,0,250" >
+            <Button x:Name="añadir_mascota" Height="49" Width="125" Content="Añadir mascota" Background="White" Click="añadir_mascota_Click" VerticalAlignment="Top" />
+            <Separator Width="3" Height="137"/>
+            <Button x:Name="diario" Height="48" Width="96" Content="Añadir mascota" Background="White" Click="diario_Click" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <Separator Width="3"/>
-            <Button x:Name="diario" Height="48" Width="96" Content="Añadir mascota" Background="White" Click="diario_Click"/>
-            <Separator Width="3"/>
-            <Button x:Name="galeria" Height="48" Width="96" Content="Galeria" Background="White" Click="galeria_Click"/>
+            <Button x:Name="galeria" Height="48" Width="96" Content="Galeria" Background="White" Click="galeria_Click" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <Separator Width="3"/>
             <Image Width="172" />
         </ToolBar>
@@ -34,7 +34,6 @@
                     <Label Content="Adoptado" Canvas.Left="397" Canvas.Top="148"/>
                     <CheckBox x:Name="adoptado" Canvas.Left="465" Canvas.Top="155" Click="ver_txt_adopcion"/>
                     <DatePicker x:Name="dp_fecha_adopcion" Visibility="Hidden" Height="32" Width="180" Canvas.Left="443" Canvas.Top="185" CalendarClosed="fecha_adopcion"  ></DatePicker>
-
                     <TextBox x:Name="txt_fecha_adopcion" Text="Fecha adopción" TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157" GotFocus="foco" Canvas.Left="665" Canvas.Top="175" LostFocus="perder_foco" Visibility="Hidden"/>
                     <TextBox x:Name="txt_lugar_adopcion" Text="Lugar de adopción" TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157" GotFocus="foco" Canvas.Left="443" Canvas.Top="217" LostFocus="perder_foco" Visibility="Hidden"/>
                     <TextBox x:Name="txt_sexo"  IsReadOnly="True" Text="Sexo INVISIBLE" TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157" GotFocus="foco" Canvas.Left="277" Canvas.Top="259" LostFocus="perder_foco"/>
@@ -48,8 +47,6 @@
             </TabItem>
             <TabItem Header="TabItem">
                 <Canvas Background="#FFE5E5E5" Margin="2,39,-2,12">
-
-
 
                 </Canvas>
             </TabItem>
