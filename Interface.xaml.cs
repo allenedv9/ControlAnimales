@@ -120,23 +120,22 @@ namespace ControlAnimales
         {
             //recojo mes y año actual
             String anoActual = DateTime.Today.ToString("yyyy");
-            fecha.DisplayDate.Year.ToString();
-            fecha.DisplayDate.Month.ToString();
             String mesActual = DateTime.Today.ToString("MM");
+            //ESTO NO HACE FALTA, funciona si esto, no lo borro de momento por si acaso
+            //  fecha.DisplayDate.Year.ToString();
+            // fecha.DisplayDate.Month.ToString();
 
             //recojo mes y año nacimiento
             String mesNacimiento = fecha.DisplayDate.Month.ToString();
             String anoNacimiento = fecha.DisplayDate.Year.ToString();
             txt_fecha.Text = anoNacimiento;
 
-       
-
             //calcula tiempo transcurrido
             int anos = Int32.Parse(anoActual) - Int32.Parse(anoNacimiento);
             int meses = Int32.Parse(mesActual) - Int32.Parse(mesNacimiento);
 
 
-            //Muestra edad en años y meses y si es menor de un año solo meses
+            //Si solo tiene meses , muestra meses
             if (meses < 0)
             {
                 anos = anos - 1;
@@ -153,6 +152,7 @@ namespace ControlAnimales
                 else
                     txt_edad.Text = anos.ToString() + " año y " + meses.ToString() + " meses.";
             }
+            //Si ya tiene un año o mas, muestra años y meses
             else
             {
                 if (anos >= 2)
@@ -189,29 +189,60 @@ namespace ControlAnimales
         //Muestra los campos (ocultos)  si es adoptado
         private void ver_txt_adopcion(object sender, RoutedEventArgs e)
         {
-            if (adoptado.IsChecked==true) {
+            if (adoptado.IsChecked == true)
+            {
                 txt_lugar_adopcion.Visibility = Visibility.Visible;
                 txt_fecha_adopcion.Visibility = Visibility.Visible;
                 dp_fecha_adopcion.Visibility = Visibility.Visible;
             }
-            else{
+            else
+            {
                 txt_lugar_adopcion.Visibility = Visibility.Hidden;
                 txt_fecha_adopcion.Visibility = Visibility.Hidden;
                 dp_fecha_adopcion.Visibility = Visibility.Hidden;
             }
         }
 
+        //Recoje fecha de adopción
         private void fecha_adopcion(object sender, RoutedEventArgs e)
         {
-            String fecha_adopcion = dp_fecha_adopcion.DisplayDate.ToString();
-              
-            //falta dar formato para que recoja bien dia mes y año
-            //solo recoje mes y año
-            txt_fecha_adopcion.Text=fecha_adopcion;
-           
-
+            String fecha_adopcion = dp_fecha_adopcion.SelectedDate.ToString();
+            txt_fecha_adopcion.Text = fecha_adopcion;
 
         }
+
+        private void abre_seleccion_imagen(object sender, RoutedEventArgs e)
+        {
+            if (check_imagen.IsChecked == true)
+            {
+                //Cuadro de dialogo para imcluir imagen mascota
+                Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog
+                {
+                    // Set filter for file extension and default file extension 
+                    DefaultExt = ".jpg",
+                    Filter = "Todos (*.*)|*.*|PNG (*.png)|*.png|JPG (*.jpg)|*.jpg"
+                };
+
+                Nullable<bool> result = dlg.ShowDialog();
+
+                if (result == true)
+                {
+                    string imagenFichero = dlg.FileName;
+
+                    ruta_imagen.Text = imagenFichero;
+                    BitmapImage bitmap;
+                    bitmap = new BitmapImage();
+                    bitmap.BeginInit();
+                    bitmap.UriSource = new Uri(imagenFichero);
+                    bitmap.EndInit();
+
+                    imagenMascota.Width = imagenMascota.Width;
+                    imagenMascota.Height = imagenMascota.Height;
+                    imagenMascota.Source = bitmap;
+
+
+                }
+            }
+        }
     }
-}
-                        
+}                     

@@ -40,7 +40,10 @@
                     <TextBox x:Name="txt_sexo"  IsReadOnly="True" Text="Sexo INVISIBLE" TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157" GotFocus="foco" Canvas.Left="277" Canvas.Top="259" LostFocus="perder_foco"/>
                     <DatePicker x:Name="fecha" Height="32" Width="180" Canvas.Left="90" Canvas.Top="93" CalendarClosed="cargar_fecha_nac" ></DatePicker>
                     <Label Content="Sexo" Canvas.Left="90" Canvas.Top="254"/>
-
+                    <Label Content="Selecciona imagen" Canvas.Left="388" Canvas.Top="293" RenderTransformOrigin="7.434,1.775"/>
+                    <CheckBox x:Name="check_imagen" Canvas.Left="507" Canvas.Top="299" Click="abre_seleccion_imagen"/>
+                    <TextBox x:Name="ruta_imagen" Text="Ruta" Canvas.Left="497" Canvas.Top="324" Height="26" Width="313"/>
+                    <Image x:Name="imagenMascota" Height="100" Canvas.Left="582" Canvas.Top="211" Width="100"/>
                 </Canvas>
             </TabItem>
             <TabItem Header="TabItem">
