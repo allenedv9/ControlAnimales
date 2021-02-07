@@ -8,9 +8,9 @@
         Title="Mascotas" Height="700" Width="1000">
     <Grid Margin="0,0,0,369">
         <ToolBar Background="#FF9E8682" Margin="0,0,0,250" >
-            <Button x:Name="añadir_mascota" Height="49" Width="125" Content="Añadir mascota" Background="White" Click="añadir_mascota_Click" VerticalAlignment="Top" />
+            <Button x:Name="añadir_mascota" Height="49" Width="125" Content="Mascota" Background="White" Click="añadir_mascota_Click" VerticalAlignment="Top" />
             <Separator Width="3" Height="137"/>
-            <Button x:Name="diario" Height="48" Width="96" Content="Veterinario" Background="White" Click="diario_Click" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Button x:Name="diario" Height="48" Width="96" Content="Veterinario" Background="White" Click="abrir_veterinario" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <Separator Width="3"/>
             <Button x:Name="galeria" Height="48" Width="96" Content="Galeria" Background="White" Click="galeria_Click" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <Separator Width="3"/>
@@ -50,7 +50,7 @@
                 </Canvas>
             </TabItem>
         </TabControl>
-        <TabControl x:Name="agregarVeterinario" Margin="0,65,0,-364" Visibility="Visible">
+        <TabControl x:Name="veterinaria" Margin="0,65,0,-364" Visibility="Visible">
             <TabItem Header="Nueva/o Veterinaria" Margin="-2,-2,-2,2">
                 <Canvas x:Name="ventanaVeterinaria" Visibility="Visible" Background="#FFE5E5E5" Margin="2,39,-2,12">
                     <TextBox x:Name="txt_nombre_veterinaria"  Text="Nombre" TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157"  Canvas.Left="90" Canvas.Top="35"  GotFocus="foco" LostFocus="perder_foco"/>
