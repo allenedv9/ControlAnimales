@@ -26,8 +26,8 @@
                     <TextBox x:Name="txt_nombre"  Text="Nombre" TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157"  Canvas.Left="90" Canvas.Top="35"  GotFocus="foco" LostFocus="perder_foco"/>
                     <TextBox x:Name="txt_fecha" Text="Fecha Nacimiento" TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157"  Canvas.Left="614" Canvas.Top="10" GotFocus="foco" LostFocus="perder_foco"/>
                     <TextBox x:Name="txt_edad" IsReadOnly="True" Text="Edad" TextWrapping="Wrap" Width="180" Height="35" RenderTransformOrigin="0.75,2.157"  Canvas.Left="90" Canvas.Top="130" GotFocus="foco" LostFocus="perder_foco"/>
-                    <RadioButton x:Name="macho" Content="Macho" Canvas.Left="143" Canvas.Top="260" Click="elige_macho"/>
-                    <RadioButton x:Name="hembra" Content="hembra" Canvas.Left="201" Canvas.Top="260" Click="elige_hembra"/>
+                    <RadioButton x:Name="macho" Content="Macho" Canvas.Left="143" Canvas.Top="260" Click="selecciona_sexo"/>
+                    <RadioButton x:Name="hembra" Content="hembra" Canvas.Left="201" Canvas.Top="260" Click="selecciona_sexo"/>
                     <TextBox x:Name="txt_color" Text="Color" TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157" GotFocus="foco" Canvas.Left="90" Canvas.Top="285" LostFocus="perder_foco"/>
                     <TextBox x:Name="txt_cartilla" Text="Num cartilla sanitaria" TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157" GotFocus="foco" Canvas.Left="397" Canvas.Top="70" LostFocus="perder_foco"/>
                     <TextBox x:Name="txt_chip" Text="Num Chip" TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157" GotFocus="foco" Canvas.Left="397" Canvas.Top="117" LostFocus="perder_foco"/>
@@ -43,6 +43,8 @@
                     <CheckBox x:Name="check_imagen" Canvas.Left="507" Canvas.Top="299" Click="abre_seleccion_imagen"/>
                     <TextBox x:Name="ruta_imagen" Text="Ruta" Canvas.Left="497" Canvas.Top="324" Height="26" Width="313"/>
                     <Image x:Name="imagenMascota" Height="100" Canvas.Left="582" Canvas.Top="211" Width="100"/>
+                    <ComboBox  x:Name="especie" Canvas.Left="90" Canvas.Top="201" Width="120"/>
+                    <ComboBox  x:Name="razas" Canvas.Left="247" Canvas.Top="201" Width="120"/>
                 </Canvas>
             </TabItem>
             <TabItem Header="TabItem">
