@@ -309,15 +309,11 @@ namespace ControlAnimales
                 especie.ItemsSource = especies.DefaultView;
             }
 
-            string item = especie.DisplayMemberPath = "especie";
-            MessageBox.Show(item);
+           
                
         }
 
-        private void abrir_veterinario(object sender, RoutedEventArgs e)
-        {
-
-        }
+        
     }
 }             
 
