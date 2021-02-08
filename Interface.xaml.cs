@@ -290,6 +290,7 @@ namespace ControlAnimales
 
         private void cargarEspecies() {
 
+
             try{
                 //abrimos la conexion
                 con.Open();
@@ -309,11 +310,17 @@ namespace ControlAnimales
                 especie.ItemsSource = especies.DefaultView;
             }
 
-           
-               
         }
 
-        
+  
+
+        private void abrir_veterinario(object sender, RoutedEventArgs e)
+        {
+            agregarMasc.Visibility = Visibility.Hidden;
+            veterinaria.Visibility = Visibility.Visible;
+        }
+
+       
     }
 }             
 

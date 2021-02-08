@@ -43,7 +43,7 @@
                     <CheckBox x:Name="check_imagen" Canvas.Left="507" Canvas.Top="299" Click="abre_seleccion_imagen"/>
                     <TextBox x:Name="ruta_imagen" Text="Ruta" Canvas.Left="497" Canvas.Top="324" Height="26" Width="313"/>
                     <Image x:Name="imagenMascota" Height="100" Canvas.Left="582" Canvas.Top="211" Width="100"/>
-                    <ComboBox  x:Name="especie" Canvas.Left="90" Canvas.Top="201" Width="120"/>
+                    <ComboBox  x:Name="especie" Canvas.Left="90" Canvas.Top="201" Width="120" />
                     <ComboBox  x:Name="razas" Canvas.Left="247" Canvas.Top="201" Width="120"/>
                 </Canvas>
             </TabItem>
@@ -52,7 +52,7 @@
                 </Canvas>
             </TabItem>
         </TabControl>
-        <TabControl x:Name="veterinaria" Margin="0,65,0,-364" Visibility="Visible">
+        <TabControl x:Name="veterinaria" Margin="0,65,0,-364" Visibility="Hidden">
             <TabItem Header="Nueva/o Veterinaria" Margin="-2,-2,-2,2">
                 <Canvas x:Name="ventanaVeterinaria" Visibility="Visible" Background="#FFE5E5E5" Margin="2,39,-2,12">
                     <TextBox x:Name="txt_nombre_veterinaria"  Text="Nombre" TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157"  Canvas.Left="90" Canvas.Top="35"  GotFocus="foco" LostFocus="perder_foco"/>
