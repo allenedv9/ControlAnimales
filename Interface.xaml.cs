@@ -24,21 +24,26 @@ namespace ControlAnimales
         {
             InitializeComponent();
 
-           // string conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Allende\\source\\repos\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
-           // con = new SqlConnection(conexion);
-           // cargarEspecies();
+           string conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Allende\\source\\repos\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
+           con = new SqlConnection(conexion);
+           cargarEspecies();
         }
 
         private void añadir_mascota_Click(object sender, RoutedEventArgs e){
+                 img_principal.Visibility = Visibility.Hidden;
+                agregarMasc.Visibility = Visibility.Visible;
+            
 
-            img_principal.Visibility = Visibility.Hidden;
-            agregarMasc.Visibility = Visibility.Visible;
             if(veterinaria.Visibility == Visibility.Visible)
             {
                 veterinaria.Visibility = Visibility.Hidden;
             }
         }
 
+        private void abrir_veterinario(object sender, RoutedEventArgs e)  {
+            agregarMasc.Visibility = Visibility.Hidden;
+            veterinaria.Visibility = Visibility.Visible;
+        }
         private void diario_Click(object sender, RoutedEventArgs e){
 
         }
@@ -315,14 +320,10 @@ namespace ControlAnimales
             }
 
         }
+      
 
   
 
-        private void abrir_veterinario(object sender, RoutedEventArgs e)
-        {
-            agregarMasc.Visibility = Visibility.Hidden;
-            veterinaria.Visibility = Visibility.Visible;
-        }
 
        
     }
