@@ -80,7 +80,25 @@ namespace ControlAnimales
 
                 txt_lugar_adopcion.Text = "";
             }
-
+            if (txt_nombre_veterinaria.IsFocused) {
+                txt_nombre_veterinaria.Text = "";
+            }
+            if (txt_clinica.IsFocused)
+            {
+                txt_clinica.Text = "";
+            }
+            if (txt_calle_veterinaria.IsFocused)
+            {
+                txt_calle_veterinaria.Text = "";
+            }
+            if (txt_telefono_clinica.IsFocused)
+            {
+                txt_telefono_clinica.Text = "";
+            }
+            if (txt_telefono_urgencias.IsFocused)
+            {
+                txt_telefono_urgencias.Text = "";
+            }
         }
 
         //Si el textBox esta vacio vuelve a colocar el nombre del campo a rellenar
@@ -124,6 +142,26 @@ namespace ControlAnimales
             if (txt_lugar_adopcion.Text == ""){
 
                 txt_lugar_adopcion.Text = "Lugar Adopción";
+            }
+            if (txt_nombre_veterinaria.Text == "")
+            {
+                txt_nombre_veterinaria.Text = "Nombre Veterinari@";
+            }
+            if (txt_clinica.Text == "")
+            {
+                txt_clinica.Text = "Nombre Clinica";
+            }
+            if (txt_calle_veterinaria.Text == "")
+            {
+                txt_calle_veterinaria.Text = "Calle";
+            }
+            if (txt_telefono_clinica.Text == "")
+            {
+                txt_telefono_clinica.Text = "Teléfono Clínica";
+            }
+            if (txt_telefono_urgencias.Text == "")
+            {
+                txt_telefono_urgencias.Text = "Teléfono Urgencias";
             }
         }
 
