@@ -80,7 +80,7 @@ namespace ControlAnimales
 
                 txt_lugar_adopcion.Text = "";
             }
-            if (txt_nombre_veterinaria.IsFocused) {
+          /*  if (txt_nombre_veterinaria.IsFocused) {
                 txt_nombre_veterinaria.Text = "";
             }
             if (txt_clinica.IsFocused)
@@ -98,7 +98,7 @@ namespace ControlAnimales
             if (txt_telefono_urgencias.IsFocused)
             {
                 txt_telefono_urgencias.Text = "";
-            }
+            }*/
         }
 
         //Si el textBox esta vacio vuelve a colocar el nombre del campo a rellenar
@@ -143,7 +143,7 @@ namespace ControlAnimales
 
                 txt_lugar_adopcion.Text = "Lugar Adopción";
             }
-            if (txt_nombre_veterinaria.Text == "")
+           /* if (txt_nombre_veterinaria.Text == "")
             {
                 txt_nombre_veterinaria.Text = "Nombre Veterinari@";
             }
@@ -162,7 +162,7 @@ namespace ControlAnimales
             if (txt_telefono_urgencias.Text == "")
             {
                 txt_telefono_urgencias.Text = "Teléfono Urgencias";
-            }
+            }*/
         }
 
         //este Metodo calcula la edad de nuestra mascota  meses y años
@@ -219,7 +219,7 @@ namespace ControlAnimales
 
         }
 
-        //Elige la opcion de macho
+        //RadioButton para el sexo
         private void selecciona_sexo(object sender, RoutedEventArgs e)
         {
             if (macho.IsChecked == true)
@@ -288,7 +288,7 @@ namespace ControlAnimales
         }
     
 
-    private void cargarEspecies() {
+        private void cargarEspecies() {
 
             try{
                 //abrimos la conexion
@@ -308,9 +308,16 @@ namespace ControlAnimales
                 especie.SelectedValuePath = "id_especie";
                 especie.ItemsSource = especies.DefaultView;
             }
+
+            string item = especie.DisplayMemberPath = "especie";
+            MessageBox.Show(item);
                
         }
 
-}
+        private void abrir_veterinario(object sender, RoutedEventArgs e)
+        {
+
+        }
+    }
 }             
 
