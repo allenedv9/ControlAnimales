@@ -24,7 +24,11 @@ namespace ControlAnimales
         {
             InitializeComponent();
 
-           string conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Allende\\source\\repos\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
+            //conexion AIDA
+            string conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Aida\\Desktop\\PERRUNO\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
+           
+            //conexion ALLENDE
+            // string conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Allende\\source\\repos\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
            con = new SqlConnection(conexion);
            cargarEspecies();
         }
@@ -296,9 +300,8 @@ namespace ControlAnimales
             }
         }
     
-
+        //rellena el combo box de especies con los datos de bd
         private void cargarEspecies() {
-
 
             try{
                 //abrimos la conexion
@@ -320,12 +323,39 @@ namespace ControlAnimales
             }
 
         }
-      
 
-  
+        private void cargaRazas(object sender, SelectionChangedEventArgs e)
+        {
+            //una vez haya seleccionado la especie se hace visible y se carga el combo con las razas de esa especie
+            razas.Visibility = Visibility.Visible;
 
 
-       
+            try
+            {
+                //abrimos la conexion
+                con.Open();
+            }
+            catch (Exception ee)
+            {
+                MessageBox.Show(ee.Message);
+            }
+
+
+           // *******************************************************************************
+            //Hacer la query q enlace con los resultados a mostrar
+            // ME LO E INVENTADO PERO CREO Q SERIA LAGO ASI
+            string query = "SELECT * FROM ave, gato, perro, pez, roedor WHERE id_especie  ";
+            SqlDataAdapter miAdaptadorSql = new SqlDataAdapter(query, con);
+
+            using (miAdaptadorSql)
+            {
+                DataTable razas = new DataTable();
+                miAdaptadorSql.Fill(razas);
+                especie.DisplayMemberPath = "razas";
+                especie.SelectedValuePath = "id_especie";
+                especie.ItemsSource = razas.DefaultView;
+            }
+        }
     }
 }             
 
