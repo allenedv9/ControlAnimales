@@ -9,11 +9,11 @@ namespace ControlAnimales
     class Veterinaria : IDataErrorInfo
     {
         //campos del formulario Veterinaria
-        String nombre;
-        String clinica;
-        String calle;
-        String telefono;
-        String telefono_urgencias;
+        String nombre ="";
+        String clinica = "";
+        String calle = "";
+        String telefono = "";
+        String telefono_urgencias = "";
 
         Regex regex = new Regex(@"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
 
@@ -64,9 +64,19 @@ result = "Telefono Incorrecto. Formato correcto(999 999 999)";
 }
 }
 
+                if (path == "Telefono_urgencias" || this.telefono_urgencias != null && this.telefono_urgencias != "" && this.telefono_urgencias != "Teléfono Urgencias")
+                {
+                    Regex Expresión = new Regex(@"^[0-9]{3} [0-9]{3} [0-9]{3}$");
 
 }
 
+                    if (!Expresión.IsMatch(this.telefono_urgencias))
+                    {
+                        result = "Telefono Incorrecto. Formato correcto(999 999 999)";
+                    }
+ 
+              }
+                return result;
 
 }*/
     }

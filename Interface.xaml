@@ -3,9 +3,33 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:ControlAnimales"
         mc:Ignorable="d"
         Title="Mascotas" Height="700" Width="1000">
+
+    <Window.Resources>
+
+       <!--  -->
+
+        <ResourceDictionary>
+            <local:Veterinaria x:Key="data"/>
+            
+            <Style x:Key="TextBoxCapturaError" TargetType="TextBox">
+                <Style.Triggers>
+                    <Trigger Property="Validation.HasError" Value="true">
+                        <Setter Property="ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self},
+                        Path=(Validation.Errors)[0].ErrorContent}"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+        </ResourceDictionary>
+    </Window.Resources>
+    
+    
+
+
     <Grid Margin="0,0,0,369">
         <ToolBar Background="#FF9E8682" Margin="0,0,0,250" >
             <Button x:Name="añadir_mascota" Height="49" Width="125" Content="Mascota" Background="White" Click="añadir_mascota_Click" VerticalAlignment="Top" />
