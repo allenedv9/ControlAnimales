@@ -25,10 +25,10 @@ namespace ControlAnimales
             InitializeComponent();
 
             //conexion AIDA
-            string conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Aida\\Desktop\\PERRUNO\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
+             //string conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Aida\\Desktop\\PERRUNO\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
            
             //conexion ALLENDE
-            // string conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Allende\\source\\repos\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
+            string conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Allende\\source\\repos\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
            con = new SqlConnection(conexion);
            cargarEspecies();
         }
@@ -322,13 +322,28 @@ namespace ControlAnimales
                 especie.ItemsSource = especies.DefaultView;
             }
 
+           
+               con.Close();
+        }
+
+      
+
+        private void txt_calle_veterinaria_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
 
         private void cargaRazas(object sender, SelectionChangedEventArgs e)
         {
-            //una vez haya seleccionado la especie se hace visible y se carga el combo con las razas de esa especie
-            razas.Visibility = Visibility.Visible;
 
+            ComboBox cb = (ComboBox)sender;
+
+            DataRowView drv = (DataRowView)cb.SelectedItem;
+            string cadena = drv.Row[0].ToString();
+            cadena.ToLower();
+            MessageBox.Show(cadena);
+
+            razas.Visibility = Visibility.Visible;
 
             try
             {
@@ -340,21 +355,23 @@ namespace ControlAnimales
                 MessageBox.Show(ee.Message);
             }
 
+            if(cadena == "perro"){
 
-           // *******************************************************************************
-            //Hacer la query q enlace con los resultados a mostrar
-            // ME LO E INVENTADO PERO CREO Q SERIA LAGO ASI
-            string query = "SELECT * FROM ave, gato, perro, pez, roedor WHERE id_especie  ";
+            }
+            string query = "SELECT * FROM " + cadena;
             SqlDataAdapter miAdaptadorSql = new SqlDataAdapter(query, con);
 
             using (miAdaptadorSql)
             {
-                DataTable razas = new DataTable();
-                miAdaptadorSql.Fill(razas);
-                especie.DisplayMemberPath = "razas";
+                DataTable especies = new DataTable();
+                miAdaptadorSql.Fill(especies);
+                especie.DisplayMemberPath = "raza";
                 especie.SelectedValuePath = "id_especie";
-                especie.ItemsSource = razas.DefaultView;
+                especie.ItemsSource = especies.DefaultView;
             }
+
+            
+            con.Close();*/
         }
     }
 }             
