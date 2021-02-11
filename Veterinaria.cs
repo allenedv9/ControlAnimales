@@ -17,23 +17,15 @@ namespace ControlAnimales
 
         Regex regex = new Regex(@"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
 
-        public string this[string columnName] => throw new NotImplementedException();
-
-        public string Error => throw new NotImplementedException();
-        /*
+        
+        
 public string Nombre { get => nombre; set => nombre = value; }
 public string Clinica { get => clinica; set => clinica = value; }
 public string Calle { get => calle; set => calle = value; }
 public string Telefono { get => telefono; set => telefono = value; }
 public string Telefono_urgencias { get => telefono_urgencias; set => telefono_urgencias = value; }
 
-public string Error
-{
-get
-{
-return null;
-}
-}
+
 
 
 public string this[string path]
