@@ -327,13 +327,6 @@ namespace ControlAnimales
                con.Close();
         }
 
-      
-
-        private void txt_calle_veterinaria_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
         private void cargaRazas(object sender, SelectionChangedEventArgs e)
         {
 
@@ -356,10 +349,29 @@ namespace ControlAnimales
                 MessageBox.Show(ee.Message);
             }
 
-            if(cadena == "perro"){
+            //si la cadena es igual a 1 , SELCCIONA perro
+            if(cadena == "1"){
+                /* ECHALE UN VVISTAZO A ESTO  *****************
+                 * POR AHI VA LA COSA; HE LLEGADO HASTA LA CADENA PARA HACER LA QUERY
+                 cuando eliges perro, el combo se hace grandisimo, pero no se llegan a ver los campos*/
+                MessageBox.Show("LLego a perro");
+                string query = "SELECT * FROM perro";
+                SqlDataAdapter miAdaptadorSql = new SqlDataAdapter(query, con);
 
+                using (miAdaptadorSql)
+                {
+                    DataTable dtRazas = new DataTable();
+                    miAdaptadorSql.Fill(dtRazas);
+
+                    //estas dos lineas creo q son las q tiene el fallo
+                    razas.DisplayMemberPath = "perro";
+                    razas.SelectedValuePath = "raza";
+                    MessageBox.Show(razas.SelectedValuePath.ToString());// xq aqui muetsra razas
+                    razas.ItemsSource = dtRazas.DefaultView;
+                }
             }
-            string query = "SELECT * FROM " + cadena;
+          /*  ESTO ERA LO Q TENIAS TU ECHO PERO NO ES ASI
+           *  string query = "SELECT * FROM " + cadena;
             SqlDataAdapter miAdaptadorSql = new SqlDataAdapter(query, con);
           
             using (miAdaptadorSql)
@@ -369,7 +381,7 @@ namespace ControlAnimales
                 especie.DisplayMemberPath = "raza";
                 especie.SelectedValuePath = "id_especie";
                 especie.ItemsSource = especies.DefaultView;
-            }
+            }*/
 
             
             con.Close();
