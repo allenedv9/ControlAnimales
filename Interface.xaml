@@ -3,9 +3,33 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:ControlAnimales"
         mc:Ignorable="d"
         Title="Mascotas" Height="700" Width="1000">
+
+    <Window.Resources>
+
+       <!--  -->
+
+        <ResourceDictionary>
+            <local:Veterinaria x:Key="data"/>
+            
+            <Style x:Key="TextBoxCapturaError" TargetType="TextBox">
+                <Style.Triggers>
+                    <Trigger Property="Validation.HasError" Value="true">
+                        <Setter Property="ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self},
+                        Path=(Validation.Errors)[0].ErrorContent}"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+        </ResourceDictionary>
+    </Window.Resources>
+    
+    
+
+
     <Grid Margin="0,0,0,369">
         <ToolBar Background="#FF9E8682" Margin="0,0,0,250" >
             <Button x:Name="añadir_mascota" Height="49" Width="125" Content="Mascota" Background="White" Click="añadir_mascota_Click" VerticalAlignment="Top" />
@@ -55,12 +79,64 @@
         <TabControl x:Name="veterinaria" Margin="0,65,0,-364" Visibility="Visible">
             <TabItem Header="Nueva/o Veterinaria" Margin="-2,-2,-2,2">
                 <Canvas x:Name="ventanaVeterinaria" Visibility="Visible" Background="#FFE5E5E5" Margin="2,39,-2,12">
-                    <TextBox x:Name="txt_nombre_veterinaria"  Text="Nombre" TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157"  Canvas.Left="90" Canvas.Top="35"  GotFocus="foco" LostFocus="perder_foco"/>
-                    <TextBox x:Name="txt_clinica"  Text="Clinica" TextWrapping="Wrap" Width="180" Height="35" Canvas.Left="90" Canvas.Top="130" GotFocus="foco" LostFocus="perder_foco"/>
-                    <TextBox x:Name="txt_calle_veterinaria" Text="Calle" TextWrapping="Wrap" Width="180" Height="26"  GotFocus="foco" Canvas.Left="90" Canvas.Top="209" LostFocus="perder_foco"/>
-                    <TextBox x:Name="txt_telefono_clinica" Text="Teléfono Clínica" TextWrapping="Wrap" Width="180" Height="26"  GotFocus="foco" Canvas.Left="397" Canvas.Top="70" LostFocus="perder_foco"/>
-                     <TextBox x:Name="txt_telefono_urgencias" Text="Teléfono Urgencias" TextWrapping="Wrap" Width="180" Height="26"  GotFocus="foco" Canvas.Left="397" Canvas.Top="122" LostFocus="perder_foco"/>
-                    
+                    <TextBox x:Name="txt_vacio"   TextWrapping="Wrap" Width="180" Height="26"  GotFocus="foco" LostFocus="perder_foco"  />
+
+                    <TextBox x:Name="txt_nombre_veterinaria"  Style="{StaticResource TextBoxCapturaError}" TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157"  Canvas.Left="90" Canvas.Top="35"  GotFocus="foco" LostFocus="perder_foco">
+                    <TextBox.Text>
+                        <Binding Path="Nombre" Source="{StaticResource data}"
+                         ValidatesOnExceptions="True"
+                         UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <DataErrorValidationRule/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                    <TextBox x:Name="txt_clinica"  TextWrapping="Wrap" Width="180" Height="35" Canvas.Left="90" Canvas.Top="130" GotFocus="foco" LostFocus="perder_foco">
+                        <TextBox.Text>
+                            <Binding Path="Clinica" Source="{StaticResource data}"
+                         ValidatesOnExceptions="True"
+                         UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <DataErrorValidationRule/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                    <TextBox x:Name="txt_calle_veterinaria"  TextWrapping="Wrap" Width="180" Height="26"  GotFocus="foco" Canvas.Left="90" Canvas.Top="209" LostFocus="perder_foco">
+                        <TextBox.Text>
+                            <Binding Path="Calle" Source="{StaticResource data}"
+                         ValidatesOnExceptions="True"
+                         UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <DataErrorValidationRule/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                    <TextBox x:Name="txt_telefono_clinica"  TextWrapping="Wrap" Width="180" Height="26"  GotFocus="foco" Canvas.Left="397" Canvas.Top="70" LostFocus="perder_foco">
+                        <TextBox.Text>
+                            <Binding Path="Telefono" Source="{StaticResource data}"
+                         ValidatesOnExceptions="True"
+                         UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <DataErrorValidationRule/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                    <TextBox x:Name="txt_telefono_urgencias"  TextWrapping="Wrap" Width="180" Height="26"  GotFocus="foco" Canvas.Left="397" Canvas.Top="122" LostFocus="perder_foco">
+                        <TextBox.Text>
+                            <Binding Path="Telefono_urgencias" Source="{StaticResource data}"
+                         ValidatesOnExceptions="True"
+                         UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <DataErrorValidationRule/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+
                 </Canvas>
             </TabItem>
             <TabItem Header="TabItem">

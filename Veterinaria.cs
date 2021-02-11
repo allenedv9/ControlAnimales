@@ -9,14 +9,14 @@ namespace ControlAnimales
     class Veterinaria : IDataErrorInfo
     {
         //campos del formulario Veterinaria
-        String nombre;
-        String clinica;
-        String calle;
-        String telefono;
-        String telefono_urgencias;
+        String nombre ="";
+        String clinica = "";
+        String calle = "";
+        String telefono = "";
+        String telefono_urgencias = "";
 
         Regex regex = new Regex(@"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
-/*
+
         public string Nombre { get => nombre; set => nombre = value; }
         public string Clinica { get => clinica; set => clinica = value; }
         public string Calle { get => calle; set => calle = value; }
@@ -38,31 +38,68 @@ namespace ControlAnimales
             {
                 string result = null;
 
-                if (path == "Nombre"){
-                    if (this.nombre < 0 || this.id > 9999)
+                if (path == "Nombre")
+                {
                     {
-                        result = "Id incorrecto.";
+                        Regex regex = new Regex(@"^[a-zA-Z _0-9]{3,50}$");
+                        if (!regex.IsMatch(this.Nombre))
+                        {
+                            result = " admite carácteres alfabéticos y numeros, min 3 max 50";
+                        }
                     }
                 }
 
-                if (path == "Telefono" && this.telefono != null && this.telefono != "" && this.telefono != "Teléfono Clínica")
+                if (path == "Clinica")
+                {
+                    {
+                        Regex regex = new Regex(@"^[a-zA-Z _0-9]{3,50}$");
+                        if (!regex.IsMatch(this.Clinica))
+                        {
+                            result = " admite carácteres alfabéticos y numeros, min 3 max 50";
+                        }
+                    }
+                }
+                if (path == "Calle")
+                {
+                    {
+                        Regex regex = new Regex(@"^[a-zA-Z _0-9]{3,50}$");
+                        if (!regex.IsMatch(this.Calle))
+                        {
+                            result = " admite carácteres alfabéticos y numeros, min 3 max 50";
+                        }
+                    }
+                }
+
+                if (path == "Telefono" || this.telefono != "Teléfono Clínica")
                 {
                     Regex Expresión = new Regex(@"^[0-9]{3} [0-9]{3} [0-9]{3}$");
-                    //  Regex Expresión = new Regex(@"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
 
                     Console.WriteLine("Telefono :" + this.telefono);
                     Console.WriteLine(Expresión.IsMatch(this.telefono));
-                    //  return regex.IsMatch(s);
 
                     if (!Expresión.IsMatch(this.telefono))
                     {
                         result = "Telefono Incorrecto. Formato correcto(999 999 999)";
                     }
+
                 }
 
+                if (path == "Telefono_urgencias" || this.telefono_urgencias != null && this.telefono_urgencias != "" && this.telefono_urgencias != "Teléfono Urgencias")
+                {
+                    Regex Expresión = new Regex(@"^[0-9]{3} [0-9]{3} [0-9]{3}$");
+
+                    Console.WriteLine("Telefono :" + this.telefono_urgencias);
+                    Console.WriteLine(Expresión.IsMatch(this.telefono_urgencias));
+
+                    if (!Expresión.IsMatch(this.telefono_urgencias))
+                    {
+                        result = "Telefono Incorrecto. Formato correcto(999 999 999)";
+                    }
+ 
+              }
+                return result;
 
             }
-
-
-        }*/
+        }
     }
+}
