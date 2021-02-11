@@ -16,7 +16,7 @@ namespace ControlAnimales
         String telefono_urgencias;
 
         Regex regex = new Regex(@"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
-
+/*
         public string Nombre { get => nombre; set => nombre = value; }
         public string Clinica { get => clinica; set => clinica = value; }
         public string Calle { get => calle; set => calle = value; }
@@ -64,5 +64,5 @@ namespace ControlAnimales
             }
 
 
-        }
+        }*/
     }
