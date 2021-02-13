@@ -46,9 +46,13 @@ namespace ControlAnimales
                         if (!regex.IsMatch(this.Nombre))
                         {
                             result = " admite carácteres alfabéticos y numeros, min 3 max 50";
+
                         }
+                        else { result = ""; }
+                        return result;
                     }
                 }
+
                 // Clinica -- Admite de 3 a 50 caracteres de texto
                 if (path == "Clinica"||this.clinica!= "Nombre Clinica")
                 {
@@ -57,17 +61,24 @@ namespace ControlAnimales
                         if (!regex.IsMatch(this.Clinica))
                         {
                             result = " admite carácteres alfabéticos y numeros, min 3 max 50";
+
                         }
+
+                        else { result = ""; }
+                        return result;
                     }
                 }
                 // Calle -- Admite de 3 a 50 caracteres de texto
-                if (path == "Calle" || this.calle !="Calle")
+                  if (path == "Calle" || this.calle !="Calle")
                 {
                     Regex regex = new Regex(@"^[a-zA-Z _0-9]{3,50}$");
                     if (!regex.IsMatch(this.Calle))
                     {
                         result = " admite carácteres alfabéticos y numeros, min 3 max 50";
+                        
                     }
+                    else { result = ""; }
+                    return result;
 
                 }
                 // Telefono -- Admite 9 digitos numericos
@@ -78,22 +89,28 @@ namespace ControlAnimales
                     if (!Expresión.IsMatch(this.telefono))
                     {
                         result = "Telefono Incorrecto. Formato correcto(999999999)";
+                    
                     }
+                    else { result = ""; }
+                    return result;
 
                 }
                 // Telefono_urgencias -- Admite 9 digitos numericos
-                if (path == "Telefono_urgencias" || this.telefono_urgencias != null && this.telefono_urgencias != "" && this.telefono_urgencias != "Teléfono Urgencias")
+                 if (path == "Telefono_urgencias" || this.telefono_urgencias != null && this.telefono_urgencias != "" && this.telefono_urgencias != "Teléfono Urgencias")
                 {
                     Regex Expresión = new Regex(@"^[0-9]{3}[0-9]{3}[0-9]{3}$");
 
                     if (!Expresión.IsMatch(this.telefono_urgencias))
                     {
                         result = "Telefono Incorrecto. Formato correcto(999999999)";
+                       
                     }
+                    else { result = ""; }
+                    return result;
 
                 }
                 
-                return result;
+               return result;
             }
         }
     }

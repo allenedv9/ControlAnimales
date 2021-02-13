@@ -20,11 +20,12 @@ namespace ControlAnimales
     public partial class Interface : Window
     {
         SqlConnection con;
+
         public Interface()
         {
             InitializeComponent();
 
-            //conexion AIDA
+            //conexion AIDA 
              string conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Aida\\Desktop\\PERRUNO\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
            
             //conexion ALLENDE
