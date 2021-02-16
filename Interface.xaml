@@ -44,8 +44,8 @@
         <Canvas x:Name="img_principal" Visibility="Hidden">
             <Image x:Name="img_princ" Source="/imagenes/pug.jpg" Height="444" Width="800" Canvas.Top="33" Canvas.Left="2"/>
         </Canvas>
-        <TabControl x:Name="agregarMasc" Margin="0,65,0,-364" Visibility="Hidden">
-            <TabItem Header="Nueva Mascota" Margin="-2,-2,-2,2">
+        <TabControl x:Name="agregarMasc" Margin="0,65,0,-364" Visibility="Visible">
+            <TabItem Header="Nueva Mascota" Margin="-2,-2,-2,0" Height="20" VerticalAlignment="Top">
                 <Canvas x:Name="ventana" Visibility="Visible" Background="#FFE5E5E5" Margin="100,39,-100,12">
                     <TextBox x:Name="txt_nombre"  Text="Nombre" TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157"  Canvas.Left="90" Canvas.Top="35"  GotFocus="foco" LostFocus="perder_foco"/>
                     <TextBox x:Name="txt_fecha" Text="Fecha Nacimiento" TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157"  Canvas.Left="614" Canvas.Top="10" GotFocus="foco" LostFocus="perder_foco"/>
@@ -71,12 +71,28 @@
                     <ComboBox  x:Name="razas" Canvas.Left="247" Canvas.Top="201" Width="120" Visibility="Hidden"/>
                 </Canvas>
             </TabItem>
-            <TabItem Header="TabItem">
+            <TabItem Header="Ver Mascotas">
                 <Canvas Background="#FFE5E5E5" Margin="2,39,-2,12">
+                    <DataGrid x:Name="dg_lista_mascotas"  Height="405" Width="984" AutoGenerateColumns="False" Canvas.Top="50" >
+                        <DataGrid.Columns >
+                            <DataGridTextColumn Header="Foto"  Width="*" Binding="{Binding Id}" IsReadOnly="True" />
+                            <DataGridTextColumn  Header= "Fecha Nacimiento" Width="*" Binding="{Binding Calle}" CanUserReorder="False" IsReadOnly="True"/>
+                            <DataGridTextColumn  Header= "Edad" Width="*" Binding="{Binding Cantidad}" CanUserReorder="False" IsReadOnly="True"/>
+                            <DataGridTextColumn  Header= "Especie" Width="*" Binding="{Binding Cantidad}" CanUserReorder="False" IsReadOnly="True"/>
+                            <DataGridTextColumn  Header= "Raza" Width="*" Binding="{Binding Cantidad}" CanUserReorder="False" IsReadOnly="True"/>
+                            <DataGridTextColumn  Header= "Sexo" Width="*" Binding="{Binding Cantidad}" CanUserReorder="False" IsReadOnly="True"/>
+                            <DataGridTextColumn  Header= "Color" Width="*" Binding="{Binding Cantidad}" CanUserReorder="False" IsReadOnly="True"/>
+                            <DataGridTextColumn  Header= "Cartilla Sanitaria" Width="*" Binding="{Binding Cantidad}" CanUserReorder="False" IsReadOnly="True"/>
+                            <DataGridTextColumn  Header= "Numero Chip" Width="*" Binding="{Binding Cantidad}" CanUserReorder="False" IsReadOnly="True"/>
+                            <DataGridTextColumn  Header= "Adoptado" Width="*" Binding="{Binding Cantidad}" CanUserReorder="False" IsReadOnly="True"/>
+                            <DataGridTextColumn  Header= "Fecha Adopción" Width="*" Binding="{Binding Cantidad}" CanUserReorder="False" IsReadOnly="True"/>
+
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </Canvas>
             </TabItem>
         </TabControl>
-        <TabControl x:Name="veterinaria" Margin="0,65,0,-364" Visibility="Visible">
+        <TabControl x:Name="veterinaria" Margin="0,65,0,-364" Visibility="Hidden">
             <TabItem Header="Nueva/o Veterinaria" Margin="-2,-2,-2,2">
                 <Canvas x:Name="ventanaVeterinaria" Visibility="Visible" Background="#FFE5E5E5" Margin="2,39,-2,12">
 
@@ -140,11 +156,16 @@
             <TabItem Header="Visitas veterinario">
                 <Canvas Background="#FFE5E5E5" Margin="2,39,-2,12">
 
-                    <TextBox x:Name="fecha_visita" Text="Fecha" TextWrapping="Wrap" Width="180" Height="26" Canvas.Left="90" Canvas.Top="140" />
-                    <TextBox x:Name="descripcion_visita" Text="Descripción" TextWrapping="Wrap" Width="180" Height="26" Canvas.Left="90" Canvas.Top="309"/>
+                    <TextBox x:Name="txt_fecha_visita" Text="Fecha" TextWrapping="Wrap" Width="180" Height="26" Canvas.Left="300" Canvas.Top="149" />
+                    <DatePicker x:Name="fecha_vis" Height="32" Width="180" Canvas.Left="90" Canvas.Top="146" CalendarClosed="cargar_fecha_vis"  />
+                    <TextBox x:Name="descripcion_visita" Text="Descripción" TextWrapping="Wrap" Width="180" Height="26" Canvas.Left="90" Canvas.Top="275"/>
                     <TextBox x:Name="precio_visita"  Text="precio visita" TextWrapping="Wrap" Width="180" Height="26" Canvas.Left="90" Canvas.Top="364"  />
-                    <TextBox x:Name="veterinario_visita" Text="veterinario" TextWrapping="Wrap" Width="180" Height="26" Canvas.Left="90" Canvas.Top="419"  />
-                    <TextBox x:Name="mascota_visita" Text="mascota" TextWrapping="Wrap" Width="180" Height="26" Canvas.Left="90" Canvas.Top="460" />
+                    <TextBox x:Name="veterinario_visita" Text="veterinario" TextWrapping="Wrap" Width="180" Height="26" Canvas.Left="90" Canvas.Top="194"  />
+                    <TextBox x:Name="mascota_visita" Text="mascota" TextWrapping="Wrap" Width="180" Height="26" Canvas.Left="90" Canvas.Top="90" />
+                    <TextBox x:Name="tratamiento" Text="Descipción tratamiento" TextWrapping="Wrap" Width="180" Height="26" Canvas.Left="460" Canvas.Top="268" Visibility="Hidden" />
+                    <TextBox x:Name="duracion" Text="Duración tratamiento" TextWrapping="Wrap" Width="180" Height="26" Canvas.Left="460" Canvas.Top="318" Visibility="Hidden" />
+
+                    <CheckBox x:Name="tratamiento_check" Content="tratamiento" Canvas.Left="358" Canvas.Top="310" Click="tratamiento_check_clic"/>
 
 
 

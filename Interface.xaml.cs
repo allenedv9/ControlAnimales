@@ -26,76 +26,89 @@ namespace ControlAnimales
             InitializeComponent();
 
             //conexion AIDA 
-             string conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Aida\\Desktop\\PERRUNO\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
-           
+            string conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Aida\\Desktop\\PERRUNO\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
+
             //conexion ALLENDE
-           // string conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Allende\\source\\repos\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
-           con = new SqlConnection(conexion);
-           cargarEspecies();
+            // string conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Allende\\source\\repos\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
+            con = new SqlConnection(conexion);
+            cargarEspecies();
         }
 
-        private void añadir_mascota_Click(object sender, RoutedEventArgs e){
-                 img_principal.Visibility = Visibility.Hidden;
-                agregarMasc.Visibility = Visibility.Visible;
-            
+        private void añadir_mascota_Click(object sender, RoutedEventArgs e)
+        {
+            img_principal.Visibility = Visibility.Hidden;
+            agregarMasc.Visibility = Visibility.Visible;
 
-            if(veterinaria.Visibility == Visibility.Visible)
+
+            if (veterinaria.Visibility == Visibility.Visible)
             {
                 veterinaria.Visibility = Visibility.Hidden;
             }
         }
 
-        private void abrir_veterinario(object sender, RoutedEventArgs e)  {
+        private void abrir_veterinario(object sender, RoutedEventArgs e)
+        {
             agregarMasc.Visibility = Visibility.Hidden;
             veterinaria.Visibility = Visibility.Visible;
-            perder_foco(sender,e);
+            perder_foco(sender, e);
         }
-        private void diario_Click(object sender, RoutedEventArgs e){
+        private void diario_Click(object sender, RoutedEventArgs e)
+        {
 
         }
 
-        private void galeria_Click(object sender, RoutedEventArgs e){
+        private void galeria_Click(object sender, RoutedEventArgs e)
+        {
 
         }
 
         //Limpia textBox para recojer dato
-        private void foco(object sender, RoutedEventArgs e){
+        private void foco(object sender, RoutedEventArgs e)
+        {
 
-            if (txt_nombre.IsFocused){
+            if (txt_nombre.IsFocused)
+            {
 
                 txt_nombre.Text = "";
             }
 
-            if (txt_fecha.IsFocused){
+            if (txt_fecha.IsFocused)
+            {
 
                 txt_fecha.Text = "";
             }
 
-            if (txt_color.IsFocused){
+            if (txt_color.IsFocused)
+            {
 
                 txt_color.Text = "";
             }
 
-            if (txt_cartilla.IsFocused){
+            if (txt_cartilla.IsFocused)
+            {
 
                 txt_cartilla.Text = "";
             }
 
-            if (txt_chip.IsFocused){
+            if (txt_chip.IsFocused)
+            {
 
                 txt_chip.Text = "";
             }
 
-            if (txt_fecha_adopcion.IsFocused){
+            if (txt_fecha_adopcion.IsFocused)
+            {
 
                 txt_fecha_adopcion.Text = "";
             }
 
-            if (txt_lugar_adopcion.IsFocused){
+            if (txt_lugar_adopcion.IsFocused)
+            {
 
                 txt_lugar_adopcion.Text = "";
             }
-           if (txt_nombre_veterinaria.IsFocused) {
+            if (txt_nombre_veterinaria.IsFocused)
+            {
                 txt_nombre_veterinaria.Text = "";
             }
             if (txt_clinica.IsFocused)
@@ -117,44 +130,53 @@ namespace ControlAnimales
         }
 
         //Si el textBox esta vacio vuelve a colocar el nombre del campo a rellenar
-        private void perder_foco(object sender, RoutedEventArgs e) {
+        private void perder_foco(object sender, RoutedEventArgs e)
+        {
 
-            if (txt_nombre.Text == ""){
+            if (txt_nombre.Text == "")
+            {
 
                 txt_nombre.Text = "Nombre";
             }
 
-            if (txt_fecha.Text == ""){
+            if (txt_fecha.Text == "")
+            {
 
                 txt_fecha.Text = "Fecha Nacimineto";
             }
 
-            if (txt_edad.Text == ""){
+            if (txt_edad.Text == "")
+            {
 
                 txt_edad.Text = "Edad";
             }
 
-            if (txt_color.Text == ""){
+            if (txt_color.Text == "")
+            {
 
                 txt_color.Text = "Color";
             }
 
-            if (txt_cartilla.Text == ""){
+            if (txt_cartilla.Text == "")
+            {
 
                 txt_cartilla.Text = "Cartilla";
             }
 
-            if (txt_chip.Text == ""){
+            if (txt_chip.Text == "")
+            {
 
                 txt_chip.Text = "Chip";
             }
 
-            if (txt_fecha_adopcion.Text == ""){
+            if (txt_fecha_adopcion.Text == "")
+            {
 
                 txt_fecha_adopcion.Text = "Fecha Adopcion";
             }
 
-            if (txt_lugar_adopcion.Text == ""){
+            if (txt_lugar_adopcion.Text == "")
+            {
 
                 txt_lugar_adopcion.Text = "Lugar Adopción";
             }
@@ -181,7 +203,8 @@ namespace ControlAnimales
         }
 
         //este Metodo calcula la edad de nuestra mascota  meses y años
-        private void cargar_fecha_nac(object sender, RoutedEventArgs e){
+        private void cargar_fecha_nac(object sender, RoutedEventArgs e)
+        {
 
             //recojo mes y año actual
             String anoActual = DateTime.Today.ToString("yyyy");
@@ -202,31 +225,41 @@ namespace ControlAnimales
 
 
             //Si solo tiene meses , muestra meses
-            if (meses < 0){
+            if (meses < 0)
+            {
 
                 anos = anos - 1;
                 meses = 12 + meses;
 
-                if (anos == 0){
+                if (anos == 0)
+                {
 
                     txt_edad.Text = meses.ToString() + " meses";
 
-                }else if (anos >= 2){
+                }
+                else if (anos >= 2)
+                {
 
                     txt_edad.Text = anos.ToString() + " años y " + meses.ToString() + " meses.";
 
-                     }else{
+                }
+                else
+                {
 
                     txt_edad.Text = anos.ToString() + " año y " + meses.ToString() + " meses.";
-                     }
                 }
+            }
 
             //Si ya tiene un año o mas, muestra años y meses
-            else {
-                if (anos >= 2){
+            else
+            {
+                if (anos >= 2)
+                {
 
                     txt_edad.Text = anos.ToString() + " años y " + meses.ToString() + "meses";
-                } else {
+                }
+                else
+                {
 
                     txt_edad.Text = anos.ToString() + " año y " + meses.ToString() + "meses";
                 }
@@ -280,7 +313,8 @@ namespace ControlAnimales
             if (check_imagen.IsChecked == true)
             {
                 //Cuadro de dialogo para imcluir imagen mascota
-                Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog {
+                Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog
+                {
                     // Set filter for file extension and default file extension 
                     DefaultExt = ".jpg",
                     Filter = "Todos (*.*)|*.*|PNG (*.png)|*.png|JPG (*.jpg)|*.jpg"
@@ -288,7 +322,8 @@ namespace ControlAnimales
 
                 Nullable<bool> result = dlg.ShowDialog();
 
-                if (result == true) {
+                if (result == true)
+                {
                     string imagenFichero = dlg.FileName;
 
                     ruta_imagen.Text = imagenFichero;
@@ -301,14 +336,18 @@ namespace ControlAnimales
                 }
             }
         }
-    
-        //rellena el combo box de especies con los datos de bd
-        private void cargarEspecies() {
 
-            try{
+        //rellena el combo box de especies con los datos de bd
+        private void cargarEspecies()
+        {
+
+            try
+            {
                 //abrimos la conexion
                 con.Open();
-            }catch (Exception ee){
+            }
+            catch (Exception ee)
+            {
                 MessageBox.Show(ee.Message);
             }
 
@@ -324,8 +363,8 @@ namespace ControlAnimales
                 especie.ItemsSource = especies.DefaultView;
             }
 
-           
-               con.Close();
+
+            con.Close();
         }
 
         private void cargaRazas(object sender, SelectionChangedEventArgs e)
@@ -351,7 +390,8 @@ namespace ControlAnimales
             }
 
             //si la cadena es igual a 1 , SELCCIONA perro
-            if(cadena == "1"){
+            if (cadena == "1")
+            {
                 /* ECHALE UN VVISTAZO A ESTO  *****************
                  * POR AHI VA LA COSA; HE LLEGADO HASTA LA CADENA PARA HACER LA QUERY
                  cuando eliges perro, el combo se hace grandisimo, pero no se llegan a ver los campos*/
@@ -371,22 +411,45 @@ namespace ControlAnimales
                     razas.ItemsSource = dtRazas.DefaultView;
                 }
             }
-          /*  ESTO ERA LO Q TENIAS TU ECHO PERO NO ES ASI
-           *  string query = "SELECT * FROM " + cadena;
-            SqlDataAdapter miAdaptadorSql = new SqlDataAdapter(query, con);
-          
-            using (miAdaptadorSql)
-            {
-                DataTable especies = new DataTable();
-                miAdaptadorSql.Fill(especies);
-                especie.DisplayMemberPath = "raza";
-                especie.SelectedValuePath = "id_especie";
-                especie.ItemsSource = especies.DefaultView;
-            }*/
+            /*  ESTO ERA LO Q TENIAS TU ECHO PERO NO ES ASI
+             *  string query = "SELECT * FROM " + cadena;
+              SqlDataAdapter miAdaptadorSql = new SqlDataAdapter(query, con);
 
-            
+              using (miAdaptadorSql)
+              {
+                  DataTable especies = new DataTable();
+                  miAdaptadorSql.Fill(especies);
+                  especie.DisplayMemberPath = "raza";
+                  especie.SelectedValuePath = "id_especie";
+                  especie.ItemsSource = especies.DefaultView;
+              }*/
+
+
             con.Close();
         }
-    }
-}             
 
+
+        //si hay tratamiento visualiza text para rellenar
+        private void tratamiento_check_clic(object sender, RoutedEventArgs e)
+        {
+            if (tratamiento_check.IsChecked == true)
+            {
+                tratamiento.Visibility = Visibility.Visible;
+                duracion.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                tratamiento.Visibility = Visibility.Hidden;
+                duracion.Visibility = Visibility.Hidden;
+            }
+        }
+
+
+        //recojo dia mes y año visita veterinario
+        private void cargar_fecha_vis(object sender, RoutedEventArgs e)
+        {
+            String fecha_visita = fecha_vis.SelectedDate.ToString();
+            txt_fecha_visita.Text = fecha_visita;
+        }
+    }
+}
