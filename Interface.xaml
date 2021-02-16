@@ -10,11 +10,11 @@
 
     <Window.Resources>
 
-       <!--  -->
+        <!--  -->
 
         <ResourceDictionary>
             <local:Veterinaria x:Key="data"/>
-            
+
             <Style x:Key="TextBoxCapturaError" TargetType="TextBox">
                 <Style.Triggers>
                     <Trigger Property="Validation.HasError" Value="true">
@@ -26,8 +26,8 @@
 
         </ResourceDictionary>
     </Window.Resources>
-    
-    
+
+
 
 
     <Grid Margin="0,0,0,369">
@@ -79,7 +79,7 @@
         <TabControl x:Name="veterinaria" Margin="0,65,0,-364" Visibility="Visible">
             <TabItem Header="Nueva/o Veterinaria" Margin="-2,-2,-2,2">
                 <Canvas x:Name="ventanaVeterinaria" Visibility="Visible" Background="#FFE5E5E5" Margin="2,39,-2,12">
-                    
+
                     <TextBox x:Name="txt_nombre_veterinaria"  Style="{StaticResource TextBoxCapturaError}" TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157"  Canvas.Left="90" Canvas.Top="35"  GotFocus="foco" LostFocus="perder_foco">
                         <TextBox.Text>
                             <Binding Path="Nombre" Source="{StaticResource data}"
@@ -137,8 +137,17 @@
                     </TextBox>
                 </Canvas>
             </TabItem>
-            <TabItem Header="TabItem">
+            <TabItem Header="Visitas veterinario">
                 <Canvas Background="#FFE5E5E5" Margin="2,39,-2,12">
+
+                    <TextBox x:Name="fecha_visita" Text="Fecha" TextWrapping="Wrap" Width="180" Height="26" Canvas.Left="90" Canvas.Top="140" />
+                    <TextBox x:Name="descripcion_visita" Text="Descripción" TextWrapping="Wrap" Width="180" Height="26" Canvas.Left="90" Canvas.Top="309"/>
+                    <TextBox x:Name="precio_visita"  Text="precio visita" TextWrapping="Wrap" Width="180" Height="26" Canvas.Left="90" Canvas.Top="364"  />
+                    <TextBox x:Name="veterinario_visita" Text="veterinario" TextWrapping="Wrap" Width="180" Height="26" Canvas.Left="90" Canvas.Top="419"  />
+                    <TextBox x:Name="mascota_visita" Text="mascota" TextWrapping="Wrap" Width="180" Height="26" Canvas.Left="90" Canvas.Top="460" />
+
+
+
 
                 </Canvas>
             </TabItem>

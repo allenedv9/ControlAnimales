@@ -37,20 +37,16 @@ namespace ControlAnimales
         public string this[string path]{
             get{
                 string result = null;
+
                 // Casilla Nombre 
                 //Admite de 3 a 50 caracteres de texto
-                if (path == "Nombre" || this.clinica != "Nombre" || this.clinica != null)
-                {
-                    {
+                if (path == "Nombre" || this.clinica != "Nombre" || this.clinica != null) {
+                    
                         Regex regex = new Regex(@"^[a-zA-Z _0-9]{3,50}$");
-                        if (!regex.IsMatch(this.Nombre))
-                        {
+                        if (!regex.IsMatch(this.Nombre)){
                             result = " admite carácteres alfabéticos y numeros, min 3 max 50";
-
                         }
-                        else { result = ""; }
-                        return result;
-                    }
+                    return result;
                 }
 
                 // Clinica -- Admite de 3 a 50 caracteres de texto
@@ -64,7 +60,6 @@ namespace ControlAnimales
 
                         }
 
-                        else { result = ""; }
                         return result;
                     }
                 }
@@ -77,9 +72,9 @@ namespace ControlAnimales
                         result = " admite carácteres alfabéticos y numeros, min 3 max 50";
                         
                     }
-                    else { result = ""; }
+                   
                     return result;
-
+                  
                 }
                 // Telefono -- Admite 9 digitos numericos
                 if (path == "Telefono" || this.telefono != "Teléfono Clínica")
@@ -91,7 +86,7 @@ namespace ControlAnimales
                         result = "Telefono Incorrecto. Formato correcto(999999999)";
                     
                     }
-                    else { result = ""; }
+                  
                     return result;
 
                 }
@@ -105,7 +100,7 @@ namespace ControlAnimales
                         result = "Telefono Incorrecto. Formato correcto(999999999)";
                        
                     }
-                    else { result = ""; }
+                 
                     return result;
 
                 }
