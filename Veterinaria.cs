@@ -17,67 +17,96 @@ namespace ControlAnimales
 
         Regex regex = new Regex(@"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
 
-        public string this[string columnName] => throw new NotImplementedException();
-
-        public string Error => throw new NotImplementedException();
-        /*
-public string Nombre { get => nombre; set => nombre = value; }
-public string Clinica { get => clinica; set => clinica = value; }
-public string Calle { get => calle; set => calle = value; }
-public string Telefono { get => telefono; set => telefono = value; }
-public string Telefono_urgencias { get => telefono_urgencias; set => telefono_urgencias = value; }
-
-public string Error
-{
-get
-{
-return null;
-}
-}
 
 
-public string this[string path]
-{
-get
-{
-string result = null;
+        public string Nombre { get => nombre; set => nombre = value; }
+        public string Clinica { get => clinica; set => clinica = value; }
+        public string Calle { get => calle; set => calle = value; }
+        public string Telefono { get => telefono; set => telefono = value; }
+        public string Telefono_urgencias { get => telefono_urgencias; set => telefono_urgencias = value; }
 
-if (path == "Nombre"){
-if (this.nombre < 0 || this.id > 9999)
-{
-result = "Id incorrecto.";
-}
-}
+        //metodos obligatorios de implementar al usar herencia :IDataErrorInfo
+        public string Error
+        {
+            get
+            {
+                return null;
+            }
+        }
+         //Comprueba que el dato introducido por usuario sea valido 
+        public string this[string path]{
+            get{
+                string result = null;
 
-if (path == "Telefono" && this.telefono != null && this.telefono != "" && this.telefono != "Teléfono Clínica")
-{
-Regex Expresión = new Regex(@"^[0-9]{3} [0-9]{3} [0-9]{3}$");
-//  Regex Expresión = new Regex(@"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
+                // Casilla Nombre 
+                //Admite de 3 a 50 caracteres de texto
+                if (path == "Nombre" || this.clinica != "Nombre" || this.clinica != null) {
+                    
+                        Regex regex = new Regex(@"^[a-zA-Z _0-9]{3,50}$");
+                        if (!regex.IsMatch(this.Nombre)){
+                            result = " admite carácteres alfabéticos y numeros, min 3 max 50";
+                        }
+                    return result;
+                }
 
-Console.WriteLine("Telefono :" + this.telefono);
-Console.WriteLine(Expresión.IsMatch(this.telefono));
-//  return regex.IsMatch(s);
-
-if (!Expresión.IsMatch(this.telefono))
-{
-result = "Telefono Incorrecto. Formato correcto(999 999 999)";
-}
-}
-
-                if (path == "Telefono_urgencias" || this.telefono_urgencias != null && this.telefono_urgencias != "" && this.telefono_urgencias != "Teléfono Urgencias")
+                // Clinica -- Admite de 3 a 50 caracteres de texto
+                if (path == "Clinica"||this.clinica!= "Nombre Clinica")
                 {
-                    Regex Expresión = new Regex(@"^[0-9]{3} [0-9]{3} [0-9]{3}$");
+                    {
+                        Regex regex = new Regex(@"^[a-zA-Z _0-9]{3,50}$");
+                        if (!regex.IsMatch(this.Clinica))
+                        {
+                            result = " admite carácteres alfabéticos y numeros, min 3 max 50";
 
-}
+                        }
+
+                        return result;
+                    }
+                }
+                // Calle -- Admite de 3 a 50 caracteres de texto
+                  if (path == "Calle" || this.calle !="Calle")
+                {
+                    Regex regex = new Regex(@"^[a-zA-Z _0-9]{3,50}$");
+                    if (!regex.IsMatch(this.Calle))
+                    {
+                        result = " admite carácteres alfabéticos y numeros, min 3 max 50";
+                        
+                    }
+                   
+                    return result;
+                  
+                }
+                // Telefono -- Admite 9 digitos numericos
+                if (path == "Telefono" || this.telefono != "Teléfono Clínica")
+                {
+                    Regex Expresión = new Regex(@"^[0-9]{3}[0-9]{3}[0-9]{3}$");
+
+                    if (!Expresión.IsMatch(this.telefono))
+                    {
+                        result = "Telefono Incorrecto. Formato correcto(999999999)";
+                    
+                    }
+                  
+                    return result;
+
+                }
+                // Telefono_urgencias -- Admite 9 digitos numericos
+                 if (path == "Telefono_urgencias" || this.telefono_urgencias != null && this.telefono_urgencias != "" && this.telefono_urgencias != "Teléfono Urgencias")
+                {
+                    Regex Expresión = new Regex(@"^[0-9]{3}[0-9]{3}[0-9]{3}$");
 
                     if (!Expresión.IsMatch(this.telefono_urgencias))
                     {
-                        result = "Telefono Incorrecto. Formato correcto(999 999 999)";
+                        result = "Telefono Incorrecto. Formato correcto(999999999)";
+                       
                     }
- 
-              }
-                return result;
+                 
+                    return result;
 
-}*/
+                }
+                
+               return result;
+            }
+        }
     }
 }
