@@ -26,10 +26,10 @@ namespace ControlAnimales
             InitializeComponent();
 
             //conexion AIDA 
-            //string conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Aida\\Desktop\\PERRUNO\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
+            string conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Aida\\Desktop\\PERRUNO\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
 
             //conexion ALLENDE
-             string conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Allende\\source\\repos\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
+           //  string conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Allende\\source\\repos\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
             con = new SqlConnection(conexion);
             cargarEspecies();
         }
@@ -103,7 +103,7 @@ namespace ControlAnimales
 
                 txt_lugar_adopcion.Text = "";
             }
-            if (txt_nombre_veterinaria.IsFocused)
+          /*  if (txt_nombre_veterinaria.IsFocused)
             {
                 txt_nombre_veterinaria.Text = "";
             }
@@ -122,7 +122,7 @@ namespace ControlAnimales
             if (txt_telefono_urgencias.IsFocused)
             {
                 txt_telefono_urgencias.Text = "";
-            }
+            }*/
         }
 
         //Si el textBox esta vacio vuelve a colocar el nombre del campo a rellenar
@@ -172,7 +172,7 @@ namespace ControlAnimales
 
                 txt_lugar_adopcion.Text = "Lugar Adopción";
             }
-            if (txt_nombre_veterinaria.Text == "")
+           /* if (txt_nombre_veterinaria.Text == "")
             {
                 txt_nombre_veterinaria.Text = "Nombre Veterinari@";
             }
@@ -191,7 +191,7 @@ namespace ControlAnimales
             if (txt_telefono_urgencias.Text == "")
             {
                 txt_telefono_urgencias.Text = "Teléfono Urgencias";
-            }
+            }*/
         }
 
         //este Metodo calcula la edad de nuestra mascota  meses y años

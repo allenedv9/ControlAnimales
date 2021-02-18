@@ -93,12 +93,12 @@
                 </Canvas>
             </TabItem>
         </TabControl>
-        <TabControl x:Name="veterinaria" Margin="0,65,0,-364" Visibility="Hidden">
+        <TabControl x:Name="veterinaria" Margin="0,65,0,-364" Visibility="Visible">
             <TabItem Header="Nueva/o Veterinaria" Margin="-2,-2,-2,2">
                 <Canvas x:Name="ventanaVeterinaria" Visibility="Visible" Background="#FFE5E5E5" Margin="2,39,-2,12">
 
-                    <TextBox x:Name="txt_nombre_veterinaria"  Style="{StaticResource TextBoxCapturaError}" TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157"  Canvas.Left="90" Canvas.Top="35"  GotFocus="foco" LostFocus="perder_foco">
-                        <TextBox.Text>
+                    <TextBox x:Name="txt_nombre_veterinaria"  Style="{StaticResource TextBoxCapturaError}"  TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157"  Canvas.Left="90" Canvas.Top="35" >
+                         <TextBox.Text>
                             <Binding Path="Nombre" Source="{StaticResource data}"
                          ValidatesOnExceptions="True"
                          UpdateSourceTrigger="PropertyChanged">
@@ -106,9 +106,9 @@
                                     <DataErrorValidationRule/>
                                 </Binding.ValidationRules>
                             </Binding>
-                        </TextBox.Text>
+                        </TextBox.Text>  
                     </TextBox>
-                    <TextBox x:Name="txt_clinica" Style="{StaticResource TextBoxCapturaError}"  TextWrapping="Wrap" Width="180" Height="35" Canvas.Left="90" Canvas.Top="130" GotFocus="foco" LostFocus="perder_foco">
+                    <TextBox x:Name="txt_clinica" Style="{StaticResource TextBoxCapturaError}"  TextWrapping="Wrap" Width="180" Height="35" Canvas.Left="90" Canvas.Top="130" >
                         <TextBox.Text>
                             <Binding Path="Clinica" Source="{StaticResource data}"
                          ValidatesOnExceptions="True"
@@ -117,10 +117,10 @@
                                     <DataErrorValidationRule/>
                                 </Binding.ValidationRules>
                             </Binding>
-                        </TextBox.Text>
+                        </TextBox.Text> 
                     </TextBox>
-                    <TextBox x:Name="txt_calle_veterinaria" Style="{StaticResource TextBoxCapturaError}" TextWrapping="Wrap" Width="180" Height="26"  GotFocus="foco" Canvas.Left="90" Canvas.Top="209" LostFocus="perder_foco">
-                        <TextBox.Text>
+                    <TextBox x:Name="txt_calle_veterinaria" Style="{StaticResource TextBoxCapturaError}" TextWrapping="Wrap" Width="180" Height="26"  Canvas.Left="90" Canvas.Top="209" >
+                         <TextBox.Text>
                             <Binding Path="Calle" Source="{StaticResource data}"
                          ValidatesOnExceptions="True"
                          UpdateSourceTrigger="PropertyChanged">
@@ -128,7 +128,7 @@
                                     <DataErrorValidationRule/>
                                 </Binding.ValidationRules>
                             </Binding>
-                        </TextBox.Text>
+                        </TextBox.Text>  
                     </TextBox>
                     <TextBox x:Name="txt_telefono_clinica" Style="{StaticResource TextBoxCapturaError}" TextWrapping="Wrap" Width="180" Height="26"  GotFocus="foco" Canvas.Left="397" Canvas.Top="70" LostFocus="perder_foco">
                         <TextBox.Text>
@@ -152,6 +152,11 @@
                             </Binding>
                         </TextBox.Text>
                     </TextBox>
+                    <Label Content="Nombre" Canvas.Left="130" Canvas.Top="10"/>
+                    <Label Content="Clinica" Canvas.Left="90" Canvas.Top="99"/>
+                    <Label Content="Calle" Canvas.Left="95" Canvas.Top="183"/>
+                    <Label Content="Telefono Clinica" Canvas.Left="411" Canvas.Top="35"/>
+                    <Label Content="Telefono Urgencias" Canvas.Left="417" Canvas.Top="99"/>
                 </Canvas>
             </TabItem>
             <TabItem Header="Visitas veterinario">
