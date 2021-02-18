@@ -20,6 +20,7 @@ namespace ControlAnimales
     public partial class Interface : Window
     {
         SqlConnection con;
+        String cadena2, cadena3;
 
         public Interface()
         {
@@ -209,6 +210,10 @@ namespace ControlAnimales
             //recojo mes y año nacimiento
             String mesNacimiento = fecha.DisplayDate.Month.ToString();
             String anoNacimiento = fecha.DisplayDate.Year.ToString();
+
+            String fecha2 = fecha.SelectedDate.ToString();
+            txt_fecha.Text = fecha2;
+          
            
 
             //calcula tiempo transcurrido
@@ -358,7 +363,7 @@ namespace ControlAnimales
 
             con.Close();
         }
-
+        //rellena el comboBox con las razas segun se haya elegido en el combo de especies
         private void cargaRazas(object sender, SelectionChangedEventArgs e)
         {
 
@@ -490,13 +495,23 @@ namespace ControlAnimales
             txt_fecha_visita.Text = fecha_visita;
         }
 
+        private void guardar_Click(object sender, RoutedEventArgs e)
+        {
+            String nombre, fecha, edad, especie, raza;
+
+            nombre = txt_nombre.Text;
+            fecha = txt_fecha.Text;
+            edad = txt_edad.Text;
+            MessageBox.Show(nombre,fecha);
+        }
+
         private void recogerDato(object sender, SelectionChangedEventArgs e)
         {
             ComboBox cb = (ComboBox)sender;
 
             DataRowView drv = (DataRowView)cb.SelectedItem;
-            string cadena = drv.Row[1].ToString();
-            txt_raza.Text = cadena;
+            string cadena3 = drv.Row[1].ToString();
+            txt_raza.Text = cadena3;
         }
     }
 }

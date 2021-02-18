@@ -46,7 +46,7 @@
         </Canvas>
         <TabControl x:Name="agregarMasc" Margin="0,65,0,-364" Visibility="Visible">
             <TabItem Header="Nueva Mascota" Margin="-2,-2,-2,0" Height="20" VerticalAlignment="Top">
-                <Canvas x:Name="ventana" Visibility="Visible" Background="#FFE5E5E5" Margin="100,39,-100,12">
+                <Canvas x:Name="ventana" Visibility="Visible" Background="#FFE5E5E5" Margin="6,8,-6,-8">
                     <TextBox x:Name="txt_nombre"  Text="Nombre" TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157"  Canvas.Left="90" Canvas.Top="35"  GotFocus="foco" LostFocus="perder_foco"/>
                     <TextBox x:Name="txt_especie" Text="especie"  Width="106" Height="26" Canvas.Left="97" Canvas.Top="228" IsReadOnly="True"/>
                     <TextBox x:Name="txt_edad" IsReadOnly="True" Text="Edad" TextWrapping="Wrap" Width="180" Height="35" RenderTransformOrigin="0.75,2.157"  Canvas.Left="90" Canvas.Top="130" GotFocus="foco" LostFocus="perder_foco"/>
@@ -70,8 +70,11 @@
                     <ComboBox  x:Name="especie" Canvas.Left="90" Canvas.Top="201" Width="120" SelectionChanged="cargaRazas"  />
                     <ComboBox  x:Name="razas" Canvas.Left="247" Canvas.Top="201" Width="120" Visibility="Hidden" SelectionChanged="recogerDato"/>
                     <TextBox x:Name="txt_raza" Text="raza"  Width="106" Height="26" Canvas.Left="247" Canvas.Top="228" IsReadOnly="True" Visibility="Visible"/>
+                    <Button x:Name="guardar" Content="Guardar" IsEnabled="True" Canvas.Left="786" Canvas.Top="516" Height="35" Width="110" Click="guardar_Click"/>
+                    <TextBox x:Name="txt_raza_Copy" Text="raza"  Width="106" Height="26" Canvas.Left="247" Canvas.Top="228" IsReadOnly="True" Visibility="Visible"/>
+                    <TextBox x:Name="txt_fecha" Text="fecha"  Width="106" Height="26" Canvas.Left="277" Canvas.Top="99" IsReadOnly="True" Visibility="Visible"/>
                 </Canvas>
-            </TabItem>
+            </TabItem> 
             <TabItem Header="Ver Mascotas">
                 <Canvas Background="#FFE5E5E5" Margin="2,39,-2,12">
                     <DataGrid x:Name="dg_lista_mascotas"  Height="405" Width="984" AutoGenerateColumns="False" Canvas.Top="50" >
