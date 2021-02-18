@@ -40,7 +40,7 @@ namespace ControlAnimales
 
                 // Casilla Nombre 
                 //Admite de 3 a 50 caracteres de texto
-                if (path == "Nombre" || this.clinica != "Nombre" || this.clinica != null) {
+                if (path == "Nombre" ) {
                     
                         Regex regex = new Regex(@"^[a-zA-Z _0-9]{3,50}$");
                         if (!regex.IsMatch(this.Nombre)){
@@ -50,7 +50,7 @@ namespace ControlAnimales
                 }
 
                 // Clinica -- Admite de 3 a 50 caracteres de texto
-                if (path == "Clinica"||this.clinica!= "Nombre Clinica")
+                if (path == "Clinica")
                 {
                     {
                         Regex regex = new Regex(@"^[a-zA-Z _0-9]{3,50}$");
@@ -64,7 +64,7 @@ namespace ControlAnimales
                     }
                 }
                 // Calle -- Admite de 3 a 50 caracteres de texto
-                  if (path == "Calle" || this.calle !="Calle")
+                  if (path == "Calle" )
                 {
                     Regex regex = new Regex(@"^[a-zA-Z _0-9]{3,50}$");
                     if (!regex.IsMatch(this.Calle))
@@ -77,7 +77,7 @@ namespace ControlAnimales
                   
                 }
                 // Telefono -- Admite 9 digitos numericos
-                if (path == "Telefono" || this.telefono != "Teléfono Clínica")
+                if (path == "Telefono" )
                 {
                     Regex Expresión = new Regex(@"^[0-9]{3}[0-9]{3}[0-9]{3}$");
 
@@ -91,14 +91,13 @@ namespace ControlAnimales
 
                 }
                 // Telefono_urgencias -- Admite 9 digitos numericos
-                 if (path == "Telefono_urgencias" || this.telefono_urgencias != null && this.telefono_urgencias != "" && this.telefono_urgencias != "Teléfono Urgencias")
+                 if (path == "Telefono_urgencias" )
                 {
                     Regex Expresión = new Regex(@"^[0-9]{3}[0-9]{3}[0-9]{3}$");
 
                     if (!Expresión.IsMatch(this.telefono_urgencias))
                     {
                         result = "Telefono Incorrecto. Formato correcto(999999999)";
-                       
                     }
                  
                     return result;
