@@ -375,7 +375,7 @@ namespace ControlAnimales
             DataRowView drv = (DataRowView)cb.SelectedItem;
             string cadena = drv.Row[0].ToString();
             cadena.ToLower();
-            MessageBox.Show(cadena);
+           // MessageBox.Show(cadena);
 
             razas.Visibility = Visibility.Visible;
 
@@ -396,19 +396,75 @@ namespace ControlAnimales
                  cuando eliges perro, el combo se hace grandisimo, pero no se llegan a ver los campos*/
                 // MessageBox.Show("LLego a perro");
                 case "1":
-                string query = "SELECT * FROM perro";
-                SqlDataAdapter miAdaptadorSql = new SqlDataAdapter(query, con);
+                    string queryP = "SELECT * FROM perro";
+                    SqlDataAdapter miAdaptadorSqlP = new SqlDataAdapter(queryP, con);
 
-                using (miAdaptadorSql)
-                {
-                    DataTable dtRazas = new DataTable();
-                    miAdaptadorSql.Fill(dtRazas);
+                    using (miAdaptadorSqlP)
+                    {
+                        DataTable dtRazas = new DataTable();
+                        miAdaptadorSqlP.Fill(dtRazas);
 
-                    razas.DisplayMemberPath = "raza";
-                    razas.SelectedValuePath = "id_perro";
-                    MessageBox.Show(razas.SelectedValuePath.ToString());// xq aqui muetsra razas
-                    razas.ItemsSource = dtRazas.DefaultView;
-                }
+                        razas.DisplayMemberPath = "raza";
+                        razas.SelectedValuePath = "id_perro";
+                        razas.ItemsSource = dtRazas.DefaultView;
+                    }
+                    break;
+                case "2":
+                    string queryG = "SELECT * FROM gato";
+                    SqlDataAdapter miAdaptadorSqlG = new SqlDataAdapter(queryG, con);
+
+                    using (miAdaptadorSqlG)
+                    {
+                        DataTable dtRazas = new DataTable();
+                        miAdaptadorSqlG.Fill(dtRazas);
+
+                        razas.DisplayMemberPath = "raza";
+                        razas.SelectedValuePath = "id_gato";
+                        razas.ItemsSource = dtRazas.DefaultView;
+                    }
+                    break;
+                case "3":
+                    string queryA = "SELECT * FROM ave";
+                    SqlDataAdapter miAdaptadorSqlA = new SqlDataAdapter(queryA, con);
+
+                    using (miAdaptadorSqlA)
+                    {
+                        DataTable dtRazas = new DataTable();
+                        miAdaptadorSqlA.Fill(dtRazas);
+
+                        razas.DisplayMemberPath = "raza";
+                        razas.SelectedValuePath = "id_ave";
+                        razas.ItemsSource = dtRazas.DefaultView;
+                    }
+                    break;
+                case "4":
+                    string queryR = "SELECT * FROM roedor";
+                    SqlDataAdapter miAdaptadorSqlR = new SqlDataAdapter(queryR, con);
+
+                    using (miAdaptadorSqlR)
+                    {
+                        DataTable dtRazas = new DataTable();
+                        miAdaptadorSqlR.Fill(dtRazas);
+
+                        razas.DisplayMemberPath = "raza";
+                        razas.SelectedValuePath = "id_roedor";
+                        razas.ItemsSource = dtRazas.DefaultView;
+                    }
+                    break;
+                case "5":
+                    string queryPe = "SELECT * FROM pez";
+                    SqlDataAdapter miAdaptadorSqlPe = new SqlDataAdapter(queryPe, con);
+
+                    using (miAdaptadorSqlPe)
+                    {
+                        DataTable dtRazas = new DataTable();
+                        miAdaptadorSqlPe.Fill(dtRazas);
+
+                        razas.DisplayMemberPath = "raza";
+                        razas.SelectedValuePath = "id_pez";
+                        razas.ItemsSource = dtRazas.DefaultView;
+                    }
+                    break;
             }
             
 
