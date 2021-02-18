@@ -72,11 +72,7 @@ namespace ControlAnimales
                 txt_nombre.Text = "";
             }
 
-            if (txt_fecha.IsFocused)
-            {
-
-                txt_fecha.Text = "";
-            }
+           
 
             if (txt_color.IsFocused)
             {
@@ -139,11 +135,7 @@ namespace ControlAnimales
                 txt_nombre.Text = "Nombre";
             }
 
-            if (txt_fecha.Text == "")
-            {
-
-                txt_fecha.Text = "Fecha Nacimineto";
-            }
+            
 
             if (txt_edad.Text == "")
             {
@@ -217,7 +209,7 @@ namespace ControlAnimales
             //recojo mes y año nacimiento
             String mesNacimiento = fecha.DisplayDate.Month.ToString();
             String anoNacimiento = fecha.DisplayDate.Year.ToString();
-            txt_fecha.Text = anoNacimiento;
+           
 
             //calcula tiempo transcurrido
             int anos = Int32.Parse(anoActual) - Int32.Parse(anoNacimiento);
@@ -375,7 +367,9 @@ namespace ControlAnimales
             DataRowView drv = (DataRowView)cb.SelectedItem;
             string cadena = drv.Row[0].ToString();
             cadena.ToLower();
-           // MessageBox.Show(cadena);
+            // MessageBox.Show(cadena);
+            string cadena2 = drv.Row[1].ToString();
+            txt_especie.Text = cadena2;
 
             razas.Visibility = Visibility.Visible;
 
@@ -407,6 +401,7 @@ namespace ControlAnimales
                         razas.DisplayMemberPath = "raza";
                         razas.SelectedValuePath = "id_perro";
                         razas.ItemsSource = dtRazas.DefaultView;
+                      
                     }
                     break;
                 case "2":
@@ -493,6 +488,15 @@ namespace ControlAnimales
         {
             String fecha_visita = fecha_vis.SelectedDate.ToString();
             txt_fecha_visita.Text = fecha_visita;
+        }
+
+        private void recogerDato(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox cb = (ComboBox)sender;
+
+            DataRowView drv = (DataRowView)cb.SelectedItem;
+            string cadena = drv.Row[1].ToString();
+            txt_raza.Text = cadena;
         }
     }
 }

@@ -48,7 +48,7 @@
             <TabItem Header="Nueva Mascota" Margin="-2,-2,-2,0" Height="20" VerticalAlignment="Top">
                 <Canvas x:Name="ventana" Visibility="Visible" Background="#FFE5E5E5" Margin="100,39,-100,12">
                     <TextBox x:Name="txt_nombre"  Text="Nombre" TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157"  Canvas.Left="90" Canvas.Top="35"  GotFocus="foco" LostFocus="perder_foco"/>
-                    <TextBox x:Name="txt_fecha" Text="Fecha Nacimiento" TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157"  Canvas.Left="614" Canvas.Top="10" GotFocus="foco" LostFocus="perder_foco"/>
+                    <TextBox x:Name="txt_especie" Text="especie"  Width="106" Height="26" Canvas.Left="97" Canvas.Top="228" IsReadOnly="True"/>
                     <TextBox x:Name="txt_edad" IsReadOnly="True" Text="Edad" TextWrapping="Wrap" Width="180" Height="35" RenderTransformOrigin="0.75,2.157"  Canvas.Left="90" Canvas.Top="130" GotFocus="foco" LostFocus="perder_foco"/>
                     <RadioButton x:Name="macho" Content="Macho" Canvas.Left="143" Canvas.Top="260" Click="selecciona_sexo"/>
                     <RadioButton x:Name="hembra" Content="hembra" Canvas.Left="201" Canvas.Top="260" Click="selecciona_sexo"/>
@@ -68,7 +68,8 @@
                     <TextBox x:Name="ruta_imagen" Text="Ruta" Canvas.Left="497" Canvas.Top="324" Height="26" Width="313"/>
                     <Image x:Name="imagenMascota" Height="100" Canvas.Left="582" Canvas.Top="211" Width="100"/>
                     <ComboBox  x:Name="especie" Canvas.Left="90" Canvas.Top="201" Width="120" SelectionChanged="cargaRazas"  />
-                    <ComboBox  x:Name="razas" Canvas.Left="247" Canvas.Top="201" Width="120" Visibility="Hidden"/>
+                    <ComboBox  x:Name="razas" Canvas.Left="247" Canvas.Top="201" Width="120" Visibility="Hidden" SelectionChanged="recogerDato"/>
+                    <TextBox x:Name="txt_raza" Text="raza"  Width="106" Height="26" Canvas.Left="247" Canvas.Top="228" IsReadOnly="True" Visibility="Visible"/>
                 </Canvas>
             </TabItem>
             <TabItem Header="Ver Mascotas">
