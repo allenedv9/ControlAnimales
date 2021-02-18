@@ -356,22 +356,22 @@ namespace ControlAnimales
             }
 
             if(cadena == "perro"){
+                MessageBox.Show("dobby dobbyyyyy voy a por tiiiii");
+                string query = "SELECT * FROM perro" ;
+                SqlDataAdapter miAdaptadorSql = new SqlDataAdapter(query, con);
 
-            }
-            string query = "SELECT * FROM " + cadena;
-            SqlDataAdapter miAdaptadorSql = new SqlDataAdapter(query, con);
-
-            using (miAdaptadorSql)
-            {
-                DataTable especies = new DataTable();
-                miAdaptadorSql.Fill(especies);
-                especie.DisplayMemberPath = "raza";
-                especie.SelectedValuePath = "id_especie";
-                especie.ItemsSource = especies.DefaultView;
+                using (miAdaptadorSql)
+                {
+                    DataTable especies = new DataTable();
+                    miAdaptadorSql.Fill(especies);
+                    especie.DisplayMemberPath = "raza";
+                    especie.SelectedValuePath = "id_perro";
+                    especie.ItemsSource = especies.DefaultView;
+                }
             }
 
             
-            con.Close();*/
+            con.Close();
         }
     }
 }             
