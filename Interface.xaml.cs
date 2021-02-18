@@ -26,10 +26,10 @@ namespace ControlAnimales
             InitializeComponent();
 
             //conexion AIDA 
-            string conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Aida\\Desktop\\PERRUNO\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
+            //string conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Aida\\Desktop\\PERRUNO\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
 
             //conexion ALLENDE
-            // string conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Allende\\source\\repos\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
+             string conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Allende\\source\\repos\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
             con = new SqlConnection(conexion);
             cargarEspecies();
         }
@@ -390,12 +390,12 @@ namespace ControlAnimales
             }
 
             //si la cadena es igual a 1 , SELCCIONA perro
-            if (cadena == "1")
-            {
+            switch (cadena){
                 /* ECHALE UN VVISTAZO A ESTO  *****************
                  * POR AHI VA LA COSA; HE LLEGADO HASTA LA CADENA PARA HACER LA QUERY
                  cuando eliges perro, el combo se hace grandisimo, pero no se llegan a ver los campos*/
-                MessageBox.Show("LLego a perro");
+                // MessageBox.Show("LLego a perro");
+                case "1":
                 string query = "SELECT * FROM perro";
                 SqlDataAdapter miAdaptadorSql = new SqlDataAdapter(query, con);
 
@@ -404,26 +404,13 @@ namespace ControlAnimales
                     DataTable dtRazas = new DataTable();
                     miAdaptadorSql.Fill(dtRazas);
 
-                    //estas dos lineas creo q son las q tiene el fallo
-                    razas.DisplayMemberPath = "perro";
-                    razas.SelectedValuePath = "raza";
+                    razas.DisplayMemberPath = "raza";
+                    razas.SelectedValuePath = "id_perro";
                     MessageBox.Show(razas.SelectedValuePath.ToString());// xq aqui muetsra razas
                     razas.ItemsSource = dtRazas.DefaultView;
                 }
             }
-            /*  ESTO ERA LO Q TENIAS TU ECHO PERO NO ES ASI
-             *  string query = "SELECT * FROM " + cadena;
-              SqlDataAdapter miAdaptadorSql = new SqlDataAdapter(query, con);
-
-              using (miAdaptadorSql)
-              {
-                  DataTable especies = new DataTable();
-                  miAdaptadorSql.Fill(especies);
-                  especie.DisplayMemberPath = "raza";
-                  especie.SelectedValuePath = "id_especie";
-                  especie.ItemsSource = especies.DefaultView;
-              }*/
-
+            
 
             con.Close();
         }
