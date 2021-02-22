@@ -20,17 +20,17 @@ namespace ControlAnimales
     public partial class Interface : Window
     {
         SqlConnection con;
-        String cadena2, cadena3;
+        String conexion, cadena2, cadena3, nombre, fechaNac, especieAni, edad, raza, sexo, color, cartilla, numChip, adoptadoCheck, lugarAdop, fechaAdop;
 
         public Interface()
         {
             InitializeComponent();
 
             //conexion AIDA 
-            string conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Aida\\Desktop\\PERRUNO\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
+            //string conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Aida\\Desktop\\PERRUNO\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
 
             //conexion ALLENDE
-           //  string conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Allende\\source\\repos\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
+            conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Allende\\source\\repos\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
             con = new SqlConnection(conexion);
             cargarEspecies();
         }
@@ -51,7 +51,7 @@ namespace ControlAnimales
         {
             agregarMasc.Visibility = Visibility.Hidden;
             veterinaria.Visibility = Visibility.Visible;
-            perder_foco(sender, e);
+            //perder_foco(sender, e);
         }
         private void diario_Click(object sender, RoutedEventArgs e)
         {
@@ -64,7 +64,7 @@ namespace ControlAnimales
         }
 
         //Limpia textBox para recojer dato
-        private void foco(object sender, RoutedEventArgs e)
+      /*  private void foco(object sender, RoutedEventArgs e)
         {
 
             if (txt_nombre.IsFocused)
@@ -123,11 +123,11 @@ namespace ControlAnimales
             if (txt_telefono_urgencias.IsFocused)
             {
                 txt_telefono_urgencias.Text = "";
-            }*/
-        }
+            }
+        }*/
 
         //Si el textBox esta vacio vuelve a colocar el nombre del campo a rellenar
-        private void perder_foco(object sender, RoutedEventArgs e)
+       /* private void perder_foco(object sender, RoutedEventArgs e)
         {
 
             if (txt_nombre.Text == "")
@@ -192,8 +192,8 @@ namespace ControlAnimales
             if (txt_telefono_urgencias.Text == "")
             {
                 txt_telefono_urgencias.Text = "Teléfono Urgencias";
-            }*/
-        }
+            }
+        }*/
 
         //este Metodo calcula la edad de nuestra mascota  meses y años
         private void cargar_fecha_nac(object sender, RoutedEventArgs e)
@@ -497,12 +497,35 @@ namespace ControlAnimales
 
         private void guardar_Click(object sender, RoutedEventArgs e)
         {
-            String nombre, fecha, edad, especie, raza;
-
+            
             nombre = txt_nombre.Text;
-            fecha = txt_fecha.Text;
+            fechaNac = txt_fecha.Text;
             edad = txt_edad.Text;
-            MessageBox.Show(nombre,fecha);
+            especieAni = txt_especie.Text;
+            raza = txt_raza.Text;
+            sexo = txt_sexo.Text;
+            color = txt_color.Text;
+            cartilla = txt_cartilla.Text;
+            
+            numChip = txt_chip.Text;
+            lugarAdop = txt_lugar_adopcion.Text;
+            fechaAdop = txt_fecha_adopcion.Text;
+
+            /*  MessageBox.Show(nombre, fechaNac);
+              MessageBox.Show(edad, especieAni);
+              MessageBox.Show(raza);
+              MessageBox.Show(sexo, color);
+              MessageBox.Show(cartilla, numChip);
+              MessageBox.Show(lugarAdop, fechaAdop);*/
+
+            con = new SqlConnection(conexion);
+            con.Open();
+            string query = "INSERT INTO mascota (nombre, fecha_nacimiento, edad, especie, raza, color, num_cartilla_sanitaria) VALUES (nombre, fechaNac, edad, especieAni, raza, color, cartilla) ";
+            SqlCommand comando = new SqlCommand(query, con);
+            comando.ExecuteNonQuery();
+            MessageBox.Show("Datosa insertados");
+            con.Close();
+
         }
 
         private void recogerDato(object sender, SelectionChangedEventArgs e)

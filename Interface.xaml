@@ -47,34 +47,43 @@
         <TabControl x:Name="agregarMasc" Margin="0,65,0,-364" Visibility="Visible">
             <TabItem Header="Nueva Mascota" Margin="-2,-2,-2,0" Height="20" VerticalAlignment="Top">
                 <Canvas x:Name="ventana" Visibility="Visible" Background="#FFE5E5E5" Margin="6,8,-6,-8">
-                    <TextBox x:Name="txt_nombre"  Text="Nombre" TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157"  Canvas.Left="90" Canvas.Top="35"  GotFocus="foco" LostFocus="perder_foco"/>
-                    <TextBox x:Name="txt_especie" Text="especie"  Width="106" Height="26" Canvas.Left="97" Canvas.Top="228" IsReadOnly="True"/>
-                    <TextBox x:Name="txt_edad" IsReadOnly="True" Text="Edad" TextWrapping="Wrap" Width="180" Height="35" RenderTransformOrigin="0.75,2.157"  Canvas.Left="90" Canvas.Top="130" GotFocus="foco" LostFocus="perder_foco"/>
-                    <RadioButton x:Name="macho" Content="Macho" Canvas.Left="143" Canvas.Top="260" Click="selecciona_sexo"/>
-                    <RadioButton x:Name="hembra" Content="hembra" Canvas.Left="201" Canvas.Top="260" Click="selecciona_sexo"/>
-                    <TextBox x:Name="txt_color" Text="Color" TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157" GotFocus="foco" Canvas.Left="90" Canvas.Top="285" LostFocus="perder_foco"/>
-                    <TextBox x:Name="txt_cartilla" Text="Num cartilla sanitaria" TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157" GotFocus="foco" Canvas.Left="397" Canvas.Top="70" LostFocus="perder_foco"/>
-                    <TextBox x:Name="txt_chip" Text="Num Chip" TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157" GotFocus="foco" Canvas.Left="397" Canvas.Top="117" LostFocus="perder_foco"/>
+                    <Label Content="Nombre" FontSize="10" Canvas.Left="87" Height="21" Width="180" Canvas.Top="15"/>
+                    <TextBox x:Name="txt_nombre"   TextWrapping="Wrap" Width="180" Height="25" RenderTransformOrigin="0.75,2.157"  Canvas.Left="90" Canvas.Top="35" />
+                    <TextBox x:Name="txt_especie"  Width="106" Height="25" Canvas.Left="91" Canvas.Top="228" IsReadOnly="True" RenderTransformOrigin="0.368,0.502" Visibility="Hidden"/>
+                    <TextBox x:Name="txt_edad" IsReadOnly="True" Width="180" Height="25" RenderTransformOrigin="0.75,2.157"  Canvas.Left="90" Canvas.Top="152" />
+                    <RadioButton x:Name="macho" Content="Macho" Canvas.Left="143" Canvas.Top="258" Click="selecciona_sexo"/>
+                    <RadioButton x:Name="hembra" Content="hembra" Canvas.Left="201" Canvas.Top="258" Click="selecciona_sexo"/>
+                    <TextBox x:Name="txt_color"  TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157"  Canvas.Left="90" Canvas.Top="309" />
+                    <TextBox x:Name="txt_cartilla" TextWrapping="Wrap" Width="180" Height="25" RenderTransformOrigin="0.75,2.157"  Canvas.Left="397" Canvas.Top="41" />
+                    <TextBox x:Name="txt_chip"  TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157" Canvas.Left="397" Canvas.Top="117"/>
                     <Label Content="Adoptado" Canvas.Left="397" Canvas.Top="148"/>
                     <CheckBox x:Name="adoptado" Canvas.Left="465" Canvas.Top="155" Click="ver_txt_adopcion"/>
-                    <DatePicker x:Name="dp_fecha_adopcion" Visibility="Hidden" Height="32" Width="180" Canvas.Left="443" Canvas.Top="185" CalendarClosed="fecha_adopcion"  ></DatePicker>
-                    <TextBox x:Name="txt_fecha_adopcion" Text="Fecha adopción" TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157" GotFocus="foco" Canvas.Left="665" Canvas.Top="175" LostFocus="perder_foco" Visibility="Hidden"/>
-                    <TextBox x:Name="txt_lugar_adopcion" Text="Lugar de adopción" TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157" GotFocus="foco" Canvas.Left="443" Canvas.Top="217" LostFocus="perder_foco" Visibility="Hidden"/>
-                    <TextBox x:Name="txt_sexo"  IsReadOnly="True" Text="Sexo INVISIBLE" TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157" GotFocus="foco" Canvas.Left="277" Canvas.Top="259" LostFocus="perder_foco"/>
-                    <DatePicker x:Name="fecha" Height="32" Width="180" Canvas.Left="90" Canvas.Top="93" CalendarClosed="cargar_fecha_nac" ></DatePicker>
-                    <Label Content="Sexo" Canvas.Left="90" Canvas.Top="254"/>
-                    <Label Content="Selecciona imagen" Canvas.Left="388" Canvas.Top="293" RenderTransformOrigin="7.434,1.775"/>
-                    <CheckBox x:Name="check_imagen" Canvas.Left="507" Canvas.Top="299" Click="abre_seleccion_imagen"/>
-                    <TextBox x:Name="ruta_imagen" Text="Ruta" Canvas.Left="497" Canvas.Top="324" Height="26" Width="313"/>
-                    <Image x:Name="imagenMascota" Height="100" Canvas.Left="582" Canvas.Top="211" Width="100"/>
-                    <ComboBox  x:Name="especie" Canvas.Left="90" Canvas.Top="201" Width="120" SelectionChanged="cargaRazas"  />
-                    <ComboBox  x:Name="razas" Canvas.Left="247" Canvas.Top="201" Width="120" Visibility="Hidden" SelectionChanged="recogerDato"/>
-                    <TextBox x:Name="txt_raza" Text="raza"  Width="106" Height="26" Canvas.Left="247" Canvas.Top="228" IsReadOnly="True" Visibility="Visible"/>
+                    <DatePicker x:Name="dp_fecha_adopcion" Visibility="Hidden" Height="25" Width="180" Canvas.Left="443" Canvas.Top="185" CalendarClosed="fecha_adopcion"  ></DatePicker>
+                    <TextBox x:Name="txt_fecha_adopcion"  TextWrapping="Wrap" Width="180" Height="25" RenderTransformOrigin="0.75,2.157" Canvas.Left="397" Canvas.Top="206"  Visibility="Visible"/>
+                    <TextBox x:Name="txt_lugar_adopcion"  TextWrapping="Wrap" Width="180" Height="25" RenderTransformOrigin="0.75,2.157" Canvas.Left="397" Canvas.Top="253"  Visibility="Visible"/>
+                    <TextBox x:Name="txt_sexo"  IsReadOnly="True"  Width="94" Height="25" RenderTransformOrigin="0.75,2.157"  Canvas.Left="271" Canvas.Top="268" Visibility="Hidden" />
+                    <DatePicker x:Name="fecha" Height="25" Width="180" Canvas.Left="90" Canvas.Top="93" CalendarClosed="cargar_fecha_nac" ></DatePicker>
+                    <Label Content="Sexo" Canvas.Left="90" Canvas.Top="252"/>
+                    <Label Content="Selecciona imagen" Canvas.Left="406" Canvas.Top="304" RenderTransformOrigin="7.434,1.775"/>
+                    <CheckBox x:Name="check_imagen" Canvas.Left="525" Canvas.Top="309" Click="abre_seleccion_imagen"/>
+                    <TextBox x:Name="ruta_imagen" Canvas.Left="406" Canvas.Top="335" Height="26" Width="313" Visibility="Hidden"/>
+                    <Image x:Name="imagenMascota" Height="167" Canvas.Left="669" Canvas.Top="148" Width="172"/>
+                    <ComboBox  x:Name="especie" Canvas.Left="90" Canvas.Top="207" Width="120" SelectionChanged="cargaRazas"  />
+                    <ComboBox  x:Name="razas" Canvas.Left="231" Canvas.Top="208" Width="120" Visibility="Visible" SelectionChanged="recogerDato"/>
                     <Button x:Name="guardar" Content="Guardar" IsEnabled="True" Canvas.Left="786" Canvas.Top="516" Height="35" Width="110" Click="guardar_Click"/>
-                    <TextBox x:Name="txt_raza_Copy" Text="raza"  Width="106" Height="26" Canvas.Left="247" Canvas.Top="228" IsReadOnly="True" Visibility="Visible"/>
-                    <TextBox x:Name="txt_fecha" Text="fecha"  Width="106" Height="26" Canvas.Left="277" Canvas.Top="99" IsReadOnly="True" Visibility="Visible"/>
+                    <TextBox x:Name="txt_raza"   Width="106" Height="25" Canvas.Left="231" Canvas.Top="230" IsReadOnly="True" Visibility="Hidden"/>
+                    <TextBox x:Name="txt_fecha"  Width="106" Height="26" Canvas.Left="271" Canvas.Top="94" IsReadOnly="True" Visibility="Hidden"/>
+                    <Label Content="Fecha de nacimiento" FontSize="10" Canvas.Left="90" Height="22" Width="180" Canvas.Top="72"/>
+                    <Label Content="Edad" FontSize="10" Canvas.Left="90" Height="22" Width="180" Canvas.Top="127"/>
+                    <Label Content="Especie" FontSize="10" Canvas.Left="90" Height="22" Width="120" Canvas.Top="185"/>
+                    <Label Content="Raza" FontSize="10" Canvas.Left="231" Height="22" Width="120" Canvas.Top="185"/>
+                    <Label Content="Color" FontSize="10" Canvas.Left="91" Height="22" Width="120" Canvas.Top="283"/>
+                    <Label Content="Número cartilla sanitaria" FontSize="10" Canvas.Left="397" Height="21" Width="180" Canvas.Top="20"/>
+                    <Label Content="Número del CHIP" FontSize="10" Canvas.Left="397" Height="21" Width="180" Canvas.Top="91"/>
+                    <Label Content="Fecha de adopción" FontSize="10" Canvas.Left="397" Height="21" Width="180" Canvas.Top="182"/>
+                    <Label Content="Lugar de adopción" FontSize="10" Canvas.Left="397" Height="21" Width="180" Canvas.Top="227"/>
                 </Canvas>
-            </TabItem> 
+            </TabItem>
             <TabItem Header="Ver Mascotas">
                 <Canvas Background="#FFE5E5E5" Margin="2,39,-2,12">
                     <DataGrid x:Name="dg_lista_mascotas"  Height="405" Width="984" AutoGenerateColumns="False" Canvas.Top="50" >
@@ -96,12 +105,12 @@
                 </Canvas>
             </TabItem>
         </TabControl>
-        <TabControl x:Name="veterinaria" Margin="0,65,0,-364" Visibility="Visible">
+        <TabControl x:Name="veterinaria" Margin="0,65,0,-364" Visibility="Hidden">
             <TabItem Header="Nueva/o Veterinaria" Margin="-2,-2,-2,2">
                 <Canvas x:Name="ventanaVeterinaria" Visibility="Visible" Background="#FFE5E5E5" Margin="2,39,-2,12">
 
                     <TextBox x:Name="txt_nombre_veterinaria"  Style="{StaticResource TextBoxCapturaError}"  TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157"  Canvas.Left="90" Canvas.Top="35" >
-                         <TextBox.Text>
+                        <TextBox.Text>
                             <Binding Path="Nombre" Source="{StaticResource data}"
                          ValidatesOnExceptions="True"
                          UpdateSourceTrigger="PropertyChanged">
@@ -109,7 +118,7 @@
                                     <DataErrorValidationRule/>
                                 </Binding.ValidationRules>
                             </Binding>
-                        </TextBox.Text>  
+                        </TextBox.Text>
                     </TextBox>
                     <TextBox x:Name="txt_clinica" Style="{StaticResource TextBoxCapturaError}"  TextWrapping="Wrap" Width="180" Height="35" Canvas.Left="90" Canvas.Top="130" >
                         <TextBox.Text>
@@ -120,10 +129,10 @@
                                     <DataErrorValidationRule/>
                                 </Binding.ValidationRules>
                             </Binding>
-                        </TextBox.Text> 
+                        </TextBox.Text>
                     </TextBox>
                     <TextBox x:Name="txt_calle_veterinaria" Style="{StaticResource TextBoxCapturaError}" TextWrapping="Wrap" Width="180" Height="26"  Canvas.Left="90" Canvas.Top="209" >
-                         <TextBox.Text>
+                        <TextBox.Text>
                             <Binding Path="Calle" Source="{StaticResource data}"
                          ValidatesOnExceptions="True"
                          UpdateSourceTrigger="PropertyChanged">
@@ -131,9 +140,9 @@
                                     <DataErrorValidationRule/>
                                 </Binding.ValidationRules>
                             </Binding>
-                        </TextBox.Text>  
+                        </TextBox.Text>
                     </TextBox>
-                    <TextBox x:Name="txt_telefono_clinica" Style="{StaticResource TextBoxCapturaError}" TextWrapping="Wrap" Width="180" Height="26"  GotFocus="foco" Canvas.Left="397" Canvas.Top="70" LostFocus="perder_foco">
+                    <TextBox x:Name="txt_telefono_clinica" Style="{StaticResource TextBoxCapturaError}" TextWrapping="Wrap" Width="180" Height="26" Canvas.Left="397" Canvas.Top="70" >
                         <TextBox.Text>
                             <Binding Path="Telefono" Source="{StaticResource data}"
                          ValidatesOnExceptions="True"
@@ -144,7 +153,7 @@
                             </Binding>
                         </TextBox.Text>
                     </TextBox>
-                    <TextBox x:Name="txt_telefono_urgencias" Style="{StaticResource TextBoxCapturaError}" TextWrapping="Wrap" Width="180" Height="26"  GotFocus="foco" Canvas.Left="397" Canvas.Top="122" LostFocus="perder_foco">
+                    <TextBox x:Name="txt_telefono_urgencias" Style="{StaticResource TextBoxCapturaError}" TextWrapping="Wrap" Width="180" Height="26"  Canvas.Left="397" Canvas.Top="122">
                         <TextBox.Text>
                             <Binding Path="Telefono_urgencias" Source="{StaticResource data}"
                          ValidatesOnExceptions="True"
