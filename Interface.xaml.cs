@@ -20,7 +20,8 @@ namespace ControlAnimales
     public partial class Interface : Window
     {
         SqlConnection con;
-        String conexion, cadena2, cadena3, nombre, fechaNac, especieAni, edad, raza, sexo, color, cartilla, numChip, adoptadoCheck, lugarAdop, fechaAdop;
+        String conexion, cadena2, cadena3, nombre, fechaNac, especieAni, edad, raza, 
+               sexo, color, cartilla, numChip, adoptadoCheck, lugarAdop, fechaAdop, ruta, id;
 
         public Interface()
         {
@@ -284,12 +285,14 @@ namespace ControlAnimales
         {
             if (adoptado.IsChecked == true)
             {
+                adoptadoCheck = "si";
                 txt_lugar_adopcion.Visibility = Visibility.Visible;
                 txt_fecha_adopcion.Visibility = Visibility.Visible;
                 dp_fecha_adopcion.Visibility = Visibility.Visible;
             }
             else
             {
+                adoptadoCheck = "no";
                 txt_lugar_adopcion.Visibility = Visibility.Hidden;
                 txt_fecha_adopcion.Visibility = Visibility.Hidden;
                 dp_fecha_adopcion.Visibility = Visibility.Hidden;
@@ -500,27 +503,34 @@ namespace ControlAnimales
             
             nombre = txt_nombre.Text;
             fechaNac = txt_fecha.Text;
+
+           
             edad = txt_edad.Text;
             especieAni = txt_especie.Text;
             raza = txt_raza.Text;
             sexo = txt_sexo.Text;
             color = txt_color.Text;
             cartilla = txt_cartilla.Text;
-            
             numChip = txt_chip.Text;
             lugarAdop = txt_lugar_adopcion.Text;
             fechaAdop = txt_fecha_adopcion.Text;
+            ruta = ruta_imagen.Text;
+            id = txt_id.Text;
 
-            /*  MessageBox.Show(nombre, fechaNac);
-              MessageBox.Show(edad, especieAni);
+              MessageBox.Show(nombre, fechaNac);
+            /* MessageBox.Show(edad, especieAni);
               MessageBox.Show(raza);
               MessageBox.Show(sexo, color);
               MessageBox.Show(cartilla, numChip);
               MessageBox.Show(lugarAdop, fechaAdop);*/
 
+            //(nombre, fecha_nacimiento, edad, especie, raza, sexo, color, num_cartilla_sanitaria,num_chip, adoptado, fecha_adopcion, lugar_adopcion, imagen)
             con = new SqlConnection(conexion);
             con.Open();
-            string query = "INSERT INTO mascota (nombre, fecha_nacimiento, edad, especie, raza, color, num_cartilla_sanitaria) VALUES (nombre, fechaNac, edad, especieAni, raza, color, cartilla) ";
+          //  string query = "INSERT INTO mascota ("+'id,nombre'+, fechaNac, edad, especieAni, raza, sexo, color, cartilla, numChip, adoptadoCheck, fechaAdop, lugarAdop, ruta) ";
+           String query = "Insert into mascota(nombre, edad, fecha_nacimiento) values( '" + nombre + "','" + edad + "', '"+ fechaNac + "')";
+           /* "Insert into mascota(" + "nombre, edad, especie, raza, sexo, color, num_cartilla_sanitaria,num_chip, adoptado,  lugar_adopcion, imagen) " +
+                            " values( '" + nombre + "','" + edad + "','" + especieAni + "','" + raza + "','" + sexo + "','" + color + "','" + cartilla + "','" + numChip + "','" + adoptadoCheck + "','" + lugarAdop + "','" + ruta + "')";*/
             SqlCommand comando = new SqlCommand(query, con);
             comando.ExecuteNonQuery();
             MessageBox.Show("Datosa insertados");

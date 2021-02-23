@@ -82,6 +82,7 @@
                     <Label Content="Número del CHIP" FontSize="10" Canvas.Left="397" Height="21" Width="180" Canvas.Top="91"/>
                     <Label Content="Fecha de adopción" FontSize="10" Canvas.Left="397" Height="21" Width="180" Canvas.Top="182"/>
                     <Label Content="Lugar de adopción" FontSize="10" Canvas.Left="397" Height="21" Width="180" Canvas.Top="227"/>
+                    <TextBox x:Name="txt_id"  TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157"  Canvas.Left="91" Canvas.Top="355" />
                 </Canvas>
             </TabItem>
             <TabItem Header="Ver Mascotas">
