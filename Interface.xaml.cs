@@ -22,16 +22,19 @@ namespace ControlAnimales
         SqlConnection con;
         String conexion, cadena2, cadena3, nombre, fechaNac, especieAni, edad, raza, 
                sexo, color, cartilla, numChip, adoptadoCheck, lugarAdop, fechaAdop, ruta, id;
+       
+        String nombreVeterinaria, clinica , calle , telefono , telefonoUrgencias;
+
 
         public Interface()
         {
             InitializeComponent();
 
             //conexion AIDA 
-            //string conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Aida\\Desktop\\PERRUNO\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
+            string conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Aida\\Desktop\\PERRUNO\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
 
             //conexion ALLENDE
-            conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Allende\\source\\repos\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
+       //     conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Allende\\source\\repos\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
             con = new SqlConnection(conexion);
             cargarEspecies();
         }
@@ -536,6 +539,39 @@ namespace ControlAnimales
             MessageBox.Show("Datosa insertados");
             con.Close();
 
+        }
+
+        private void Guaradar_Veterinaria(object sender, RoutedEventArgs e)
+        {
+     
+
+            nombreVeterinaria = txt_nombre_veterinaria.Text;
+            clinica = txt_clinica.Text;
+            calle = txt_calle_veterinaria.Text;
+            telefono = txt_telefono_clinica.Text;
+            telefonoUrgencias = txt_telefono_urgencias.Text;
+           
+
+            MessageBox.Show(nombreVeterinaria, clinica);
+            MessageBox.Show( calle, telefono);
+              MessageBox.Show(telefonoUrgencias);
+            /*   MessageBox.Show(sexo, color);
+              MessageBox.Show(cartilla, numChip);
+              MessageBox.Show(lugarAdop, fechaAdop);*/
+
+         /*   //(nombre, fecha_nacimiento, edad, especie, raza, sexo, color, num_cartilla_sanitaria,num_chip, adoptado, fecha_adopcion, lugar_adopcion, imagen)
+            con = new SqlConnection(conexion);
+            con.Open();
+            //  string query = "INSERT INTO mascota ("+'id,nombre'+, fechaNac, edad, especieAni, raza, sexo, color, cartilla, numChip, adoptadoCheck, fechaAdop, lugarAdop, ruta) ";
+            String query = "Insert into mascota(nombre, edad, fecha_nacimiento) values( '" + nombre + "','" + edad + "', '" + fechaNac + "')";
+            /* "Insert into mascota(" + "nombre, edad, especie, raza, sexo, color, num_cartilla_sanitaria,num_chip, adoptado,  lugar_adopcion, imagen) " +
+                             " values( '" + nombre + "','" + edad + "','" + especieAni + "','" + raza + "','" + sexo + "','" + color + "','" + cartilla + "','" + numChip + "','" + adoptadoCheck + "','" + lugarAdop + "','" + ruta + "')";
+            SqlCommand comando = new SqlCommand(query, con);
+            comando.ExecuteNonQuery();
+            MessageBox.Show("Datosa insertados");
+            con.Close();
+
+           */
         }
 
         private void recogerDato(object sender, SelectionChangedEventArgs e)

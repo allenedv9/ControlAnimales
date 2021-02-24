@@ -106,7 +106,7 @@
                 </Canvas>
             </TabItem>
         </TabControl>
-        <TabControl x:Name="veterinaria" Margin="0,65,0,-364" Visibility="Hidden">
+        <TabControl x:Name="veterinaria" Margin="0,65,0,-364" Visibility="Visible">
             <TabItem Header="Nueva/o Veterinaria" Margin="-2,-2,-2,2">
                 <Canvas x:Name="ventanaVeterinaria" Visibility="Visible" Background="#FFE5E5E5" Margin="2,39,-2,12">
 
@@ -170,6 +170,7 @@
                     <Label Content="Calle" Canvas.Left="95" Canvas.Top="183"/>
                     <Label Content="Telefono Clinica" Canvas.Left="411" Canvas.Top="35"/>
                     <Label Content="Telefono Urgencias" Canvas.Left="417" Canvas.Top="99"/>
+                    <Button Content="Guardar" Canvas.Left="695" Canvas.Top="103" Height="37" Width="120" Click="Guaradar_Veterinaria"/>
                 </Canvas>
             </TabItem>
             <TabItem Header="Visitas veterinario">
