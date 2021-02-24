@@ -14,6 +14,7 @@ namespace ControlAnimales
         String calle = "";
         String telefono = "";
         String telefono_urgencias = "";
+        String localidad = "";
 
         Regex regex = new Regex(@"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
 
@@ -24,6 +25,7 @@ namespace ControlAnimales
         public string Calle { get => calle; set => calle = value; }
         public string Telefono { get => telefono; set => telefono = value; }
         public string Telefono_urgencias { get => telefono_urgencias; set => telefono_urgencias = value; }
+        public string Localidad { get => localidad; set => localidad = value; }
 
         //metodos obligatorios de implementar al usar herencia :IDataErrorInfo
         public string Error

@@ -186,6 +186,7 @@
                         </Binding>
                     </TextBox>
                     <Label Content="Localidad" Canvas.Left="90" Canvas.Top="187"/>
+                    <Button x:Name="bt_pdf_veterinaro" Content="PDF"  Height="37" Width="120"  Canvas.Left="695" Canvas.Top="395" Click="PDF_veterinario" />
                 </Canvas>
             </TabItem>
             <TabItem Header="Visitas veterinario">
@@ -201,9 +202,6 @@
                     <TextBox x:Name="duracion" Text="Duración tratamiento" TextWrapping="Wrap" Width="180" Height="26" Canvas.Left="460" Canvas.Top="318" Visibility="Hidden" />
 
                     <CheckBox x:Name="tratamiento_check" Content="tratamiento" Canvas.Left="358" Canvas.Top="310" Click="tratamiento_check_clic"/>
-
-
-
 
                 </Canvas>
             </TabItem>
