@@ -23,18 +23,95 @@ namespace ControlAnimales
         String conexion, cadena2, cadena3, nombre, fechaNac, especieAni, edad, raza, 
                sexo, color, cartilla, numChip, adoptadoCheck, lugarAdop, fechaAdop, ruta, id;
        
-        String nombreVeterinaria, clinica , calle , telefono , telefonoUrgencias;
+        String nombreVeterinaria, clinica , calle , localidad, telefono , telefonoUrgencias;
 
+        private void Eliminar_Click(object sender, RoutedEventArgs e)
+        {
+            nombreVeterinaria = txt_nombre_veterinaria.Text;
+            clinica = txt_clinica.Text;
+            calle = txt_calle_veterinaria.Text;
+            localidad = txt_localidad.Text;
+            telefono = txt_telefono_clinica.Text;
+            telefonoUrgencias = txt_telefono_urgencias.Text;
+
+
+
+            con = new SqlConnection(conexion);
+            con.Open();
+            String query = "DELETE from veterinario where clinica = '"+ clinica + "'";
+            SqlCommand comando = new SqlCommand(query, con);
+            comando.ExecuteNonQuery();
+            MessageBox.Show("Datos Borrados");
+            con.Close();
+        }
+
+        private void Modificar_Click(object sender, RoutedEventArgs e)
+        {
+            nombreVeterinaria = txt_nombre_veterinaria.Text;
+            clinica = txt_clinica.Text;
+            calle = txt_calle_veterinaria.Text;
+            localidad = txt_localidad.Text;
+            telefono = txt_telefono_clinica.Text;
+            telefonoUrgencias = txt_telefono_urgencias.Text;
+           
+
+
+            con = new SqlConnection(conexion);
+            con.Open();
+            try
+            {
+
+                String query = "UPDATE veterinario set clinica = '" + clinica + "', calle = '" + calle + "',localidad = '" + localidad+ "' nombre_veterinario = '" + nombreVeterinaria + "', telefono= '" + telefono + "',telefono_urgencias = '" + telefonoUrgencias + "'";
+                SqlCommand comando = new SqlCommand(query, con);
+                comando.ExecuteNonQuery();
+                MessageBox.Show("Datos Actualizados");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se encuentran datos para su busqueda" + ex);
+            }
+
+            con.Close();
+        }
+
+        private void Buscar_Click(object sender, RoutedEventArgs e)
+        {
+           con.Open();
+            SqlCommand comando= new SqlCommand("SELECT * FROM veterinario where clinica = @clinica", con);
+            comando.Parameters.AddWithValue("@clinica", txt_clinica.Text);
+            SqlDataReader registro = comando.ExecuteReader();
+            if (registro.Read())
+            {
+               txt_calle_veterinaria.Text = registro["calle"].ToString();
+                txt_clinica.Text = registro["clinica"].ToString();
+                txt_localidad.Text = registro["localidad"].ToString();
+                txt_nombre_veterinaria.Text = registro["nombre_veterinario"].ToString();
+                txt_telefono_clinica.Text = registro["telefono"].ToString();
+                txt_telefono_urgencias.Text = registro["telefono_urgencias"].ToString();
+            }
+            con.Close();
+            
+        }
+
+        private void LimpiarControles_Click(object sender, RoutedEventArgs e)
+        {
+            txt_nombre_veterinaria.Text = "";
+            txt_clinica.Text = "";
+            txt_calle_veterinaria.Text = "";
+            txt_localidad.Text = "";
+            txt_telefono_clinica.Text = "";
+            txt_telefono_urgencias.Text = "";
+        }
 
         public Interface()
         {
             InitializeComponent();
 
             //conexion AIDA 
-            string conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Aida\\Desktop\\PERRUNO\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
+        //    string conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Aida\\Desktop\\PERRUNO\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
 
             //conexion ALLENDE
-       //     conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Allende\\source\\repos\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
+            conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Allende\\source\\repos\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
             con = new SqlConnection(conexion);
             cargarEspecies();
         }
@@ -394,12 +471,8 @@ namespace ControlAnimales
                 MessageBox.Show(ee.Message);
             }
 
-            //si la cadena es igual a 1 , SELCCIONA perro
             switch (cadena){
-                /* ECHALE UN VVISTAZO A ESTO  *****************
-                 * POR AHI VA LA COSA; HE LLEGADO HASTA LA CADENA PARA HACER LA QUERY
-                 cuando eliges perro, el combo se hace grandisimo, pero no se llegan a ver los campos*/
-                // MessageBox.Show("LLego a perro");
+              
                 case "1":
                     string queryP = "SELECT * FROM perro";
                     SqlDataAdapter miAdaptadorSqlP = new SqlDataAdapter(queryP, con);
@@ -541,37 +614,31 @@ namespace ControlAnimales
 
         }
 
-        private void Guaradar_Veterinaria(object sender, RoutedEventArgs e)
-        {
+        private void Guardar_Veterinaria(object sender, RoutedEventArgs e){
      
 
             nombreVeterinaria = txt_nombre_veterinaria.Text;
             clinica = txt_clinica.Text;
             calle = txt_calle_veterinaria.Text;
+            localidad = txt_localidad.Text;
             telefono = txt_telefono_clinica.Text;
             telefonoUrgencias = txt_telefono_urgencias.Text;
-           
+            string v = txtId.Text;
 
-            MessageBox.Show(nombreVeterinaria, clinica);
+          /*  MessageBox.Show(nombreVeterinaria, clinica);
             MessageBox.Show( calle, telefono);
-              MessageBox.Show(telefonoUrgencias);
-            /*   MessageBox.Show(sexo, color);
-              MessageBox.Show(cartilla, numChip);
-              MessageBox.Show(lugarAdop, fechaAdop);*/
+            MessageBox.Show(telefonoUrgencias);*/
+        
 
-         /*   //(nombre, fecha_nacimiento, edad, especie, raza, sexo, color, num_cartilla_sanitaria,num_chip, adoptado, fecha_adopcion, lugar_adopcion, imagen)
             con = new SqlConnection(conexion);
-            con.Open();
-            //  string query = "INSERT INTO mascota ("+'id,nombre'+, fechaNac, edad, especieAni, raza, sexo, color, cartilla, numChip, adoptadoCheck, fechaAdop, lugarAdop, ruta) ";
-            String query = "Insert into mascota(nombre, edad, fecha_nacimiento) values( '" + nombre + "','" + edad + "', '" + fechaNac + "')";
-            /* "Insert into mascota(" + "nombre, edad, especie, raza, sexo, color, num_cartilla_sanitaria,num_chip, adoptado,  lugar_adopcion, imagen) " +
-                             " values( '" + nombre + "','" + edad + "','" + especieAni + "','" + raza + "','" + sexo + "','" + color + "','" + cartilla + "','" + numChip + "','" + adoptadoCheck + "','" + lugarAdop + "','" + ruta + "')";
+            String query = "Insert into veterinario values( '" + clinica  + "','" + calle + "', '" + localidad + "', '" + nombreVeterinaria + "', '" + telefono + "', '" + telefonoUrgencias + "', '" + v + "')";
             SqlCommand comando = new SqlCommand(query, con);
+            con.Open();
             comando.ExecuteNonQuery();
             MessageBox.Show("Datosa insertados");
             con.Close();
-
-           */
+           
+           
         }
 
         private void recogerDato(object sender, SelectionChangedEventArgs e)

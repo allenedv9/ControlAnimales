@@ -110,7 +110,7 @@
             <TabItem Header="Nueva/o Veterinaria" Margin="-2,-2,-2,2">
                 <Canvas x:Name="ventanaVeterinaria" Visibility="Visible" Background="#FFE5E5E5" Margin="2,39,-2,12">
 
-                    <TextBox x:Name="txt_nombre_veterinaria"  Style="{StaticResource TextBoxCapturaError}"  TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157"  Canvas.Left="90" Canvas.Top="35" >
+                    <TextBox x:Name="txt_nombre_veterinaria"  Style="{StaticResource TextBoxCapturaError}"  TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157"  Canvas.Left="90" Canvas.Top="290" >
                         <TextBox.Text>
                             <Binding Path="Nombre" Source="{StaticResource data}"
                          ValidatesOnExceptions="True"
@@ -165,12 +165,17 @@
                             </Binding>
                         </TextBox.Text>
                     </TextBox>
-                    <Label Content="Nombre" Canvas.Left="130" Canvas.Top="10"/>
+                    <Label Content="Nombre" Canvas.Left="130" Canvas.Top="265"/>
                     <Label Content="Clinica" Canvas.Left="90" Canvas.Top="99"/>
                     <Label Content="Calle" Canvas.Left="95" Canvas.Top="183"/>
                     <Label Content="Telefono Clinica" Canvas.Left="411" Canvas.Top="35"/>
                     <Label Content="Telefono Urgencias" Canvas.Left="417" Canvas.Top="99"/>
-                    <Button Content="Guardar" Canvas.Left="695" Canvas.Top="103" Height="37" Width="120" Click="Guaradar_Veterinaria"/>
+                    <Button Content="Guardar" Canvas.Left="695" Canvas.Top="103" Height="37" Width="120" Click="Guardar_Veterinaria"/>
+                    <TextBox x:Name="txtId" Canvas.Left="397" Canvas.Top="196"  Width="120"/>
+                    <Button x:Name="LimpiarControles" Content="Limpiar controles"  Height="37" Width="120" Click="LimpiarControles_Click" Canvas.Left="695" Canvas.Top="168"/>
+                    <Button x:Name="Buscar" Content="Buscar veterinario"  Height="37" Width="120"  Canvas.Left="695" Canvas.Top="231" Click="Buscar_Click"/>
+                    <Button x:Name="Modificar" Content="Modificar Datos"  Height="37" Width="120"  Canvas.Left="695" Canvas.Top="284" Click="Modificar_Click" />
+                    <Button x:Name="Eliminar" Content="Eliminar Registro"  Height="37" Width="120"  Canvas.Left="695" Canvas.Top="343" Click="Eliminar_Click" />
                 </Canvas>
             </TabItem>
             <TabItem Header="Visitas veterinario">
