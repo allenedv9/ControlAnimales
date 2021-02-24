@@ -121,7 +121,7 @@
                             </Binding>
                         </TextBox.Text>
                     </TextBox>
-                    <TextBox x:Name="txt_clinica" Style="{StaticResource TextBoxCapturaError}"  TextWrapping="Wrap" Width="180" Height="35" Canvas.Left="90" Canvas.Top="130" >
+                    <TextBox x:Name="txt_clinica" Style="{StaticResource TextBoxCapturaError}"  TextWrapping="Wrap" Width="180" Height="35" Canvas.Left="90" Canvas.Top="62" >
                         <TextBox.Text>
                             <Binding Path="Clinica" Source="{StaticResource data}"
                          ValidatesOnExceptions="True"
@@ -132,7 +132,7 @@
                             </Binding>
                         </TextBox.Text>
                     </TextBox>
-                    <TextBox x:Name="txt_calle_veterinaria" Style="{StaticResource TextBoxCapturaError}" TextWrapping="Wrap" Width="180" Height="26"  Canvas.Left="90" Canvas.Top="209" >
+                    <TextBox x:Name="txt_calle_veterinaria" Style="{StaticResource TextBoxCapturaError}" TextWrapping="Wrap" Width="180" Height="26"  Canvas.Left="90" Canvas.Top="141" >
                         <TextBox.Text>
                             <Binding Path="Calle" Source="{StaticResource data}"
                          ValidatesOnExceptions="True"
@@ -166,8 +166,8 @@
                         </TextBox.Text>
                     </TextBox>
                     <Label Content="Nombre" Canvas.Left="130" Canvas.Top="265"/>
-                    <Label Content="Clinica" Canvas.Left="90" Canvas.Top="99"/>
-                    <Label Content="Calle" Canvas.Left="95" Canvas.Top="183"/>
+                    <Label Content="Clinica" Canvas.Left="90" Canvas.Top="31"/>
+                    <Label Content="Calle" Canvas.Left="95" Canvas.Top="115"/>
                     <Label Content="Telefono Clinica" Canvas.Left="411" Canvas.Top="35"/>
                     <Label Content="Telefono Urgencias" Canvas.Left="417" Canvas.Top="99"/>
                     <Button Content="Guardar" Canvas.Left="695" Canvas.Top="103" Height="37" Width="120" Click="Guardar_Veterinaria"/>
@@ -176,6 +176,16 @@
                     <Button x:Name="Buscar" Content="Buscar veterinario"  Height="37" Width="120"  Canvas.Left="695" Canvas.Top="231" Click="Buscar_Click"/>
                     <Button x:Name="Modificar" Content="Modificar Datos"  Height="37" Width="120"  Canvas.Left="695" Canvas.Top="284" Click="Modificar_Click" />
                     <Button x:Name="Eliminar" Content="Eliminar Registro"  Height="37" Width="120"  Canvas.Left="695" Canvas.Top="343" Click="Eliminar_Click" />
+                    <TextBox x:Name="txt_localidad" Style="{StaticResource TextBoxCapturaError}" TextWrapping="Wrap" Width="180" Height="26"  Canvas.Left="85" Canvas.Top="213" >
+                        <Binding Path="Calle" Source="{StaticResource data}"
+                            ValidatesOnExceptions="True"
+                            UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <DataErrorValidationRule/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox>
+                    <Label Content="Localidad" Canvas.Left="90" Canvas.Top="187"/>
                 </Canvas>
             </TabItem>
             <TabItem Header="Visitas veterinario">
