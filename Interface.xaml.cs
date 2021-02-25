@@ -43,8 +43,6 @@ namespace ControlAnimales
             con = new SqlConnection(conexion);
             cargarEspecies();
             cargaMascotas();
-            cargaMascotasVet();
-            cargarVeterinario();
         }
 
 
@@ -114,11 +112,6 @@ namespace ControlAnimales
             //MessageBox.Show(cad);
             txtId.Text = cad;
         }
-
-            string cadena3 = drv.Row[1].ToString();
-            txt_clinica_vet.Text = cadena3;
-        }
-
 
 
 
