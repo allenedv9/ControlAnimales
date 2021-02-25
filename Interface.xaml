@@ -187,7 +187,8 @@
                     </TextBox>
                     <Label Content="Localidad" Canvas.Left="90" Canvas.Top="187"/>
                     <Button x:Name="bt_pdf_veterinaro" Content="PDF"  Height="37" Width="120"  Canvas.Left="695" Canvas.Top="395" Click="PDF_veterinario" />
-                    <ComboBox x:Name="nombreMascotas"  Canvas.Left="398" Canvas.Top="215" Width="120"/>
+                    <ComboBox x:Name="nombreMascotas" SelectionChanged="mascVet" Canvas.Left="398" Canvas.Top="215" Width="120" />
+                    <Button x:Name="siguienteVet" Content="Siguiente veterinario"  Height="37" Width="120"  Canvas.Left="845" Canvas.Top="231" Click="siguienteVet_Click" />
                 </Canvas>
             </TabItem>
             <TabItem Header="Visitas veterinario">

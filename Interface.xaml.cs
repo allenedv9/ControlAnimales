@@ -25,7 +25,7 @@ namespace ControlAnimales
         SqlConnection con;
         String conexion, cadena2, cadena3, nombre, fechaNac, especieAni, edad, raza, 
                sexo, color, cartilla, numChip, adoptadoCheck, lugarAdop, fechaAdop, ruta, id;
-        String nombreVeterinaria, clinica , calle , localidad, telefono , telefonoUrgencias;
+        String nombreVeterinaria, clinica , calle , localidad, telefono , telefonoUrgencias,cad;
 
         private DataRow[] filas;
         private Veterinaria registro;
@@ -35,29 +35,29 @@ namespace ControlAnimales
         {
             InitializeComponent();
 
-            //conexion AIDA 
-         //  string conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Aida\\Desktop\\PERRUNO\\ControlAnimales\\Mascotas .mdf;Integrated Security=True;Connect Timeout=30";
-
-        
-            //conexion ALLENDE
-            //conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Allende\\source\\repos\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
+        //  conexion AIDA 
+        //  string conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Aida\\Desktop\\PERRUNO\\ControlAnimales\\Mascotas .mdf;Integrated Security=True;Connect Timeout=30";
+        //  conexion ALLENDE
+            conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Allende\\source\\repos\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
 
             con = new SqlConnection(conexion);
             cargarEspecies();
             cargaMascotas();
         }
-        
-        //Elimina veterinaria
-        private void Eliminar_Click(object sender, RoutedEventArgs e)
-        {
+
+
+        /*****************************************************************************************************************************/
+                            //MODIFICAR LOS DATOS DE LA PANTALLA VETERINARIO//
+        /*****************************************************************************************************************************/
+
+        //Eliminar veterinaria
+        private void Eliminar_Click(object sender, RoutedEventArgs e) {
             nombreVeterinaria = txt_nombre_veterinaria.Text;
             clinica = txt_clinica.Text;
             calle = txt_calle_veterinaria.Text;
             localidad = txt_localidad.Text;
             telefono = txt_telefono_clinica.Text;
             telefonoUrgencias = txt_telefono_urgencias.Text;
-
-
 
             con = new SqlConnection(conexion);
             con.Open();
@@ -68,11 +68,10 @@ namespace ControlAnimales
             con.Close();
         }
 
-        private void cargaMascotas()
-        {
+        //CARGAR MASCOTAS EN EL COMBOBOX
+        private void cargaMascotas(){
 
-            try
-            {
+            try{
                 //abrimos la conexion
                 con.Open();
             }
@@ -96,6 +95,22 @@ namespace ControlAnimales
 
 
             con.Close();
+        }
+
+        private void siguienteVet_Click(object sender, RoutedEventArgs e)
+        {
+
+
+        }
+
+        private void mascVet(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox cb = (ComboBox)sender;
+
+            DataRowView drv = (DataRowView)cb.SelectedItem;
+            string cad = drv.Row[0].ToString();
+            //MessageBox.Show(cad);
+            txtId.Text = cad;
         }
 
 
@@ -134,8 +149,8 @@ namespace ControlAnimales
         private void Buscar_Click(object sender, RoutedEventArgs e)
         {
            con.Open();
-            SqlCommand comando= new SqlCommand("SELECT * FROM veterinario where clinica = @clinica", con);
-            comando.Parameters.AddWithValue("@clinica", txt_clinica.Text);
+            SqlCommand comando= new SqlCommand("SELECT * FROM veterinario where id_mascota = @mascota", con);
+            comando.Parameters.AddWithValue("@mascota", txtId.Text);
             SqlDataReader registro = comando.ExecuteReader();
             if (registro.Read())
             {
@@ -568,13 +583,12 @@ namespace ControlAnimales
         {
 
             //conexion AIDA 
-            string conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Aida\\Desktop\\PERRUNO\\ControlAnimales\\Mascotas .mdf;Integrated Security=True;Connect Timeout=30";
+            //string conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Aida\\Desktop\\PERRUNO\\ControlAnimales\\Mascotas .mdf;Integrated Security=True;Connect Timeout=30";
 
             //conexion ALLENDE
-            //   conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Allende\\source\\repos\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
+               conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Allende\\source\\repos\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
 
-            //Conexion a la base de datos
-            SqlConnection con = new SqlConnection(conexion);
+           
             try
             {
                 con.Open();
@@ -621,7 +635,7 @@ namespace ControlAnimales
 
 
             //ejecuta la ruta absoluta donde esta el ejecutable AQUI ES DONDE COLOCAMOS LA CARPETA IMAGENES QUE USAMOS EN ESTA APL
-            string path = System.IO.Directory.GetCurrentDirectory() + System.IO.Path.DirectorySeparatorChar + "Imagenes" + System.IO.Path.DirectorySeparatorChar + "veterinaria.jpg";       //     
+            string path = System.IO.Directory.GetCurrentDirectory() + System.IO.Path.DirectorySeparatorChar + "Imagenes" + System.IO.Path.DirectorySeparatorChar + ruta1;       //     
             
             iTextSharp.text.Image imagen = iTextSharp.text.Image.GetInstance(path);
            
