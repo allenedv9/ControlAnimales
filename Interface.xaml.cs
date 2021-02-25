@@ -46,10 +46,106 @@ namespace ControlAnimales
         }
 
 
+
         /*****************************************************************************************************************************/
-                            //MODIFICAR LOS DATOS DE LA PANTALLA VETERINARIO//
+        //INSERT UPDATE DELETE SELECT DE LA PANTALLA VISITAS VETERINARIO
         /*****************************************************************************************************************************/
 
+
+
+        //recojo dia mes y año visita veterinario
+        private void cargar_fecha_vis(object sender, RoutedEventArgs e)
+        {
+            String fecha_visita = fecha_vis.SelectedDate.ToString();
+            txt_fecha_visita.Text = fecha_visita;
+        }
+
+
+        /*****************************************************************************************************************************/
+        //INSERT UPDATE DELETE SELECT DE LA PANTALLA MASCOTAS
+        /*****************************************************************************************************************************/
+
+        private void guardar_Click(object sender, RoutedEventArgs e)
+        {
+
+            nombre = txt_nombre.Text;
+            fechaNac = txt_fecha.Text;
+
+
+            edad = txt_edad.Text;
+            especieAni = txt_especie.Text;
+            raza = txt_raza.Text;
+            sexo = txt_sexo.Text;
+            color = txt_color.Text;
+            cartilla = txt_cartilla.Text;
+            numChip = txt_chip.Text;
+            lugarAdop = txt_lugar_adopcion.Text;
+            fechaAdop = txt_fecha_adopcion.Text;
+            ruta = ruta_imagen.Text;
+            id = txt_id.Text;
+
+            MessageBox.Show(nombre, fechaNac);
+            /* MessageBox.Show(edad, especieAni);
+              MessageBox.Show(raza);
+              MessageBox.Show(sexo, color);
+              MessageBox.Show(cartilla, numChip);
+              MessageBox.Show(lugarAdop, fechaAdop);*/
+
+            //(nombre, fecha_nacimiento, edad, especie, raza, sexo, color, num_cartilla_sanitaria,num_chip, adoptado, fecha_adopcion, lugar_adopcion, imagen)
+            con = new SqlConnection(conexion);
+            con.Open();
+            //  string query = "INSERT INTO mascota ("+'id,nombre'+, fechaNac, edad, especieAni, raza, sexo, color, cartilla, numChip, adoptadoCheck, fechaAdop, lugarAdop, ruta) ";
+            String query = "Insert into mascota(nombre, edad, fecha_nacimiento) values( '" + nombre + "','" + edad + "', '" + fechaNac + "')";
+            /* "Insert into mascota(" + "nombre, edad, especie, raza, sexo, color, num_cartilla_sanitaria,num_chip, adoptado,  lugar_adopcion, imagen) " +
+                             " values( '" + nombre + "','" + edad + "','" + especieAni + "','" + raza + "','" + sexo + "','" + color + "','" + cartilla + "','" + numChip + "','" + adoptadoCheck + "','" + lugarAdop + "','" + ruta + "')";*/
+            SqlCommand comando = new SqlCommand(query, con);
+            comando.ExecuteNonQuery();
+            MessageBox.Show("Datosa insertados");
+            con.Close();
+
+        }
+
+
+
+        private void recogerDato(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox cb = (ComboBox)sender;
+
+            DataRowView drv = (DataRowView)cb.SelectedItem;
+            string cadena3 = drv.Row[1].ToString();
+            txt_raza.Text = cadena3;
+        }
+
+
+
+        /*****************************************************************************************************************************/
+        //MODIFICAR LOS DATOS DE LA PANTALLA VETERINARIO//
+        /*****************************************************************************************************************************/
+       
+        
+        //INSERT VETERINARIO
+        private void Guardar_Veterinaria(object sender, RoutedEventArgs e)
+        {
+
+
+            nombreVeterinaria = txt_nombre_veterinaria.Text;
+            clinica = txt_clinica.Text;
+            calle = txt_calle_veterinaria.Text;
+            localidad = txt_localidad.Text;
+            telefono = txt_telefono_clinica.Text;
+            telefonoUrgencias = txt_telefono_urgencias.Text;
+            string v = txtId.Text;
+
+            con = new SqlConnection(conexion);
+            String query = "Insert into veterinario values( '" + clinica + "','" + calle + "', '" + localidad + "', '" + nombreVeterinaria + "', '" + telefono + "', '" + telefonoUrgencias + "', '" + v + "')";
+            SqlCommand comando = new SqlCommand(query, con);
+            con.Open();
+            comando.ExecuteNonQuery();
+            MessageBox.Show("Datosa insertados");
+            con.Close();
+
+
+        }
         //Eliminar veterinaria
         private void Eliminar_Click(object sender, RoutedEventArgs e) {
             nombreVeterinaria = txt_nombre_veterinaria.Text;
@@ -95,12 +191,6 @@ namespace ControlAnimales
 
 
             con.Close();
-        }
-
-        private void siguienteVet_Click(object sender, RoutedEventArgs e)
-        {
-
-
         }
 
         private void mascVet(object sender, SelectionChangedEventArgs e)
@@ -165,7 +255,7 @@ namespace ControlAnimales
             
         }
 
-        //
+        //LIMPIAR LOS CONTROLES
         private void LimpiarControles_Click(object sender, RoutedEventArgs e)
         {
             txt_nombre_veterinaria.Text = "";
@@ -176,36 +266,13 @@ namespace ControlAnimales
             txt_telefono_urgencias.Text = "";
         }
 
-        private void añadir_mascota_Click(object sender, RoutedEventArgs e)
-        {
-            img_principal.Visibility = Visibility.Hidden;
-            agregarMasc.Visibility = Visibility.Visible;
 
 
-            if (veterinaria.Visibility == Visibility.Visible)
-            {
-                veterinaria.Visibility = Visibility.Hidden;
-            }
-        }
 
-        private void abrir_veterinario(object sender, RoutedEventArgs e)
-        {
-            agregarMasc.Visibility = Visibility.Hidden;
-            veterinaria.Visibility = Visibility.Visible;
-            //perder_foco(sender, e);
-        }
-        private void diario_Click(object sender, RoutedEventArgs e)
-        {
+        /*****************************************************************************************************************************/
+                //METODOS PARA FORMATEAR LOS CAMPOS DE LA PANTALLA MASCOTAS
+        /*****************************************************************************************************************************/
 
-        }
-
-        private void galeria_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-       
-          
 
         //este Metodo calcula la edad de nuestra mascota  meses y años
         private void cargar_fecha_nac(object sender, RoutedEventArgs e)
@@ -501,83 +568,51 @@ namespace ControlAnimales
             }
         }
 
-        //recojo dia mes y año visita veterinario
-        private void cargar_fecha_vis(object sender, RoutedEventArgs e)
+
+        /*****************************************************************************************************************************/
+        //MODIFICAR LAS PANTALLAS DE VISIBILITY Y HIDDEN
+        /*****************************************************************************************************************************/
+
+        private void añadir_mascota_Click(object sender, RoutedEventArgs e)
         {
-            String fecha_visita = fecha_vis.SelectedDate.ToString();
-            txt_fecha_visita.Text = fecha_visita;
+            img_principal.Visibility = Visibility.Hidden;
+            agregarMasc.Visibility = Visibility.Visible;
+
+
+            if (veterinaria.Visibility == Visibility.Visible)
+            {
+                veterinaria.Visibility = Visibility.Hidden;
+            }
         }
 
-        private void guardar_Click(object sender, RoutedEventArgs e)
+        private void abrir_veterinario(object sender, RoutedEventArgs e)
         {
-            
-            nombre = txt_nombre.Text;
-            fechaNac = txt_fecha.Text;
-
-           
-            edad = txt_edad.Text;
-            especieAni = txt_especie.Text;
-            raza = txt_raza.Text;
-            sexo = txt_sexo.Text;
-            color = txt_color.Text;
-            cartilla = txt_cartilla.Text;
-            numChip = txt_chip.Text;
-            lugarAdop = txt_lugar_adopcion.Text;
-            fechaAdop = txt_fecha_adopcion.Text;
-            ruta = ruta_imagen.Text;
-            id = txt_id.Text;
-
-              MessageBox.Show(nombre, fechaNac);
-            /* MessageBox.Show(edad, especieAni);
-              MessageBox.Show(raza);
-              MessageBox.Show(sexo, color);
-              MessageBox.Show(cartilla, numChip);
-              MessageBox.Show(lugarAdop, fechaAdop);*/
-
-            //(nombre, fecha_nacimiento, edad, especie, raza, sexo, color, num_cartilla_sanitaria,num_chip, adoptado, fecha_adopcion, lugar_adopcion, imagen)
-            con = new SqlConnection(conexion);
-            con.Open();
-          //  string query = "INSERT INTO mascota ("+'id,nombre'+, fechaNac, edad, especieAni, raza, sexo, color, cartilla, numChip, adoptadoCheck, fechaAdop, lugarAdop, ruta) ";
-           String query = "Insert into mascota(nombre, edad, fecha_nacimiento) values( '" + nombre + "','" + edad + "', '"+ fechaNac + "')";
-           /* "Insert into mascota(" + "nombre, edad, especie, raza, sexo, color, num_cartilla_sanitaria,num_chip, adoptado,  lugar_adopcion, imagen) " +
-                            " values( '" + nombre + "','" + edad + "','" + especieAni + "','" + raza + "','" + sexo + "','" + color + "','" + cartilla + "','" + numChip + "','" + adoptadoCheck + "','" + lugarAdop + "','" + ruta + "')";*/
-            SqlCommand comando = new SqlCommand(query, con);
-            comando.ExecuteNonQuery();
-            MessageBox.Show("Datosa insertados");
-            con.Close();
-
+            agregarMasc.Visibility = Visibility.Hidden;
+            veterinaria.Visibility = Visibility.Visible;
+            //perder_foco(sender, e);
         }
 
-        private void Guardar_Veterinaria(object sender, RoutedEventArgs e){
-     
 
-            nombreVeterinaria = txt_nombre_veterinaria.Text;
-            clinica = txt_clinica.Text;
-            calle = txt_calle_veterinaria.Text;
-            localidad = txt_localidad.Text;
-            telefono = txt_telefono_clinica.Text;
-            telefonoUrgencias = txt_telefono_urgencias.Text;
-            string v = txtId.Text;
+        /*****************************************************************************************************************************/
+        //MODIFICAR IMAGENES SIN PROGRAMAR AUN
+        /*****************************************************************************************************************************/
 
-            con = new SqlConnection(conexion);
-            String query = "Insert into veterinario values( '" + clinica  + "','" + calle + "', '" + localidad + "', '" + nombreVeterinaria + "', '" + telefono + "', '" + telefonoUrgencias + "', '" + v + "')";
-            SqlCommand comando = new SqlCommand(query, con);
-            con.Open();
-            comando.ExecuteNonQuery();
-            MessageBox.Show("Datosa insertados");
-            con.Close();
-           
-           
-        }
-
-        private void recogerDato(object sender, SelectionChangedEventArgs e)
+        private void diario_Click(object sender, RoutedEventArgs e)
         {
-            ComboBox cb = (ComboBox)sender;
 
-            DataRowView drv = (DataRowView)cb.SelectedItem;
-            string cadena3 = drv.Row[1].ToString();
-            txt_raza.Text = cadena3;
         }
+
+        private void galeria_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+       
+
+        /*****************************************************************************************************************************/
+                        //GENERAR PDFS
+        /*****************************************************************************************************************************/
+
 
         //PDF de la tabla vetetrinario
         private void PDF_veterinario(object sender, RoutedEventArgs e)
