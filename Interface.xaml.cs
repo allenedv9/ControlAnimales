@@ -23,9 +23,11 @@ namespace ControlAnimales
     public partial class Interface : Window
     {
         SqlConnection con;
-        String conexion, cadena2, cadena3, nombre, fechaNac, especieAni, edad, raza, 
+        String conexion, cadena2, cadena3, cadena5, nombre, fechaNac, especieAni, edad, raza, 
                sexo, color, cartilla, numChip, adoptadoCheck, lugarAdop, fechaAdop, ruta, id;
         String nombreVeterinaria, clinica , calle , localidad, telefono , telefonoUrgencias,cad;
+        String visFecha, visDescripcion, visPrecio, visClinica, visIdMascota, visIdVeterinario, visTratamiento, visDuracion, visDescripcionTratamiento;
+
 
         private DataRow[] filas;
         private Veterinaria registro;
@@ -55,29 +57,24 @@ namespace ControlAnimales
         private void guardar_visita_vet(object sender, RoutedEventArgs e)
         {
 
-           /* SqlCommand comando = new SqlCommand("SELECT * FROM veterinario where id_mascota = @mascota", con);
-            comando.Parameters.AddWithValue("@mascota", txtId.Text);
-            SqlDataReader registro = comando.ExecuteReader();
-            if (registro.Read())
-
-            nombreVeterinaria = txt_nombre_veterinaria.Text;
-            clinica = txt_clinica.Text;
-            calle = txt_calle_veterinaria.Text;
-            localidad = txt_localidad.Text;
-            telefono = txt_telefono_clinica.Text;
-            telefonoUrgencias = txt_telefono_urgencias.Text;
-            string v = txtId.Text;
+            visFecha = txt_fecha_visita.Text;
+            visDescripcion = txt_descripcion_visita.Text;
+            visPrecio = txt_precio_visita.Text; 
+            visClinica = txt_clinica.Text;
+            visIdMascota = txt_mascota_visita.Text;
+            visIdVeterinario = txt_clinica_vet.Text;
+            visTratamiento = txt_tratamiento.Text;
+            visDuracion = txt_duracion.Text;
+            visDescripcionTratamiento = txt_descripcion_visita.Text;
 
             con = new SqlConnection(conexion);
-            con.Open();
-            String query = "Insert into visitas_veterinario(fecha) values( '@fecha')";
+            String query = "Insert into visita_veterinario values( '" + visFecha + "','" + visDescripcion + "', '" + visPrecio + "', '" + visIdMascota + "', '" + visIdVeterinario + "', '" + visTratamiento + "', '" + visDuracion + "', '" + visDescripcionTratamiento + "')";
             SqlCommand comando = new SqlCommand(query, con);
-            comando.Parameters.AddWithValue("@fecha", txt_fecha_visita.Text);
-                //,'" + calle + "', '" + localidad + "', '" + nombreVeterinaria + "', '" + telefono + "', '" + telefonoUrgencias + "', '" + v + "')";
+            con.Open();
             comando.ExecuteNonQuery();
-            MessageBox.Show("Datosa insertados");
+            MessageBox.Show("Datos insertados");
             con.Close();
-*/
+
         }
 
 
@@ -200,25 +197,22 @@ namespace ControlAnimales
             ComboBox cb = (ComboBox)sender;
 
             DataRowView drv = (DataRowView)cb.SelectedItem;
-            string cadena3 = drv.Row[1].ToString();
-            mascota_visita.Text = cadena3;
+            cadena5 = drv.Row[0].ToString();
+            txt_mascota_visita.Text = cadena5;
         }
 
-       
 
         private void Clinica_selescciona(object sender, SelectionChangedEventArgs e)
         {
             ComboBox cb = (ComboBox)sender;
 
             DataRowView drv = (DataRowView)cb.SelectedItem;
-            string cadena3 = drv.Row[1].ToString();
+            string cadena3 = drv.Row[0].ToString();
             txt_clinica_vet.Text = cadena3;
         }
         //INSERT VETERINARIO
         private void Guardar_Veterinaria(object sender, RoutedEventArgs e)
         {
-
-
             nombreVeterinaria = txt_nombre_veterinaria.Text;
             clinica = txt_clinica.Text;
             calle = txt_calle_veterinaria.Text;
@@ -649,13 +643,13 @@ namespace ControlAnimales
         {
             if (tratamiento_check.IsChecked == true)
             {
-                tratamiento.Visibility = Visibility.Visible;
-                duracion.Visibility = Visibility.Visible;
+                txt_tratamiento.Visibility = Visibility.Visible;
+                txt_duracion.Visibility = Visibility.Visible;
             }
             else
             {
-                tratamiento.Visibility = Visibility.Hidden;
-                duracion.Visibility = Visibility.Hidden;
+                txt_tratamiento.Visibility = Visibility.Hidden;
+                txt_duracion.Visibility = Visibility.Hidden;
             }
         }
 
