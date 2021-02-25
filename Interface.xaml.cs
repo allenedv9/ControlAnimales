@@ -194,6 +194,8 @@ namespace ControlAnimales
         private void cargar_fecha_nac(object sender, RoutedEventArgs e)
         {
 
+
+
             //recojo mes y año actual
             String anoActual = DateTime.Today.ToString("yyyy");
             String mesActual = DateTime.Today.ToString("MM");
@@ -562,9 +564,15 @@ namespace ControlAnimales
         //PDF de la tabla vetetrinario
         private void PDF_veterinario(object sender, RoutedEventArgs e)
         {
-           
+
+            //conexion AIDA 
+            string conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Aida\\Desktop\\PERRUNO\\ControlAnimales\\Mascotas .mdf;Integrated Security=True;Connect Timeout=30";
+
+            //conexion ALLENDE
+            //   conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Allende\\source\\repos\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
+
             //Conexion a la base de datos
-           SqlConnection con = new SqlConnection(conexion);
+            SqlConnection con = new SqlConnection(conexion);
             try
             {
                 con.Open();
@@ -573,12 +581,14 @@ namespace ControlAnimales
                 String cadena = "Select * from veterinario";
                 SqlDataAdapter adp = new SqlDataAdapter(cadena, con);
                 adp.Fill(dataTabla);
-                string condicion = "id>0";
+                string condicion = "id_veterinario>0";
                 filas = dataTabla.Select(condicion);
                 var posicion = filas.Length - 1;
 
             }
-            catch (Exception ee) { MessageBox.Show(ee.Message); }
+            catch (Exception ee) { MessageBox.Show(ee.Message);
+                MessageBox.Show(ee.StackTrace);
+            }
 
             //crea documento
             var PageSize = new iTextSharp.text.Rectangle(700f, 1024f);
@@ -597,8 +607,8 @@ namespace ControlAnimales
             doc.Add(new iTextSharp.text.Paragraph(txtTitulo));
 
             // propiedades imagen
-            var posX = 600f;
-            var posY = 950f;
+            var posX = 550f;
+            var posY = 920f;
 
 
             String ruta1 = "veterinaria.jpg";
@@ -609,16 +619,18 @@ namespace ControlAnimales
 
 
             //ejecuta la ruta absoluta donde esta el ejecutable AQUI ES DONDE COLOCAMOS LA CARPETA IMAGENES QUE USAMOS EN ESTA APL
-           /* string path = System.IO.Directory.GetCurrentDirectory() + System.IO.Path.DirectorySeparatorChar + "Imagenes" + System.IO.Path.DirectorySeparatorChar + "veterinaria.jpg";       //     
+            string path = System.IO.Directory.GetCurrentDirectory() + System.IO.Path.DirectorySeparatorChar + "Imagenes" + System.IO.Path.DirectorySeparatorChar + "veterinaria.jpg";       //     
+            
             iTextSharp.text.Image imagen = iTextSharp.text.Image.GetInstance(path);
            
+
             imagen.SetAbsolutePosition(posX, posY);
-            imagen.ScaleAbsoluteWidth(50f); //  Escaral el tamaño de la imagen
-            imagen.ScaleAbsoluteHeight(50f);
+            imagen.ScaleAbsoluteWidth(80f); //  Escaral el tamaño de la imagen
+            imagen.ScaleAbsoluteHeight(80f);
 
             //  añadimos la imagen al documneto
             doc.Add(imagen);
-            */
+            
             // escribe pie de pagina
             writer.PageEvent = new PiePagina();
 
@@ -634,27 +646,27 @@ namespace ControlAnimales
 
 
             //tamaño columnas
-            float[] arrayTamañoColumnas = new float[] {30f, 50f, 60f, 80f, 80f,80f, 80f, 80f };
+            float[] arrayTamañoColumnas = new float[] {40f, 90f, 80f, 100f, 80f,80f, 120f, 80f };
 
             //asignamos el array de anchos de columna a la tabla
             cabecera.SetTotalWidth(arrayTamañoColumnas);
 
             //estilo de cabecera
-            Phrase idVeterinaria = new iTextSharp.text.Phrase(25f, new iTextSharp.text.Chunk("Id Veterinaria", FontFactory.GetFont(FontFactory.COURIER, 18f, Font.BOLD,
+            Phrase idVeterinaria = new iTextSharp.text.Phrase(25f, new iTextSharp.text.Chunk("Id V", FontFactory.GetFont(FontFactory.COURIER, 14f, Font.BOLD,
                                new iTextSharp.text.BaseColor(64, 5, 56))));
-            Phrase clinica = new iTextSharp.text.Phrase(25f, new iTextSharp.text.Chunk("Clínica ", FontFactory.GetFont(FontFactory.COURIER, 18f, Font.BOLD,
+            Phrase clinica = new iTextSharp.text.Phrase(25f, new iTextSharp.text.Chunk("Clínica ", FontFactory.GetFont(FontFactory.COURIER, 14f, Font.BOLD,
                                new iTextSharp.text.BaseColor(64, 5, 56))));
-            Phrase calle = new iTextSharp.text.Phrase(25f, new iTextSharp.text.Chunk("Calle", FontFactory.GetFont(FontFactory.COURIER, 18f, Font.BOLD,
+            Phrase calle = new iTextSharp.text.Phrase(25f, new iTextSharp.text.Chunk("Calle", FontFactory.GetFont(FontFactory.COURIER, 14f, Font.BOLD,
                                new iTextSharp.text.BaseColor(64, 5, 56))));
-            Phrase localidad = new iTextSharp.text.Phrase(25f, new iTextSharp.text.Chunk("Localidad", FontFactory.GetFont(FontFactory.COURIER, 18f, Font.BOLD,
+            Phrase localidad = new iTextSharp.text.Phrase(25f, new iTextSharp.text.Chunk("Localidad", FontFactory.GetFont(FontFactory.COURIER, 14f, Font.BOLD,
                                new iTextSharp.text.BaseColor(64, 5, 56))));
-            Phrase nombre_vet = new iTextSharp.text.Phrase(25f, new iTextSharp.text.Chunk("Nombre vet", FontFactory.GetFont(FontFactory.COURIER, 18f, Font.BOLD,
+            Phrase nombre_vet = new iTextSharp.text.Phrase(25f, new iTextSharp.text.Chunk("Nombre vet", FontFactory.GetFont(FontFactory.COURIER, 14f, Font.BOLD,
                                new iTextSharp.text.BaseColor(64, 5, 56))));
-            Phrase telefono = new iTextSharp.text.Phrase(25f, new iTextSharp.text.Chunk("Teléfono", FontFactory.GetFont(FontFactory.COURIER, 18f, Font.BOLD,
+            Phrase telefono = new iTextSharp.text.Phrase(25f, new iTextSharp.text.Chunk("Teléfono", FontFactory.GetFont(FontFactory.COURIER, 14f, Font.BOLD,
                               new iTextSharp.text.BaseColor(64, 5, 56))));
-            Phrase telefono_urgencias = new iTextSharp.text.Phrase(25f, new iTextSharp.text.Chunk("Teléfono Urgencias", FontFactory.GetFont(FontFactory.COURIER, 18f, Font.BOLD,
+            Phrase telefono_urgencias = new iTextSharp.text.Phrase(25f, new iTextSharp.text.Chunk("Teléfono Urgencias", FontFactory.GetFont(FontFactory.COURIER, 14f, Font.BOLD,
                               new iTextSharp.text.BaseColor(64, 5, 56))));
-            Phrase id_mascota = new iTextSharp.text.Phrase(25f, new iTextSharp.text.Chunk("Id Mascota", FontFactory.GetFont(FontFactory.COURIER, 18f, Font.BOLD,
+            Phrase id_mascota = new iTextSharp.text.Phrase(25f, new iTextSharp.text.Chunk("Id Mascota", FontFactory.GetFont(FontFactory.COURIER, 14f, Font.BOLD,
                              new iTextSharp.text.BaseColor(64, 5, 56))));
 
 
@@ -670,7 +682,7 @@ namespace ControlAnimales
 
             cabecera.WriteSelectedRows(0, 10, 20f, 920, writer.DirectContent);
 
-            //Pro`piedades de la tabla con datos, igual q de la cabecera
+            //Propiedades de la tabla con datos, igual q de la cabecera
             PdfPTable datos = new PdfPTable(8);
             datos.SetTotalWidth(arrayTamañoColumnas);
             datos.DefaultCell.MinimumHeight = 40f;
@@ -680,11 +692,12 @@ namespace ControlAnimales
             int cf = 0;
             foreach (DataRow registro in filas)
             {
+           
                 datos.AddCell(registro["id_veterinario"] + " ");
                 datos.AddCell(registro["clinica"] + " ");
                 datos.AddCell(registro["calle"] + " ");
                 datos.AddCell(registro["localidad"] + " ");
-                datos.AddCell(registro["nombre_vet"] + " ");
+                datos.AddCell(registro["nombre_veterinario"] + " ");
                 datos.AddCell(registro["telefono"] + " ");
                 datos.AddCell(registro["telefono_urgencias"] + " ");
                 datos.AddCell(registro["id_mascota"] + " ");
@@ -703,13 +716,13 @@ namespace ControlAnimales
                     //nueva pagina
                     doc.NewPage();
                     doc.Add(new iTextSharp.text.Paragraph(txtTitulo));
-                  //  doc.Add(imagen);
+                    doc.Add(imagen);
                     cabecera.WriteSelectedRows(0, -1, 20f, 920f, writer.DirectContent);
                     cf = 0;
                 }
             }
 
-            datos.WriteSelectedRows(0, -1, 20f, 895f, writer.DirectContent);
+            datos.WriteSelectedRows(0, -1, 20f, 888f, writer.DirectContent);
             doc.Close();
 
 
