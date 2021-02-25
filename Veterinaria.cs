@@ -66,7 +66,7 @@ namespace ControlAnimales
                 }
 
                 // Clinica -- Admite de 3 a 50 caracteres de texto
-                if (path == "Clinica")
+                if (path == "Clinica" )
                 {
                     {
                         Regex regex = new Regex(@"^[a-zA-Z  _0-9,.-_#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~]{3,50}$");
@@ -99,6 +99,7 @@ namespace ControlAnimales
 
                     if (!Expresión.IsMatch(this.telefono))
                     {
+
                         result = "Telefono Incorrecto. Formato correcto(999999999)";
                     
                     }

@@ -192,12 +192,14 @@
             </TabItem>
             <TabItem Header="Visitas veterinario">
                 <Canvas Background="#FFE5E5E5" Margin="2,39,-2,12">
-
+                    <ComboBox x:Name="nombreMascotasVet"  Canvas.Left="94" Canvas.Top="47" Width="120" SelectionChanged="cargar_masc_veterinario"/>
                     <TextBox x:Name="txt_fecha_visita" Text="Fecha" TextWrapping="Wrap" Width="180" Height="26" Canvas.Left="300" Canvas.Top="149" />
                     <DatePicker x:Name="fecha_vis" Height="32" Width="180" Canvas.Left="90" Canvas.Top="146" CalendarClosed="cargar_fecha_vis"  />
                     <TextBox x:Name="descripcion_visita" Text="Descripción" TextWrapping="Wrap" Width="180" Height="26" Canvas.Left="90" Canvas.Top="275"/>
                     <TextBox x:Name="precio_visita"  Text="precio visita" TextWrapping="Wrap" Width="180" Height="26" Canvas.Left="90" Canvas.Top="364"  />
-                    <TextBox x:Name="veterinario_visita" Text="veterinario" TextWrapping="Wrap" Width="180" Height="26" Canvas.Left="90" Canvas.Top="194"  />
+                    <ComboBox x:Name="carga_vet"  Canvas.Left="94" Canvas.Top="200" Width="120" SelectionChanged="Clinica_selescciona" />
+
+                    <TextBox x:Name="txt_clinica_vet" Text="Clinica" TextWrapping="Wrap" Width="180" Height="26" Canvas.Left="90" Canvas.Top="242"  />
                     <TextBox x:Name="mascota_visita" Text="mascota" TextWrapping="Wrap" Width="180" Height="26" Canvas.Left="90" Canvas.Top="90" />
                     <TextBox x:Name="tratamiento" Text="Descipción tratamiento" TextWrapping="Wrap" Width="180" Height="26" Canvas.Left="460" Canvas.Top="268" Visibility="Hidden" />
                     <TextBox x:Name="duracion" Text="Duración tratamiento" TextWrapping="Wrap" Width="180" Height="26" Canvas.Left="460" Canvas.Top="318" Visibility="Hidden" />

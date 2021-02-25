@@ -36,7 +36,7 @@ namespace ControlAnimales
             InitializeComponent();
 
             //conexion AIDA 
-         //  string conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Aida\\Desktop\\PERRUNO\\ControlAnimales\\Mascotas .mdf;Integrated Security=True;Connect Timeout=30";
+           string conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Aida\\Desktop\\PERRUNO\\ControlAnimales\\Mascotas .mdf;Integrated Security=True;Connect Timeout=30";
 
         
             //conexion ALLENDE
@@ -45,6 +45,8 @@ namespace ControlAnimales
             con = new SqlConnection(conexion);
             cargarEspecies();
             cargaMascotas();
+            cargaMascotasVet();
+            cargarVeterinario();
         }
         
         //Elimina veterinaria
@@ -68,6 +70,7 @@ namespace ControlAnimales
             con.Close();
         }
 
+        //carga combo de mascota en vista Mascotas
         private void cargaMascotas()
         {
 
@@ -97,6 +100,68 @@ namespace ControlAnimales
 
             con.Close();
         }
+
+        //carga combo de mascotas en vista veterinario
+        private void cargaMascotasVet()
+        {
+            try {
+                //abrimos la conexion
+                con.Open();
+            }
+            catch (Exception ee) {MessageBox.Show(ee.Message);}
+            string query = "SELECT * FROM mascota";
+            SqlDataAdapter miAdaptadorSql = new SqlDataAdapter(query, con);
+
+            using (miAdaptadorSql){
+                DataTable mascota = new DataTable();
+                miAdaptadorSql.Fill(mascota);
+                nombreMascotasVet.DisplayMemberPath = "nombre";
+                nombreMascotasVet.SelectedValuePath = "id_mascota";
+                nombreMascotasVet.ItemsSource = mascota.DefaultView;
+           }
+         con.Close();
+        }
+
+        //carga combo de veterinario en vista veterinario
+        private void cargarVeterinario()
+        {
+            try
+            {
+                //abrimos la conexion
+                con.Open();
+            }
+            catch (Exception ee) { MessageBox.Show(ee.Message); }
+            string query = "SELECT * FROM veterinario";
+            SqlDataAdapter miAdaptadorSql = new SqlDataAdapter(query, con);
+
+            using (miAdaptadorSql)
+            {
+                DataTable veterinario = new DataTable();
+                miAdaptadorSql.Fill(veterinario);
+                carga_vet.DisplayMemberPath = "clinica";
+                carga_vet.SelectedValuePath = "id_veterinario";
+                carga_vet.ItemsSource = veterinario.DefaultView;
+            }
+            con.Close();
+        }
+        private void cargar_masc_veterinario(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox cb = (ComboBox)sender;
+
+            DataRowView drv = (DataRowView)cb.SelectedItem;
+            string cadena3 = drv.Row[1].ToString();
+            mascota_visita.Text = cadena3;
+        }
+
+        private void Clinica_selescciona(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox cb = (ComboBox)sender;
+
+            DataRowView drv = (DataRowView)cb.SelectedItem;
+            string cadena3 = drv.Row[1].ToString();
+            txt_clinica_vet.Text = cadena3;
+        }
+
 
 
 
