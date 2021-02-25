@@ -357,6 +357,7 @@ namespace ControlAnimales
             try
             {
                 //abrimos la conexion
+                MessageBox.Show("");
                 con.Open();
             }
             catch (Exception ee)
