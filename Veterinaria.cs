@@ -43,19 +43,33 @@ namespace ControlAnimales
                 // Casilla Nombre 
                 //Admite de 3 a 50 caracteres de texto
                 if (path == "Nombre" ) {
-                    
-                        Regex regex = new Regex(@"^[a-zA-Z _0-9]{3,50}$");
+                     
+                    Regex regex = new Regex(@"^[a-zA-Z  _0-9,.-_#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~]{3,50}$");
                         if (!regex.IsMatch(this.Nombre)){
                             result = " admite carácteres alfabéticos y numeros, min 3 max 50";
                         }
                     return result;
+                }
+                // Localidad -- Admite de 3 a 50 caracteres de texto
+                if (path == "Localidad")
+                {
+                    {
+                        Regex regex = new Regex(@"^[a-zA-Z  _0-9,.-_#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~]{3,50}$");
+                        if (!regex.IsMatch(this.Clinica))
+                        {
+                            result = " admite carácteres alfabéticos y numeros, min 3 max 50";
+
+                        }
+
+                        return result;
+                    }
                 }
 
                 // Clinica -- Admite de 3 a 50 caracteres de texto
                 if (path == "Clinica")
                 {
                     {
-                        Regex regex = new Regex(@"^[a-zA-Z _0-9]{3,50}$");
+                        Regex regex = new Regex(@"^[a-zA-Z  _0-9,.-_#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~]{3,50}$");
                         if (!regex.IsMatch(this.Clinica))
                         {
                             result = " admite carácteres alfabéticos y numeros, min 3 max 50";
@@ -68,7 +82,7 @@ namespace ControlAnimales
                 // Calle -- Admite de 3 a 50 caracteres de texto
                   if (path == "Calle" )
                 {
-                    Regex regex = new Regex(@"^[a-zA-Z _0-9]{3,50}$");
+                    Regex regex = new Regex(@"^[a-zA-Z  _0-9,.-_#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~]{3,50}$");
                     if (!regex.IsMatch(this.Calle))
                     {
                         result = " admite carácteres alfabéticos y numeros, min 3 max 50";
