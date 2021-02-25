@@ -36,7 +36,7 @@ namespace ControlAnimales
             InitializeComponent();
 
         //  conexion AIDA 
-        string conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Aida\\Desktop\\PERRUNO\\ControlAnimales\\Mascotas .mdf;Integrated Security=True;Connect Timeout=30";
+        conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Aida\\Desktop\\PERRUNO\\ControlAnimales\\Mascotas .mdf;Integrated Security=True;Connect Timeout=30";
         //  conexion ALLENDE
           //    conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Allende\\source\\repos\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
 
@@ -52,7 +52,33 @@ namespace ControlAnimales
         /*****************************************************************************************************************************/
         //INSERT UPDATE DELETE SELECT DE LA PANTALLA VISITAS VETERINARIO
         /*****************************************************************************************************************************/
+        private void guardar_visita_vet(object sender, RoutedEventArgs e)
+        {
 
+           /* SqlCommand comando = new SqlCommand("SELECT * FROM veterinario where id_mascota = @mascota", con);
+            comando.Parameters.AddWithValue("@mascota", txtId.Text);
+            SqlDataReader registro = comando.ExecuteReader();
+            if (registro.Read())
+
+            nombreVeterinaria = txt_nombre_veterinaria.Text;
+            clinica = txt_clinica.Text;
+            calle = txt_calle_veterinaria.Text;
+            localidad = txt_localidad.Text;
+            telefono = txt_telefono_clinica.Text;
+            telefonoUrgencias = txt_telefono_urgencias.Text;
+            string v = txtId.Text;
+
+            con = new SqlConnection(conexion);
+            con.Open();
+            String query = "Insert into visitas_veterinario(fecha) values( '@fecha')";
+            SqlCommand comando = new SqlCommand(query, con);
+            comando.Parameters.AddWithValue("@fecha", txt_fecha_visita.Text);
+                //,'" + calle + "', '" + localidad + "', '" + nombreVeterinaria + "', '" + telefono + "', '" + telefonoUrgencias + "', '" + v + "')";
+            comando.ExecuteNonQuery();
+            MessageBox.Show("Datosa insertados");
+            con.Close();
+*/
+        }
 
 
         //recojo dia mes y año visita veterinario
@@ -177,6 +203,8 @@ namespace ControlAnimales
             string cadena3 = drv.Row[1].ToString();
             mascota_visita.Text = cadena3;
         }
+
+       
 
         private void Clinica_selescciona(object sender, SelectionChangedEventArgs e)
         {
@@ -680,14 +708,7 @@ namespace ControlAnimales
         //PDF de la tabla vetetrinario
         private void PDF_veterinario(object sender, RoutedEventArgs e)
         {
-
-            //conexion AIDA 
-            //string conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Aida\\Desktop\\PERRUNO\\ControlAnimales\\Mascotas .mdf;Integrated Security=True;Connect Timeout=30";
-
-            //conexion ALLENDE
-               conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Allende\\source\\repos\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
-
-           
+ 
             try
             {
                 con.Open();

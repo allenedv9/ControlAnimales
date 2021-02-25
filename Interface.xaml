@@ -206,6 +206,7 @@
                     <TextBox x:Name="duracion" Text="Duración tratamiento" TextWrapping="Wrap" Width="180" Height="26" Canvas.Left="460" Canvas.Top="318" Visibility="Hidden" />
 
                     <CheckBox x:Name="tratamiento_check" Content="tratamiento" Canvas.Left="358" Canvas.Top="310" Click="tratamiento_check_clic"/>
+                    <Button Content="Guardar" Height="45" Canvas.Left="570" Canvas.Top="58" Width="155" Click="guardar_visita_vet"/>
 
                 </Canvas>
             </TabItem>
