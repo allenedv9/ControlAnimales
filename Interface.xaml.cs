@@ -26,7 +26,7 @@ namespace ControlAnimales
         String conexion, cadena2, cadena3, cadena5, nombre, fechaNac, especieAni, edad, raza, 
                sexo, color, cartilla, numChip, adoptadoCheck, lugarAdop, fechaAdop, ruta, id;
         String nombreVeterinaria, clinica , calle , localidad, telefono , telefonoUrgencias,cad;
-        String visFecha, visDescripcion, visPrecio, visClinica, visIdMascota, visIdVeterinario, visTratamiento, visDuracion, visDescripcionTratamiento;
+        String visFecha, visDescripcion, visPrecio, visClinica, visIdMascota, visIdVeterinario, visTratamiento, visDuracion, visDescripcionTratamiento, tratamientoChek;
 
 
         private DataRow[] filas;
@@ -38,9 +38,9 @@ namespace ControlAnimales
             InitializeComponent();
 
         //  conexion AIDA 
-        //conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Aida\\Desktop\\PERRUNO\\ControlAnimales\\Mascotas .mdf;Integrated Security=True;Connect Timeout=30";
+        conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Aida\\Desktop\\PERRUNO\\ControlAnimales\\Mascotas .mdf;Integrated Security=True;Connect Timeout=30";
         //  conexion ALLENDE
-              conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Allende\\source\\repos\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
+          //    conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Allende\\source\\repos\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
 
             con = new SqlConnection(conexion);
             cargarEspecies();
@@ -66,9 +66,11 @@ namespace ControlAnimales
             visTratamiento = txt_tratamiento.Text;
             visDuracion = txt_duracion.Text;
             visDescripcionTratamiento = txt_descripcion_visita.Text;
+            visFecha = visFecha.Substring(0, 10);
+
 
             con = new SqlConnection(conexion);
-            String query = "Insert into visita_veterinario values( '" + visFecha + "','" + visDescripcion + "', '" + visPrecio + "', '" + visIdMascota + "', '" + visIdVeterinario + "', '" + visTratamiento + "', '" + visDuracion + "', '" + visDescripcionTratamiento + "')";
+            String query = "Insert into visitas_veterinario values( '" + visFecha + "','" + visDescripcion + "', '" + visPrecio + "', '" + visIdMascota + "', '" + visIdVeterinario + "', '" + tratamientoChek + "', '" + visDuracion + "', '" + visDescripcionTratamiento + "')";
             SqlCommand comando = new SqlCommand(query, con);
             con.Open();
             comando.ExecuteNonQuery();
@@ -631,13 +633,16 @@ namespace ControlAnimales
         //si hay tratamiento visualiza text para rellenar
         private void tratamiento_check_clic(object sender, RoutedEventArgs e)
         {
+            
             if (tratamiento_check.IsChecked == true)
             {
+                tratamientoChek = "SI";
                 txt_tratamiento.Visibility = Visibility.Visible;
                 txt_duracion.Visibility = Visibility.Visible;
             }
             else
             {
+                tratamientoChek = "NO";
                 txt_tratamiento.Visibility = Visibility.Hidden;
                 txt_duracion.Visibility = Visibility.Hidden;
             }
