@@ -38,9 +38,9 @@ namespace ControlAnimales
             InitializeComponent();
 
         //  conexion AIDA 
-        conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Aida\\Desktop\\PERRUNO\\ControlAnimales\\Mascotas .mdf;Integrated Security=True;Connect Timeout=30";
+        //conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Aida\\Desktop\\PERRUNO\\ControlAnimales\\Mascotas .mdf;Integrated Security=True;Connect Timeout=30";
         //  conexion ALLENDE
-          //    conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Allende\\source\\repos\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
+              conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Allende\\source\\repos\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
 
             con = new SqlConnection(conexion);
             cargarEspecies();
@@ -95,8 +95,6 @@ namespace ControlAnimales
 
             nombre = txt_nombre.Text;
             fechaNac = txt_fecha.Text;
-
-
             edad = txt_edad.Text;
             especieAni = txt_especie.Text;
             raza = txt_raza.Text;
@@ -108,24 +106,16 @@ namespace ControlAnimales
             fechaAdop = txt_fecha_adopcion.Text;
             ruta = ruta_imagen.Text;
             id = txt_id.Text;
+            fechaNac = fechaNac.Substring(0, 10);
+            fechaAdop = fechaAdop.Substring(0, 10);
+           //  MessageBox.Show(adoptadoCheck);
 
-            MessageBox.Show(nombre, fechaNac);
-            /* MessageBox.Show(edad, especieAni);
-              MessageBox.Show(raza);
-              MessageBox.Show(sexo, color);
-              MessageBox.Show(cartilla, numChip);
-              MessageBox.Show(lugarAdop, fechaAdop);*/
-
-            //(nombre, fecha_nacimiento, edad, especie, raza, sexo, color, num_cartilla_sanitaria,num_chip, adoptado, fecha_adopcion, lugar_adopcion, imagen)
             con = new SqlConnection(conexion);
             con.Open();
-            //  string query = "INSERT INTO mascota ("+'id,nombre'+, fechaNac, edad, especieAni, raza, sexo, color, cartilla, numChip, adoptadoCheck, fechaAdop, lugarAdop, ruta) ";
-            String query = "Insert into mascota(nombre, edad, fecha_nacimiento) values( '" + nombre + "','" + edad + "', '" + fechaNac + "')";
-            /* "Insert into mascota(" + "nombre, edad, especie, raza, sexo, color, num_cartilla_sanitaria,num_chip, adoptado,  lugar_adopcion, imagen) " +
-                             " values( '" + nombre + "','" + edad + "','" + especieAni + "','" + raza + "','" + sexo + "','" + color + "','" + cartilla + "','" + numChip + "','" + adoptadoCheck + "','" + lugarAdop + "','" + ruta + "')";*/
+            String query = "Insert into mascota values( '" + nombre + "','" + fechaNac + "', '" + edad + "','" + especieAni + "', '" + raza + "','" + sexo + "', '" + color + "','" + cartilla + "','" + numChip + "', '" + adoptadoCheck + "', '" + lugarAdop + "','" + fechaAdop + "', '" + ruta + "')";
             SqlCommand comando = new SqlCommand(query, con);
             comando.ExecuteNonQuery();
-            MessageBox.Show("Datosa insertados");
+            MessageBox.Show("Datos insertados");
             con.Close();
 
         }
