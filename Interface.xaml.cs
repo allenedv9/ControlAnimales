@@ -36,7 +36,7 @@ namespace ControlAnimales
             InitializeComponent();
 
             //conexion AIDA 
-            string conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Aida\\Desktop\\PERRUNO\\ControlAnimales\\Mascotas .mdf;Integrated Security=True;Connect Timeout=30";
+         //  string conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Aida\\Desktop\\PERRUNO\\ControlAnimales\\Mascotas .mdf;Integrated Security=True;Connect Timeout=30";
 
         
             //conexion ALLENDE
@@ -44,6 +44,7 @@ namespace ControlAnimales
 
             con = new SqlConnection(conexion);
             cargarEspecies();
+            cargaMascotas();
         }
         
         //Elimina veterinaria
@@ -67,6 +68,38 @@ namespace ControlAnimales
             con.Close();
         }
 
+        private void cargaMascotas()
+        {
+
+            try
+            {
+                //abrimos la conexion
+                con.Open();
+            }
+            catch (Exception ee)
+            {
+                MessageBox.Show(ee.Message);
+            }
+
+            string query = "SELECT * FROM mascota";
+            SqlDataAdapter miAdaptadorSql = new SqlDataAdapter(query, con);
+
+            using (miAdaptadorSql)
+            {
+                DataTable mascota = new DataTable();
+                miAdaptadorSql.Fill(mascota);
+                nombreMascotas.DisplayMemberPath = "nombre";
+                nombreMascotas.SelectedValuePath = "id_mascota";
+                nombreMascotas.ItemsSource = mascota.DefaultView;
+
+            }
+
+
+            con.Close();
+        }
+
+
+
         //Modifica Veterinaria
         private void Modificar_Click(object sender, RoutedEventArgs e)
         {
@@ -84,7 +117,7 @@ namespace ControlAnimales
             try
             {
 
-                String query = "UPDATE veterinario set clinica = '" + clinica + "', calle = '" + calle + "',localidad = '" + localidad+ "' nombre_veterinario = '" + nombreVeterinaria + "', telefono= '" + telefono + "',telefono_urgencias = '" + telefonoUrgencias + "'";
+                String query = "UPDATE veterinario set clinica = '" + clinica + "', calle = '" + calle + "', localidad = '" + localidad + "', nombre_veterinario = '" + nombreVeterinaria + "', telefono= '" + telefono + "',telefono_urgencias = '" + telefonoUrgencias + "'";
                 SqlCommand comando = new SqlCommand(query, con);
                 comando.ExecuteNonQuery();
                 MessageBox.Show("Datos Actualizados");
@@ -156,137 +189,8 @@ namespace ControlAnimales
 
         }
 
-        //Limpia textBox para recojer dato
-      /*  private void foco(object sender, RoutedEventArgs e)
-        {
-
-            if (txt_nombre.IsFocused)
-            {
-
-                txt_nombre.Text = "";
-            }
-
-           
-
-            if (txt_color.IsFocused)
-            {
-
-                txt_color.Text = "";
-            }
-
-            if (txt_cartilla.IsFocused)
-            {
-
-                txt_cartilla.Text = "";
-            }
-
-            if (txt_chip.IsFocused)
-            {
-
-                txt_chip.Text = "";
-            }
-
-            if (txt_fecha_adopcion.IsFocused)
-            {
-
-                txt_fecha_adopcion.Text = "";
-            }
-
-            if (txt_lugar_adopcion.IsFocused)
-            {
-
-                txt_lugar_adopcion.Text = "";
-            }
-          /*  if (txt_nombre_veterinaria.IsFocused)
-            {
-                txt_nombre_veterinaria.Text = "";
-            }
-            if (txt_clinica.IsFocused)
-            {
-                txt_clinica.Text = "";
-            }
-            if (txt_calle_veterinaria.IsFocused)
-            {
-                txt_calle_veterinaria.Text = "";
-            }
-            if (txt_telefono_clinica.IsFocused)
-            {
-                txt_telefono_clinica.Text = "";
-            }
-            if (txt_telefono_urgencias.IsFocused)
-            {
-                txt_telefono_urgencias.Text = "";
-            }
-        }*/
-
-        //Si el textBox esta vacio vuelve a colocar el nombre del campo a rellenar
-       /* private void perder_foco(object sender, RoutedEventArgs e)
-        {
-
-            if (txt_nombre.Text == "")
-            {
-
-                txt_nombre.Text = "Nombre";
-            }
-
-            
-
-            if (txt_edad.Text == "")
-            {
-
-                txt_edad.Text = "Edad";
-            }
-
-            if (txt_color.Text == "")
-            {
-
-                txt_color.Text = "Color";
-            }
-
-            if (txt_cartilla.Text == "")
-            {
-
-                txt_cartilla.Text = "Cartilla";
-            }
-
-            if (txt_chip.Text == "")
-            {
-
-                txt_chip.Text = "Chip";
-            }
-
-            if (txt_fecha_adopcion.Text == "")
-            {
-
-                txt_fecha_adopcion.Text = "Fecha Adopcion";
-            }
-
-            if (txt_lugar_adopcion.Text == "")
-            {
-
-                txt_lugar_adopcion.Text = "Lugar Adopción";
-            }
-           /* if (txt_nombre_veterinaria.Text == "")
-            {
-                txt_nombre_veterinaria.Text = "Nombre Veterinari@";
-            }
-            if (txt_clinica.Text == "")
-            {
-                txt_clinica.Text = "Nombre Clinica";
-            }
-            if (txt_calle_veterinaria.Text == "")
-            {
-                txt_calle_veterinaria.Text = "Calle";
-            }
-            if (txt_telefono_clinica.Text == "")
-            {
-                txt_telefono_clinica.Text = "Teléfono Clínica";
-            }
-            if (txt_telefono_urgencias.Text == "")
-            {
-                txt_telefono_urgencias.Text = "Teléfono Urgencias";
-            }
-        }*/
+       
+          
 
         //este Metodo calcula la edad de nuestra mascota  meses y años
         private void cargar_fecha_nac(object sender, RoutedEventArgs e)
@@ -455,6 +359,7 @@ namespace ControlAnimales
                 especie.DisplayMemberPath = "especie";
                 especie.SelectedValuePath = "id_especie";
                 especie.ItemsSource = especies.DefaultView;
+                
             }
 
 
