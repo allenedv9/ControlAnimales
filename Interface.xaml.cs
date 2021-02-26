@@ -84,7 +84,7 @@ namespace ControlAnimales
             comando.ExecuteNonQuery();
             MessageBox.Show("Datos insertados");
             con.Close();
-            cargarMascotasDataGrid();
+           
         }
 
 
@@ -137,7 +137,8 @@ namespace ControlAnimales
                 MessageBox.Show("Error");
             }
             con.Close();
-
+            //LimpiarControles();
+            cargarMascotasDataGrid();
         }
 
 
