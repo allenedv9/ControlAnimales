@@ -28,11 +28,12 @@ namespace ControlAnimales
         String nombreVeterinaria, clinica , calle , localidad, telefono , telefonoUrgencias,cad;
         String visFecha, visDescripcion, visPrecio, visClinica, visIdMascota, visIdVeterinario, visTratamiento, visDuracion, visDescripcionTratamiento, tratamientoChek;
 
+      
 
         private DataRow[] filas;
         private Veterinaria registro;
-
-
+        private Mascota registroM;
+      
         public Interface()
         {
             InitializeComponent();
@@ -47,14 +48,21 @@ namespace ControlAnimales
             cargaMascotas();
             cargaMascotasVet();
             cargarVeterinario();
+            cargarMascotasDataGrid();
+
+
         }
 
 
+   
+        
+           
 
-        /*****************************************************************************************************************************/
-        //INSERT UPDATE DELETE SELECT DE LA PANTALLA VISITAS VETERINARIO
-        /*****************************************************************************************************************************/
-        private void guardar_visita_vet(object sender, RoutedEventArgs e)
+
+            /*****************************************************************************************************************************/
+            //INSERT UPDATE DELETE SELECT DE LA PANTALLA VISITAS VETERINARIO
+            /*****************************************************************************************************************************/
+            private void guardar_visita_vet(object sender, RoutedEventArgs e)
         {
 
             visFecha = txt_fecha_visita.Text;
@@ -138,6 +146,24 @@ namespace ControlAnimales
         /*****************************************************************************************************************************/
         //MODIFICAR LOS DATOS DE LA PANTALLA VETERINARIO//
         /*****************************************************************************************************************************/
+
+        //carga el dataGrid con datos de ta tabla mascotas
+        public void cargarMascotasDataGrid()
+        {
+            con.Open();
+            String query = "Select * from mascota";
+
+            SqlDataAdapter miAdaptadorSql = new SqlDataAdapter(query, con);
+
+            using (miAdaptadorSql)
+            {
+                DataTable dataTablaMascota = new DataTable();
+                miAdaptadorSql.Fill(dataTablaMascota);
+
+                dg_lista_mascotas.ItemsSource = dataTablaMascota.DefaultView;
+            }
+            con.Close();
+        }
 
         //carga combo de mascotas en vista veterinario
         private void cargaMascotasVet()
@@ -710,12 +736,16 @@ namespace ControlAnimales
 
         }
 
-       
+
 
         /*****************************************************************************************************************************/
-                        //GENERAR PDFS
+        //GENERAR PDFS
         /*****************************************************************************************************************************/
 
+        private void PDF_mascota(object sender, RoutedEventArgs e)
+        {
+
+        }
 
         //PDF de la tabla vetetrinario
         private void PDF_veterinario(object sender, RoutedEventArgs e)

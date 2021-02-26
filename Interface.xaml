@@ -88,22 +88,9 @@
             </TabItem>
             <TabItem Header="Ver Mascotas">
                 <Canvas Background="#FFE5E5E5" Margin="2,39,-2,12">
-                    <DataGrid x:Name="dg_lista_mascotas"  Height="405" Width="984" AutoGenerateColumns="False" Canvas.Top="50" >
-                        <DataGrid.Columns >
-                            <DataGridTextColumn Header="Foto"  Width="*" Binding="{Binding Id}" IsReadOnly="True" />
-                            <DataGridTextColumn  Header= "Fecha Nacimiento" Width="*" Binding="{Binding Calle}" CanUserReorder="False" IsReadOnly="True"/>
-                            <DataGridTextColumn  Header= "Edad" Width="*" Binding="{Binding Cantidad}" CanUserReorder="False" IsReadOnly="True"/>
-                            <DataGridTextColumn  Header= "Especie" Width="*" Binding="{Binding Cantidad}" CanUserReorder="False" IsReadOnly="True"/>
-                            <DataGridTextColumn  Header= "Raza" Width="*" Binding="{Binding Cantidad}" CanUserReorder="False" IsReadOnly="True"/>
-                            <DataGridTextColumn  Header= "Sexo" Width="*" Binding="{Binding Cantidad}" CanUserReorder="False" IsReadOnly="True"/>
-                            <DataGridTextColumn  Header= "Color" Width="*" Binding="{Binding Cantidad}" CanUserReorder="False" IsReadOnly="True"/>
-                            <DataGridTextColumn  Header= "Cartilla Sanitaria" Width="*" Binding="{Binding Cantidad}" CanUserReorder="False" IsReadOnly="True"/>
-                            <DataGridTextColumn  Header= "Numero Chip" Width="*" Binding="{Binding Cantidad}" CanUserReorder="False" IsReadOnly="True"/>
-                            <DataGridTextColumn  Header= "Adoptado" Width="*" Binding="{Binding Cantidad}" CanUserReorder="False" IsReadOnly="True"/>
-                            <DataGridTextColumn  Header= "Fecha Adopción" Width="*" Binding="{Binding Cantidad}" CanUserReorder="False" IsReadOnly="True"/>
+                    <DataGrid x:Name="dg_lista_mascotas"   Height="405" Width="984"  Canvas.Top="50" />
 
-                        </DataGrid.Columns>
-                    </DataGrid>
+                    <Button Content="PDF" Canvas.Left="45" Canvas.Top="10" Click="PDF_mascota"/>
                 </Canvas>
             </TabItem>
         </TabControl>
