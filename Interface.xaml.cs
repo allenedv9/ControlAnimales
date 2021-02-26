@@ -23,25 +23,25 @@ namespace ControlAnimales
     public partial class Interface : Window
     {
         SqlConnection con;
-        String conexion, cadena2, cadena3, cadena5, nombre, fechaNac, especieAni, edad, raza, 
+        String conexion, cadena2, cadena3, cadena5, nombre, fechaNac, especieAni, edad, raza,
                sexo, color, cartilla, numChip, adoptadoCheck, lugarAdop, fechaAdop, ruta, id;
-        String nombreVeterinaria, clinica , calle , localidad, telefono , telefonoUrgencias,cad;
+        String nombreVeterinaria, clinica, calle, localidad, telefono, telefonoUrgencias, cad;
         String visFecha, visDescripcion, visPrecio, visClinica, visIdMascota, visIdVeterinario, visTratamiento, visDuracion, visDescripcionTratamiento, tratamientoChek;
 
-      
+
 
         private DataRow[] filas;
         private Veterinaria registro;
         private Mascota registroM;
-      
+
         public Interface()
         {
             InitializeComponent();
 
-        //  conexion AIDA 
-       // conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Aida\\Desktop\\PERRUNO\\ControlAnimales\\Mascotas .mdf;Integrated Security=True;Connect Timeout=30";
-        //  conexion ALLENDE
-              conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Allende\\source\\repos\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
+            //  conexion AIDA 
+            conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Aida\\Desktop\\PERRUNO\\ControlAnimales\\Mascotas .mdf;Integrated Security=True;Connect Timeout=30";
+            //  conexion ALLENDE
+            //      conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Allende\\source\\repos\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
 
             con = new SqlConnection(conexion);
             cargarEspecies();
@@ -54,20 +54,20 @@ namespace ControlAnimales
         }
 
 
-   
-        
-           
 
 
-            /*****************************************************************************************************************************/
-            //INSERT UPDATE DELETE SELECT DE LA PANTALLA VISITAS VETERINARIO
-            /*****************************************************************************************************************************/
-            private void guardar_visita_vet(object sender, RoutedEventArgs e)
+
+
+
+        /*****************************************************************************************************************************/
+        //INSERT UPDATE DELETE SELECT DE LA PANTALLA VISITAS VETERINARIO
+        /*****************************************************************************************************************************/
+        private void guardar_visita_vet(object sender, RoutedEventArgs e)
         {
 
             visFecha = txt_fecha_visita.Text;
             visDescripcion = txt_descripcion_visita.Text;
-            visPrecio = txt_precio_visita.Text; 
+            visPrecio = txt_precio_visita.Text;
             visClinica = txt_clinica.Text;
             visIdMascota = txt_mascota_visita.Text;
             visIdVeterinario = txt_clinica_vet.Text;
@@ -84,7 +84,7 @@ namespace ControlAnimales
             comando.ExecuteNonQuery();
             MessageBox.Show("Datos insertados");
             con.Close();
-
+            cargarMascotasDataGrid();
         }
 
 
@@ -116,16 +116,26 @@ namespace ControlAnimales
             fechaAdop = txt_fecha_adopcion.Text;
             ruta = ruta_imagen.Text;
             id = txt_id.Text;
-            fechaNac = fechaNac.Substring(0, 10);
-            fechaAdop = fechaAdop.Substring(0, 10);
-           //  MessageBox.Show(adoptadoCheck);
+           if (fechaNac != "") {
+                fechaNac = fechaNac.Substring(0, 10).ToString();
+            }
+           
+            if (fechaAdop != "") {
+                fechaAdop = fechaAdop.Substring(0, 10).ToString();
+            }
+          
+            try { 
+                 con = new SqlConnection(conexion);
+                 con.Open();
+                  String query = "Insert into mascota values( '" + nombre + "','" + fechaNac + "', '" + edad + "','" + especieAni + "', '" + raza + "','" + sexo + "', '" + color + "','" + cartilla + "','" + numChip + "', '" + adoptadoCheck + "', '" + lugarAdop + "','" + fechaAdop + "', '" + ruta + "')";
+                 SqlCommand comando = new SqlCommand(query, con);
+                 comando.ExecuteNonQuery();
+                 MessageBox.Show("Datos insertados");
+              
 
-            con = new SqlConnection(conexion);
-            con.Open();
-            String query = "Insert into mascota values( '" + nombre + "','" + fechaNac + "', '" + edad + "','" + especieAni + "', '" + raza + "','" + sexo + "', '" + color + "','" + cartilla + "','" + numChip + "', '" + adoptadoCheck + "', '" + lugarAdop + "','" + fechaAdop + "', '" + ruta + "')";
-            SqlCommand comando = new SqlCommand(query, con);
-            comando.ExecuteNonQuery();
-            MessageBox.Show("Datos insertados");
+          }catch(Exception ex){
+                MessageBox.Show("Error");
+            }
             con.Close();
 
         }
@@ -210,6 +220,8 @@ namespace ControlAnimales
             }
             con.Close();
         }
+        
+        //carga combo
         private void cargar_masc_veterinario(object sender, SelectionChangedEventArgs e)
         {
             ComboBox cb = (ComboBox)sender;
