@@ -332,15 +332,38 @@ namespace ControlAnimales
             
         }
 
-        //LIMPIAR LOS CONTROLES
+        //LIMPIAR LOS CONTROLES VETERINARIO/VISITAS_VETERINARIO/MASCOTA
         private void LimpiarControles_Click(object sender, RoutedEventArgs e)
         {
+
+            //Veterinario
             txt_nombre_veterinaria.Text = "";
             txt_clinica.Text = "";
             txt_calle_veterinaria.Text = "";
             txt_localidad.Text = "";
             txt_telefono_clinica.Text = "";
             txt_telefono_urgencias.Text = "";
+            txt_clinica_vet.Text = "";
+            //Visitas veterinario
+            txt_descripcion_visita.Text = "";
+            txt_precio_visita.Text = "";
+            txt_tratamiento.Text = "";
+            txt_duracion.Text = "";
+            //Mascota
+            txt_nombre.Text = "";
+            txt_fecha.Text = "";
+            txt_edad.Text = "";
+            txt_especie.Text = "";
+            txt_raza.Text = "";
+            txt_sexo.Text = "";
+            txt_color.Text = "";
+            txt_cartilla.Text = "";
+            txt_chip.Text = "";
+            txt_lugar_adopcion.Text = "";
+            txt_fecha_adopcion.Text = "";
+            ruta_imagen.Text = "";
+            txt_id.Text = "";
+            imagenMascota = null;
         }
 
 

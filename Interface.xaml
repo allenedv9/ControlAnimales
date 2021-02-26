@@ -83,6 +83,7 @@
                     <Label Content="Fecha de adopción" FontSize="10" Canvas.Left="397" Height="21" Width="180" Canvas.Top="182"/>
                     <Label Content="Lugar de adopción" FontSize="10" Canvas.Left="397" Height="21" Width="180" Canvas.Top="227"/>
                     <TextBox x:Name="txt_id"  TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157"  Canvas.Left="91" Canvas.Top="355" />
+                    <Button x:Name="guardar_Copy" Content="Limpiar Controles" IsEnabled="True" Canvas.Left="645" Canvas.Top="516" Height="35" Width="110" Click="LimpiarControles_Click"/>
                 </Canvas>
             </TabItem>
             <TabItem Header="Ver Mascotas">
@@ -106,7 +107,7 @@
                 </Canvas>
             </TabItem>
         </TabControl>
-        <TabControl x:Name="veterinaria" Margin="0,65,0,-364" Visibility="Visible">
+        <TabControl x:Name="veterinaria" Margin="0,65,0,-364" Visibility="Hidden"> 
             <TabItem Header="Nueva/o Veterinaria" Margin="-2,-2,-2,2">
                 <Canvas x:Name="ventanaVeterinaria" Visibility="Visible" Background="#FFE5E5E5" Margin="2,39,-2,12">
 
@@ -207,6 +208,7 @@
 
                     <CheckBox x:Name="tratamiento_check" Content="tratamiento" Canvas.Left="358" Canvas.Top="310" Click="tratamiento_check_clic"/>
                     <Button Content="Guardar" Height="45" Canvas.Left="570" Canvas.Top="58" Width="155" Click="guardar_visita_vet"/>
+                    <Button Content="Limpiar controles" Height="45" Canvas.Left="570" Canvas.Top="119" Width="155"  Click="LimpiarControles_Click"/>
 
                 </Canvas>
             </TabItem>
