@@ -64,7 +64,7 @@
                     <TextBox x:Name="txt_sexo"  IsReadOnly="True"  Width="94" Height="25" RenderTransformOrigin="0.75,2.157"  Canvas.Left="271" Canvas.Top="268" Visibility="Hidden" />
                     <DatePicker x:Name="fecha" Height="25" Width="180" Canvas.Left="90" Canvas.Top="93" CalendarClosed="cargar_fecha_nac" ></DatePicker>
                     <Label Content="Sexo" Canvas.Left="90" Canvas.Top="252"/>
-                    <Label Content="Selecciona imagen" Canvas.Left="406" Canvas.Top="304" RenderTransformOrigin="7.434,1.775"/>
+                    <Label Content="Selecciona imagen" x:Name="selec_img" Canvas.Left="406" Canvas.Top="304" RenderTransformOrigin="7.434,1.775"/>
                     <CheckBox x:Name="check_imagen" Canvas.Left="525" Canvas.Top="309" Click="abre_seleccion_imagen"/>
                     <TextBox x:Name="ruta_imagen" Canvas.Left="406" Canvas.Top="335" Height="26" Width="313" Visibility="Hidden"/>
                     <Image x:Name="imagenMascota" Height="167" Canvas.Left="669" Canvas.Top="148" Width="172"/>
@@ -82,8 +82,12 @@
                     <Label Content="Número del CHIP" FontSize="10" Canvas.Left="397" Height="21" Width="180" Canvas.Top="91"/>
                     <Label x:Name="label_fecha" Content="Fecha de adopción" FontSize="10" Canvas.Left="397" Height="21" Width="180" Canvas.Top="182" Visibility="Hidden"/>
                     <Label x:Name="label_lugar" Content="Lugar de adopción" FontSize="10" Canvas.Left="397" Height="21" Width="180" Canvas.Top="227" Visibility="Hidden"/>
-                    <TextBox x:Name="txt_id"  TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157"  Canvas.Left="91" Canvas.Top="355" />
+                    <TextBox x:Name="txt_id"  TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157"  Canvas.Left="91" Canvas.Top="355" Visibility="Hidden" />
                     <Button x:Name="guardar_Copy" Content="Limpiar Controles" IsEnabled="True" Canvas.Left="645" Canvas.Top="516" Height="35" Width="110" Click="LimpiarControles_Click"/>
+                    <Button x:Name="Actualizar_datos" Content="Modificar mascota" IsEnabled="True" Canvas.Left="786" Canvas.Top="395" Height="35" Width="110" Click="Modificar_mascotas"/>
+                    <Button x:Name="Buscar_masc" Content="Buscar Mascota" IsEnabled="True" Canvas.Left="786" Canvas.Top="458" Height="35" Width="110" Click="Buscar_mascota"/>
+                    <Button x:Name="Actualizar_datos_Copy" Content="Modificar mascota" IsEnabled="True" Canvas.Left="786" Canvas.Top="395" Height="35" Width="110" Click="Modificar_mascotas"/>
+                    <Button x:Name="eliminar" Content="Eliminar mascota" IsEnabled="True" Canvas.Left="786" Canvas.Top="339" Height="35" Width="110" Click="eliminar_mascotas"/>
                 </Canvas>
             </TabItem>
             <TabItem Header="Ver Mascotas" >
