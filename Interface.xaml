@@ -86,8 +86,9 @@
                     <Button x:Name="guardar_Copy" Content="Limpiar Controles" IsEnabled="True" Canvas.Left="645" Canvas.Top="516" Height="35" Width="110" Click="LimpiarControles_Click"/>
                     <Button x:Name="Actualizar_datos" Content="Modificar mascota" IsEnabled="True" Canvas.Left="786" Canvas.Top="395" Height="35" Width="110" Click="Modificar_mascotas"/>
                     <Button x:Name="Buscar_masc" Content="Buscar Mascota" IsEnabled="True" Canvas.Left="786" Canvas.Top="458" Height="35" Width="110" Click="Buscar_mascota"/>
+                    <Button x:Name="PDF_mascota_unica" Content="PDF Mascota" Canvas.Left="841" Canvas.Top="161" Click="PDF_mascota_Personal"/>
                     <Button x:Name="Actualizar_datos_Copy" Content="Modificar mascota" IsEnabled="True" Canvas.Left="786" Canvas.Top="395" Height="35" Width="110" Click="Modificar_mascotas"/>
-                    <Button x:Name="eliminar" Content="Eliminar mascota" IsEnabled="True" Canvas.Left="786" Canvas.Top="339" Height="35" Width="110" Click="eliminar_mascotas"/>
+                   <Button x:Name="eliminar" Content="Eliminar mascota" IsEnabled="True" Canvas.Left="786" Canvas.Top="339" Height="35" Width="110" Click="eliminar_mascotas"/>
                 </Canvas>
             </TabItem>
             <TabItem Header="Ver Mascotas" >
@@ -98,7 +99,7 @@
                 </Canvas>
             </TabItem>
         </TabControl>
-        <TabControl x:Name="veterinaria" Margin="0,65,0,-364" Visibility="Visible">
+        <TabControl x:Name="veterinaria" Margin="0,65,0,-364" Visibility="Hidden">
             <TabItem Header="Nueva/o Veterinaria" Margin="-2,-2,-2,2">
                 <Canvas x:Name="ventanaVeterinaria" Visibility="Visible" Background="#FFE5E5E5" Margin="2,39,-2,12">
 
@@ -167,7 +168,10 @@
                     <Button x:Name="Limpiar_Controles" Content="Limpiar controles"  Height="37" Width="120" Click="LimpiarControles_Click" Canvas.Left="695" Canvas.Top="168"/>
                     <Button x:Name="Buscar" Content="Buscar veterinario"  Height="37" Width="120"  Canvas.Left="695" Canvas.Top="231" Click="Buscar_Click"/>
                     <Button x:Name="Modificar" Content="Modificar Datos"  Height="37" Width="120"  Canvas.Left="695" Canvas.Top="284" Click="Modificar_Click" />
-                    <Button x:Name="Eliminar" Content="Eliminar Registro"  Height="37" Width="120"  Canvas.Left="695" Canvas.Top="343" Click="Eliminar_Click" />
+                    <Button x:Name="Eliminar"  Height="37" Width="120"  Canvas.Left="695" Canvas.Top="343" Click="Eliminar_Click" >
+                        <Button Content="Eliminar"/>
+                    </Button>
+
                     <TextBox x:Name="txt_localidad" Style="{StaticResource TextBoxCapturaError}" TextWrapping="Wrap" Width="180" Height="26"  Canvas.Left="85" Canvas.Top="213" >
                         <Binding Path="Localidad" Source="{StaticResource data}"
                             ValidatesOnExceptions="True"
