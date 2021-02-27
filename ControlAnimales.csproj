@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Imagenes\huella.png" />
     <None Remove="Imagenes\logo.png" />
     <None Remove="Imagenes\logo2.jpg" />
     <None Remove="Imagenes\pug.jpg" />
@@ -19,6 +20,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Imagenes\huella.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Imagenes\logo.png" />
     <Resource Include="Imagenes\logo2.jpg" />
     <Resource Include="Imagenes\pug.jpg" />

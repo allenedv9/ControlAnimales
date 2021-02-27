@@ -40,9 +40,9 @@ namespace ControlAnimales
             InitializeComponent();
 
             //  conexion AIDA 
-            conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Aida\\Desktop\\PERRUNO\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
+           // conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Aida\\Desktop\\PERRUNO\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
             //  conexion ALLENDE
-            //    conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Allende\\source\\repos\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
+                conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Allende\\source\\repos\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
 
             con = new SqlConnection(conexion);
             cargarEspecies();
@@ -185,7 +185,7 @@ namespace ControlAnimales
                 adoptadoCheck = registro["adoptado"].ToString();
                 txt_id.Text = registro["id_mascota"].ToString();
                 ruta_imagen.Text = registro["imagen"].ToString();
-                  
+
                 if (adoptadoCheck == "si")
                 {
 
@@ -224,12 +224,12 @@ namespace ControlAnimales
                     check_imagen.Visibility = Visibility.Hidden;
                     selec_img.Visibility = Visibility.Hidden;
                 }
-            
-            con.Close();
+
+                con.Close();
 
 
+            }
         }
-
         private void guardar_Click(object sender, RoutedEventArgs e)
         {
 
@@ -573,7 +573,7 @@ namespace ControlAnimales
             check_imagen.Visibility = Visibility.Visible;
             selec_img.Visibility = Visibility.Visible;
 
-            imagenMascota.Source = null;
+           
 
 
         }
@@ -984,9 +984,10 @@ namespace ControlAnimales
             numChip = txt_chip.Text;
             fechaAdop = txt_fecha_adopcion.Text;
             lugarAdop = txt_lugar_adopcion.Text;
-            ruta = ruta_imagen.Text;
-            
+            ruta = ruta_imagen.Text;  
             idMAsc = txt_id.Text;
+
+            MessageBox.Show(nombre);
             
             //crea documento
             var PageSize = new iTextSharp.text.Rectangle(700f, 1024f);
@@ -1022,7 +1023,7 @@ namespace ControlAnimales
 
 
             var p = new System.Diagnostics.Process();
-            p.StartInfo = new System.Diagnostics.ProcessStartInfo(@"Veterinario.pdf") { UseShellExecute = true };
+            p.StartInfo = new System.Diagnostics.ProcessStartInfo(@"Mascota.pdf") { UseShellExecute = true };
             p.Start();
 
 
