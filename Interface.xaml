@@ -68,7 +68,7 @@
                     <CheckBox x:Name="check_imagen" Canvas.Left="525" Canvas.Top="309" Click="abre_seleccion_imagen"/>
                     <TextBox x:Name="ruta_imagen" Canvas.Left="406" Canvas.Top="335" Height="26" Width="313" Visibility="Hidden"/>
                     <Image x:Name="imagenMascota" Height="167" Canvas.Left="669" Canvas.Top="148" Width="172"/>
-                    <ComboBox  x:Name="especie" Canvas.Left="90" Canvas.Top="207" Width="120" SelectionChanged="cargaRazas"  />
+                    <ComboBox  x:Name="especie" Canvas.Left="88" Canvas.Top="207" Width="120" SelectionChanged="cargaRazas"  />
                     <ComboBox  x:Name="razas" Canvas.Left="231" Canvas.Top="208" Width="120" Visibility="Visible" SelectionChanged="recogerDato"/>
                     <Button x:Name="guardar" Content="Guardar" IsEnabled="True" Canvas.Left="786" Canvas.Top="516" Height="35" Width="110" Click="guardar_Click"/>
                     <TextBox x:Name="txt_raza"   Width="106" Height="25" Canvas.Left="231" Canvas.Top="230" IsReadOnly="True" Visibility="Hidden"/>
@@ -86,11 +86,11 @@
                     <Button x:Name="guardar_Copy" Content="Limpiar Controles" IsEnabled="True" Canvas.Left="645" Canvas.Top="516" Height="35" Width="110" Click="LimpiarControles_Click"/>
                 </Canvas>
             </TabItem>
-            <TabItem Header="Ver Mascotas">
+            <TabItem Header="Ver Mascotas" >
                 <Canvas Background="#FFE5E5E5" Margin="2,39,-2,12">
                     <DataGrid x:Name="dg_lista_mascotas"   Height="405" Width="984"  Canvas.Top="50" />
 
-                    <Button Content="PDF" Canvas.Left="45" Canvas.Top="10" Click="PDF_mascota"/>
+                    <Button Content="PDF" Canvas.Left="45" Canvas.Top="10" Click="PDF_mascota" />
                 </Canvas>
             </TabItem>
         </TabControl>
