@@ -164,7 +164,7 @@
                     <Label Content="Telefono Clinica" Canvas.Left="411" Canvas.Top="35"/>
                     <Label Content="Telefono Urgencias" Canvas.Left="417" Canvas.Top="99"/>
                     <Button Content="Guardar" Canvas.Left="695" Canvas.Top="103" Height="37" Width="120" Click="Guardar_Veterinaria"/>
-                    <TextBox x:Name="txtId" Canvas.Left="408" Canvas.Top="284"  Width="120" />
+                    <TextBox x:Name="txtId" Canvas.Left="408" Canvas.Top="284"  Width="120" Visibility="Hidden" />
                     <Button x:Name="Limpiar_Controles" Content="Limpiar controles"  Height="37" Width="120" Click="LimpiarControles_Click" Canvas.Left="695" Canvas.Top="168"/>
                     <Button x:Name="Buscar" Content="Buscar veterinario"  Height="37" Width="120"  Canvas.Left="695" Canvas.Top="231" Click="Buscar_Click"/>
                     <Button x:Name="Modificar" Content="Modificar Datos"  Height="37" Width="120"  Canvas.Left="695" Canvas.Top="284" Click="Modificar_Click" />
@@ -183,8 +183,7 @@
                     </TextBox>
                     <Label Content="Localidad" Canvas.Left="90" Canvas.Top="187"/>
                     <ComboBox x:Name="nombreMascotas" SelectionChanged="mascVet" Canvas.Left="398" Canvas.Top="215" Width="120" />
-                    <Button x:Name="siguienteVet" Content="Siguiente veterinario"  Height="37" Width="120"  Canvas.Left="845" Canvas.Top="231"  />
-                </Canvas>
+               </Canvas>
             </TabItem>
             <TabItem Header="Ver Veterinarios" >
                 <Canvas Background="#FFE5E5E5" Margin="2,39,-2,12">
