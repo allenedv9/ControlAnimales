@@ -25,13 +25,14 @@ namespace ControlAnimales
         SqlConnection con;
         String conexion, cadena2, cadena3, cadena5, nombre, fechaNac, especieAni, edad, raza,
                sexo, color, cartilla, numChip, adoptadoCheck, lugarAdop, fechaAdop, ruta, id;
-        String nombreVeterinaria, clinica, calle, localidad, telefono, telefonoUrgencias, cad;
+        String nombreVeterinaria, clinica, calle, localidad, telefono, telefonoUrgencias, cad, idMAsc, cadNombre;
         String visFecha, visDescripcion, visPrecio, visClinica, visIdMascota, visIdVeterinario, visTratamiento, visDuracion, visDescripcionTratamiento, tratamientoChek;
 
 
 
         private DataRow[] filas;
         private Veterinaria registro;
+
         private Mascota registroM;
 
         public Interface()
@@ -39,17 +40,30 @@ namespace ControlAnimales
             InitializeComponent();
 
             //  conexion AIDA 
-            conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Aida\\Desktop\\PERRUNO\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
+           // conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Aida\\Desktop\\PERRUNO\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
             //  conexion ALLENDE
-                  conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Allende\\source\\repos\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
+                conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Allende\\source\\repos\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
 
             con = new SqlConnection(conexion);
-            cargarEspecies();
+            cargarEspecies();   
             cargaMascotas();
             cargaMascotasVet();
             cargarVeterinario();
             cargarMascotasDataGrid();
 
+
+        }
+
+        private void eliminar_mascotas(object sender, RoutedEventArgs e)
+        {
+            nombre = txt_nombre.Text;
+            con = new SqlConnection(conexion);
+            con.Open();
+            String query = "DELETE from mascota where nombre = '" + nombre + "'";
+            SqlCommand comando = new SqlCommand(query, con);
+            comando.ExecuteNonQuery();
+            MessageBox.Show("Datos Borrados");
+            con.Close();
 
         }
 
@@ -94,6 +108,106 @@ namespace ControlAnimales
         //INSERT UPDATE DELETE SELECT DE LA PANTALLA MASCOTAS
         /*****************************************************************************************************************************/
 
+        private void Modificar_mascotas(object sender, RoutedEventArgs e)
+        {
+            nombre = txt_nombre.Text;
+            fechaNac = txt_fecha.Text;
+            edad = txt_edad.Text;
+            raza = txt_raza.Text;
+            sexo = txt_sexo.Text;
+            especieAni = txt_especie.Text;
+            color = txt_color.Text;
+            cartilla = txt_cartilla.Text;
+            numChip = txt_chip.Text;
+            fechaAdop = txt_fecha_adopcion.Text;
+            lugarAdop = txt_lugar_adopcion.Text;
+            ruta = ruta_imagen.Text;
+            idMAsc = txt_id.Text;
+
+
+            con = new SqlConnection(conexion);
+            con.Open();
+            try
+            {
+               
+                String query = "UPDATE mascota set nombre = '" + nombre + "', fecha_nacimiento = '" + fechaNac + "', edad = '" + edad + "', especie = '" + especieAni + "', raza = '" + raza + "', sexo = '" + sexo + "', color = '" + color + "', num_cartilla_sanitaria = '" + cartilla + "', num_chip = '" + numChip + "', adoptado = '" + adoptadoCheck + "', fecha_adopcion = '" + fechaAdop + "', lugar_adopcion = '" + lugarAdop + "', imagen = '" + ruta + "' WHERE id_mascota = '" + idMAsc + "'";
+                MessageBox.Show(query);
+                SqlCommand comando = new SqlCommand(query, con);
+                comando.ExecuteNonQuery();
+                MessageBox.Show("Datos Actualizados");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se ha podido realizar la actualización de los datos");
+            }
+
+            con.Close();
+        }
+
+        private void Buscar_mascota(object sender, RoutedEventArgs e)
+        {
+
+            txt_especie.Visibility = Visibility.Visible;
+            txt_fecha.Visibility = Visibility.Visible;
+            txt_raza.Visibility = Visibility.Visible;
+            txt_sexo.Visibility = Visibility.Visible;
+           
+            con.Open();
+
+            if (txt_fecha.Text != "")
+            {
+                txt_fecha.Text = txt_fecha.Text.Substring(0, 10).ToString();
+            }
+
+            if (txt_fecha_adopcion.Text != "")
+            {
+                txt_fecha_adopcion.Text = txt_fecha_adopcion.Text.Substring(0, 10).ToString();
+            }
+            SqlCommand comando = new SqlCommand("SELECT * FROM mascota where nombre = @mascota", con);
+            comando.Parameters.AddWithValue("@mascota", txt_nombre.Text);
+            SqlDataReader registro = comando.ExecuteReader();
+            if (registro.Read())
+            {
+                txt_nombre.Text = registro["nombre"].ToString();
+                txt_fecha.Text = registro["fecha_nacimiento"].ToString();
+                txt_edad.Text = registro["edad"].ToString();
+                txt_raza.Text = registro["raza"].ToString();
+                txt_sexo.Text = registro["sexo"].ToString();
+                txt_especie.Text = registro["especie"].ToString();
+                txt_color.Text = registro["color"].ToString();
+                txt_cartilla.Text = registro["num_cartilla_sanitaria"].ToString();
+                txt_chip.Text = registro["num_chip"].ToString();
+                adoptadoCheck = registro["adoptado"].ToString();
+                txt_id.Text = registro["id_mascota"].ToString();
+                if (adoptadoCheck == "si")
+                {
+                    txt_fecha_adopcion.Visibility = Visibility.Visible;
+                    label_fecha.Visibility = Visibility.Visible;
+                    label_lugar.Visibility = Visibility.Visible;
+                    txt_lugar_adopcion.Visibility = Visibility.Visible;
+
+                    txt_fecha_adopcion.Text = registro["fecha_adopcion"].ToString();
+                    txt_lugar_adopcion.Text = registro["lugar_adopcion"].ToString();
+
+                }
+                else
+                {
+                    txt_fecha_adopcion.Visibility = Visibility.Hidden;
+                    label_fecha.Visibility = Visibility.Hidden;
+                    label_lugar.Visibility = Visibility.Hidden;
+                    txt_lugar_adopcion.Visibility = Visibility.Hidden;
+                }
+                // txt_lugar_adopcion.Text = registro["lugar_adopcion"].ToString();
+                txt_fecha_adopcion.Text = registro["fecha_adopcion"].ToString();
+                ruta_imagen.Text = registro["imagen"].ToString();
+                check_imagen.Visibility = Visibility.Hidden;
+                selec_img.Visibility = Visibility.Hidden;
+            }
+            con.Close();
+
+          
+        }
+
         private void guardar_Click(object sender, RoutedEventArgs e)
         {
 
@@ -121,7 +235,7 @@ namespace ControlAnimales
             try { 
                  con = new SqlConnection(conexion);
                  con.Open();
-                  String query = "Insert into mascota values( '" + nombre + "','" + fechaNac + "', '" + edad + "','" + especieAni + "', '" + raza + "','" + sexo + "', '" + color + "','" + cartilla + "','" + numChip + "', '" + adoptadoCheck + "', '" + lugarAdop + "','" + fechaAdop + "', '" + ruta + "')";
+                  String query = "Insert into mascota values( '" + nombre + "','" + fechaNac + "', '" + edad + "','" + especieAni + "', '" + raza + "','" + sexo + "', '" + color + "','" + cartilla + "','" + numChip + "', '" + adoptadoCheck + "', '" + fechaAdop + "','" + lugarAdop + "', '" + ruta + "')";
                  SqlCommand comando = new SqlCommand(query, con);
                  comando.ExecuteNonQuery();
                  MessageBox.Show("Datos insertados");
@@ -308,7 +422,8 @@ namespace ControlAnimales
             ComboBox cb = (ComboBox)sender;
 
             DataRowView drv = (DataRowView)cb.SelectedItem;
-            string cad = drv.Row[0].ToString();
+            cad = drv.Row[0].ToString();
+            cadNombre = drv.Row[1].ToString(); 
             //MessageBox.Show(cad);
             txtId.Text = cad;
         }
@@ -332,7 +447,7 @@ namespace ControlAnimales
             try
             {
 
-                String query = "UPDATE veterinario set clinica = '" + clinica + "', calle = '" + calle + "', localidad = '" + localidad + "', nombre_veterinario = '" + nombreVeterinaria + "', telefono= '" + telefono + "',telefono_urgencias = '" + telefonoUrgencias + "'";
+                String query = "UPDATE veterinario set clinica = '" + clinica + "', calle = '" + calle + "', localidad = '" + localidad + "', nombre_veterinario = '" + nombreVeterinaria + "', telefono= '" + telefono + "',telefono_urgencias = '" + telefonoUrgencias + "' WHERE id_mascota =  '" + idMAsc ;
                 SqlCommand comando = new SqlCommand(query, con);
                 comando.ExecuteNonQuery();
                 MessageBox.Show("Datos Actualizados");
@@ -396,6 +511,19 @@ namespace ControlAnimales
             ruta_imagen.Text = "";
             txt_id.Text = "";
             imagenMascota = null;
+
+            txt_fecha_adopcion.Visibility = Visibility.Hidden;
+            label_fecha.Visibility = Visibility.Hidden;
+            label_lugar.Visibility = Visibility.Hidden;
+            txt_raza.Visibility = Visibility.Hidden;
+            txt_sexo.Visibility = Visibility.Hidden;
+            txt_especie.Visibility = Visibility.Hidden;
+            txt_fecha.Visibility = Visibility.Hidden;
+            label_fecha.Visibility = Visibility.Hidden;
+            label_lugar.Visibility = Visibility.Hidden;
+            txt_lugar_adopcion.Visibility = Visibility.Hidden;
+            check_imagen.Visibility = Visibility.Visible;
+            selec_img.Visibility = Visibility.Visible;
         }
         private void LimpiarControles()
         {
@@ -958,7 +1086,7 @@ namespace ControlAnimales
                 con.Open();
                 //  MessageBox.Show("Conectado a la base de datos.\n Muestra datos de la tabla VETERINARIO");
                 DataTable dataTabla = new DataTable();
-                String cadena = "Select * from veterinario";
+                String cadena = "Select m.nombre,v.id_veterinario, v.clinica, v.calle, v.localidad, v.nombre_veterinario, v.telefono, v.telefono_urgencias from veterinario v, mascota m WHERE m.id_mascota = v.id_mascota";
                 SqlDataAdapter adp = new SqlDataAdapter(cadena, con);
                 adp.Fill(dataTabla);
                 string condicion = "id_veterinario>0";
@@ -1014,7 +1142,7 @@ namespace ControlAnimales
             // escribe pie de pagina
             writer.PageEvent = new PiePagina();
 
-            PdfPTable cabecera = new PdfPTable(8);
+            PdfPTable cabecera = new PdfPTable(7);
             //propiedades de la cabecera de la tabla
             cabecera.DefaultCell.HorizontalAlignment = Element.ALIGN_CENTER;
             cabecera.DefaultCell.VerticalAlignment = Element.ALIGN_CENTER;
@@ -1026,15 +1154,13 @@ namespace ControlAnimales
 
 
             //tamaño columnas
-            float[] arrayTamañoColumnas = new float[] {40f, 90f, 80f, 100f, 80f,80f, 120f, 80f };
+            float[] arrayTamañoColumnas = new float[] { 90f, 80f, 100f, 80f,80f, 120f, 80f };
 
             //asignamos el array de anchos de columna a la tabla
             cabecera.SetTotalWidth(arrayTamañoColumnas);
 
             //estilo de cabecera
-            Phrase idVeterinaria = new iTextSharp.text.Phrase(25f, new iTextSharp.text.Chunk("Id V", FontFactory.GetFont(FontFactory.COURIER, 14f, Font.BOLD,
-                               new iTextSharp.text.BaseColor(64, 5, 56))));
-            Phrase clinica = new iTextSharp.text.Phrase(25f, new iTextSharp.text.Chunk("Clínica ", FontFactory.GetFont(FontFactory.COURIER, 14f, Font.BOLD,
+           Phrase clinica = new iTextSharp.text.Phrase(25f, new iTextSharp.text.Chunk("Clínica ", FontFactory.GetFont(FontFactory.COURIER, 14f, Font.BOLD,
                                new iTextSharp.text.BaseColor(64, 5, 56))));
             Phrase calle = new iTextSharp.text.Phrase(25f, new iTextSharp.text.Chunk("Calle", FontFactory.GetFont(FontFactory.COURIER, 14f, Font.BOLD,
                                new iTextSharp.text.BaseColor(64, 5, 56))));
@@ -1046,24 +1172,23 @@ namespace ControlAnimales
                               new iTextSharp.text.BaseColor(64, 5, 56))));
             Phrase telefono_urgencias = new iTextSharp.text.Phrase(25f, new iTextSharp.text.Chunk("Teléfono Urgencias", FontFactory.GetFont(FontFactory.COURIER, 14f, Font.BOLD,
                               new iTextSharp.text.BaseColor(64, 5, 56))));
-            Phrase id_mascota = new iTextSharp.text.Phrase(25f, new iTextSharp.text.Chunk("Id Mascota", FontFactory.GetFont(FontFactory.COURIER, 14f, Font.BOLD,
+            Phrase cadNombre = new iTextSharp.text.Phrase(25f, new iTextSharp.text.Chunk("Nombre Mascota", FontFactory.GetFont(FontFactory.COURIER, 14f, Font.BOLD,
                              new iTextSharp.text.BaseColor(64, 5, 56))));
 
 
             //añade cabecera a la tabla
-            cabecera.AddCell(idVeterinaria);
             cabecera.AddCell(clinica);
             cabecera.AddCell(calle);
             cabecera.AddCell(localidad);
             cabecera.AddCell(nombre_vet);
             cabecera.AddCell(telefono);
             cabecera.AddCell(telefono_urgencias);
-            cabecera.AddCell(id_mascota);
+            cabecera.AddCell(cadNombre);
 
             cabecera.WriteSelectedRows(0, 10, 20f, 920, writer.DirectContent);
 
             //Propiedades de la tabla con datos, igual q de la cabecera
-            PdfPTable datos = new PdfPTable(8);
+            PdfPTable datos = new PdfPTable(7);
             datos.SetTotalWidth(arrayTamañoColumnas);
             datos.DefaultCell.MinimumHeight = 40f;
             datos.DefaultCell.HorizontalAlignment = Element.ALIGN_CENTER;
@@ -1073,14 +1198,14 @@ namespace ControlAnimales
             foreach (DataRow registro in filas)
             {
            
-                datos.AddCell(registro["id_veterinario"] + " ");
+                
                 datos.AddCell(registro["clinica"] + " ");
                 datos.AddCell(registro["calle"] + " ");
                 datos.AddCell(registro["localidad"] + " ");
                 datos.AddCell(registro["nombre_veterinario"] + " ");
                 datos.AddCell(registro["telefono"] + " ");
                 datos.AddCell(registro["telefono_urgencias"] + " ");
-                datos.AddCell(registro["id_mascota"] + " ");
+                datos.AddCell(registro["nombre"] + " ");
               
 
                 cf++;
