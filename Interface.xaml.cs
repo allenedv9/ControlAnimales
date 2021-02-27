@@ -235,8 +235,7 @@ namespace ControlAnimales
             }
         }
 
-            }
-        }
+           
         private void guardar_Click(object sender, RoutedEventArgs e)
         {
 
@@ -994,12 +993,7 @@ namespace ControlAnimales
 
             MessageBox.Show(nombre);
             
-            //crea documento
-            var PageSize = new iTextSharp.text.Rectangle(700f, 1024f);
-            FileStream fs = new FileStream("Mascota.pdf", FileMode.Create, FileAccess.Write, FileShare.None);
-            Document doc = new Document(PageSize);
-            iTextSharp.text.pdf.PdfWriter writer = PdfWriter.GetInstance(doc, fs);
-            doc.Open();
+          
 
             if(nombre=="" || edad==""|| raza == "" || color == ""){
                     MessageBox.Show("Los campos deben contener información");
