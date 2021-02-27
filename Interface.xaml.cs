@@ -104,6 +104,11 @@ namespace ControlAnimales
             txt_fecha_visita.Text = fecha_visita;
         }
 
+        private void txt_clinica_vet_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
 
 
         /*****************************************************************************************************************************/
@@ -185,7 +190,7 @@ namespace ControlAnimales
                 adoptadoCheck = registro["adoptado"].ToString();
                 txt_id.Text = registro["id_mascota"].ToString();
                 ruta_imagen.Text = registro["imagen"].ToString();
-                  
+
                 if (adoptadoCheck == "si")
                 {
 
@@ -224,10 +229,10 @@ namespace ControlAnimales
                     check_imagen.Visibility = Visibility.Hidden;
                     selec_img.Visibility = Visibility.Hidden;
                 }
-            
-            con.Close();
 
+                con.Close();
 
+            }
         }
 
         private void guardar_Click(object sender, RoutedEventArgs e)
@@ -573,9 +578,7 @@ namespace ControlAnimales
             check_imagen.Visibility = Visibility.Visible;
             selec_img.Visibility = Visibility.Visible;
 
-            imagenMascota.Source = null;
-
-
+  
         }
 
         private void LimpiarControles()
@@ -987,50 +990,86 @@ namespace ControlAnimales
             ruta = ruta_imagen.Text;
             
             idMAsc = txt_id.Text;
-            
-            //crea documento
-            var PageSize = new iTextSharp.text.Rectangle(700f, 1024f);
-            FileStream fs = new FileStream("Mascota.pdf", FileMode.Create, FileAccess.Write, FileShare.None);
-            Document doc = new Document(PageSize);
-            iTextSharp.text.pdf.PdfWriter writer = PdfWriter.GetInstance(doc, fs);
-            doc.Open();
 
-            // propiedades titulo
-            Phrase txtTitulo = new iTextSharp.text.Phrase(40f, new iTextSharp.text.Chunk(nombre,
-                               FontFactory.GetFont(FontFactory.COURIER_OBLIQUE, 26f, Font.BOLD,
-                               new iTextSharp.text.BaseColor(64, 5, 56))));
+            if(nombre=="" || edad==""|| raza == "" || color == ""){
+                    MessageBox.Show("Los campos deben contener información");
+                }else
+                {
+                    //crea documento
+                    var PageSize = new iTextSharp.text.Rectangle(700f, 1024f);
+                    FileStream fs = new FileStream("Mascota.pdf", FileMode.Create, FileAccess.Write, FileShare.None);
+                    Document doc = new Document(PageSize);
+                    iTextSharp.text.pdf.PdfWriter writer = PdfWriter.GetInstance(doc, fs);
+                    doc.Open();
 
-            //añade el titulo a documento
-            doc.Add(new iTextSharp.text.Paragraph(txtTitulo));
+                    // propiedades titulo
+                    Phrase txtTitulo = new iTextSharp.text.Phrase(40f, new iTextSharp.text.Chunk("NOMBRE: " + nombre,
+                                       FontFactory.GetFont(FontFactory.COURIER_OBLIQUE, 26f, Font.BOLD,
+                                       new iTextSharp.text.BaseColor(64, 5, 56))));
+                    Phrase fechaNaci = new iTextSharp.text.Phrase(40f, new iTextSharp.text.Chunk("FECHA NACIMINETO: "+fechaNac,
+                                       FontFactory.GetFont(FontFactory.COURIER_OBLIQUE, 26f, Font.BOLD,
+                                       new iTextSharp.text.BaseColor(64, 5, 56))));
+                    Phrase edadP = new iTextSharp.text.Phrase(40f, new iTextSharp.text.Chunk("EDAD: "+edad,
+                                      FontFactory.GetFont(FontFactory.COURIER_OBLIQUE, 26f, Font.BOLD,
+                                      new iTextSharp.text.BaseColor(64, 5, 56))));
+                    Phrase razaP = new iTextSharp.text.Phrase(40f, new iTextSharp.text.Chunk("RAZA: " + raza,
+                                      FontFactory.GetFont(FontFactory.COURIER_OBLIQUE, 26f, Font.BOLD,
+                                      new iTextSharp.text.BaseColor(64, 5, 56))));
+                     Phrase sexoP = new iTextSharp.text.Phrase(40f, new iTextSharp.text.Chunk("SEXO: " + sexo,
+                                     FontFactory.GetFont(FontFactory.COURIER_OBLIQUE, 26f, Font.BOLD,
+                                     new iTextSharp.text.BaseColor(64, 5, 56))));
+                     Phrase especieAniP = new iTextSharp.text.Phrase(40f, new iTextSharp.text.Chunk("ESPECIE: " + especieAni,
+                                     FontFactory.GetFont(FontFactory.COURIER_OBLIQUE, 26f, Font.BOLD,
+                                     new iTextSharp.text.BaseColor(64, 5, 56))));
+                     Phrase colorP = new iTextSharp.text.Phrase(40f, new iTextSharp.text.Chunk("COLOR: " + color,
+                                     FontFactory.GetFont(FontFactory.COURIER_OBLIQUE, 26f, Font.BOLD,
+                                     new iTextSharp.text.BaseColor(64, 5, 56))));
+                     Phrase cartillaP = new iTextSharp.text.Phrase(40f, new iTextSharp.text.Chunk("NÚMERO CARTILLA: " + cartilla,
+                                     FontFactory.GetFont(FontFactory.COURIER_OBLIQUE, 26f, Font.BOLD,
+                                     new iTextSharp.text.BaseColor(64, 5, 56))));
+                      Phrase fechaAdopP = new iTextSharp.text.Phrase(40f, new iTextSharp.text.Chunk("FECHA ADOPCIÓN: " + fechaAdop,
+                                     FontFactory.GetFont(FontFactory.COURIER_OBLIQUE, 26f, Font.BOLD,
+                                     new iTextSharp.text.BaseColor(64, 5, 56))));
+                      Phrase lugarAdopP = new iTextSharp.text.Phrase(40f, new iTextSharp.text.Chunk("LUGAR ADOPCIÓN: " + lugarAdop,
+                                     FontFactory.GetFont(FontFactory.COURIER_OBLIQUE, 26f, Font.BOLD,
+                                     new iTextSharp.text.BaseColor(64, 5, 56))));
+                //añade los datos al  documento
+                    doc.Add(new iTextSharp.text.Paragraph(txtTitulo));
+                    doc.Add(new iTextSharp.text.Paragraph(fechaNaci));
+                    doc.Add(new iTextSharp.text.Paragraph(edadP));
+                    doc.Add(new iTextSharp.text.Paragraph(especieAniP));
+                    doc.Add(new iTextSharp.text.Paragraph(razaP));
+                    doc.Add(new iTextSharp.text.Paragraph(sexoP));
+                    doc.Add(new iTextSharp.text.Paragraph(colorP));
+                    doc.Add(new iTextSharp.text.Paragraph(cartillaP));
+                    doc.Add(new iTextSharp.text.Paragraph(fechaAdopP));
+                    doc.Add(new iTextSharp.text.Paragraph(lugarAdopP));
+             
+                // propiedades imagen
+                /* var posX = 500f;
+                 var posY = 800f;
 
-            // propiedades imagen
-           /* var posX = 500f;
-            var posY = 800f;
-
-            iTextSharp.text.Image image = iTextSharp.text.Image.GetInstance(ruta);
-            image.SetAbsolutePosition(posX, posY);
-            image.ScaleAbsoluteWidth(60f); //  Escalar el tamaño de la imagen
-            image.ScaleAbsoluteHeight(60f);
-            doc.Add(image); //añade imagen al documento*/
+                 iTextSharp.text.Image image = iTextSharp.text.Image.GetInstance(ruta);
+                 image.SetAbsolutePosition(posX, posY);
+                 image.ScaleAbsoluteWidth(60f); //  Escalar el tamaño de la imagen
+                 image.ScaleAbsoluteHeight(60f);
+                 doc.Add(image); //añade imagen al documento*/
 
 
 
-            // escribe pie de pagina
-            writer.PageEvent = new PiePagina();
+                // escribe pie de pagina
+                writer.PageEvent = new PiePagina();
 
-            doc.Close();
-
-
-            var p = new System.Diagnostics.Process();
-            p.StartInfo = new System.Diagnostics.ProcessStartInfo(@"Veterinario.pdf") { UseShellExecute = true };
-            p.Start();
+                    doc.Close();
 
 
+                    var p = new System.Diagnostics.Process();
+                    p.StartInfo = new System.Diagnostics.ProcessStartInfo(@"Mascota.pdf") { UseShellExecute = true };
+                    p.Start();
+
+                }
         }
     
-
-    
-
 
         private void PDF_mascota(object sender, RoutedEventArgs e)
         {
