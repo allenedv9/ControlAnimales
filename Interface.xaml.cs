@@ -40,9 +40,9 @@ namespace ControlAnimales
             InitializeComponent();
 
             //  conexion AIDA 
-            conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Aida\\Desktop\\PERRUNO\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
+           // conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Aida\\Desktop\\PERRUNO\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
             //  conexion ALLENDE
-            //    conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Allende\\source\\repos\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
+                conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Allende\\source\\repos\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
 
             con = new SqlConnection(conexion);
             cargarEspecies();
@@ -235,6 +235,8 @@ namespace ControlAnimales
             }
         }
 
+            }
+        }
         private void guardar_Click(object sender, RoutedEventArgs e)
         {
 
@@ -987,9 +989,17 @@ namespace ControlAnimales
             numChip = txt_chip.Text;
             fechaAdop = txt_fecha_adopcion.Text;
             lugarAdop = txt_lugar_adopcion.Text;
-            ruta = ruta_imagen.Text;
-            
+            ruta = ruta_imagen.Text;  
             idMAsc = txt_id.Text;
+
+            MessageBox.Show(nombre);
+            
+            //crea documento
+            var PageSize = new iTextSharp.text.Rectangle(700f, 1024f);
+            FileStream fs = new FileStream("Mascota.pdf", FileMode.Create, FileAccess.Write, FileShare.None);
+            Document doc = new Document(PageSize);
+            iTextSharp.text.pdf.PdfWriter writer = PdfWriter.GetInstance(doc, fs);
+            doc.Open();
 
             if(nombre=="" || edad==""|| raza == "" || color == ""){
                     MessageBox.Show("Los campos deben contener información");
