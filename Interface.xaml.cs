@@ -49,9 +49,11 @@ namespace ControlAnimales
             cargaMascotasVet();
             cargarVeterinario();
             cargarMascotasDataGrid();
-
+            cargarVeterinarioGrid();
 
         }
+
+      
 
         /*****************************************************************************************************************************/
         //INSERT UPDATE DELETE SELECT DE LA PANTALLA VISITAS VETERINARIO
@@ -151,6 +153,24 @@ namespace ControlAnimales
         /*****************************************************************************************************************************/
         //MODIFICAR LOS DATOS DE LA PANTALLA VETERINARIO//
         /*****************************************************************************************************************************/
+
+        //carga el dataGrid con datos de ta tabla veterinario
+        private void cargarVeterinarioGrid()
+        {
+            con.Open();
+            String query = "Select * from veterinario";
+
+            SqlDataAdapter miAdaptadorSql = new SqlDataAdapter(query, con);
+
+            using (miAdaptadorSql)
+            {
+                DataTable dataTablaVeterinario = new DataTable();
+                miAdaptadorSql.Fill(dataTablaVeterinario);
+
+                dg_lista_veterinario.ItemsSource = dataTablaVeterinario.DefaultView;
+            }
+            con.Close();
+        }
 
         //carga el dataGrid con datos de ta tabla mascotas
         public void cargarMascotasDataGrid()

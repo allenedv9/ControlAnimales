@@ -94,7 +94,7 @@
                 </Canvas>
             </TabItem>
         </TabControl>
-        <TabControl x:Name="veterinaria" Margin="0,65,0,-364" Visibility="Hidden"> 
+        <TabControl x:Name="veterinaria" Margin="0,65,0,-364" Visibility="Visible">
             <TabItem Header="Nueva/o Veterinaria" Margin="-2,-2,-2,2">
                 <Canvas x:Name="ventanaVeterinaria" Visibility="Visible" Background="#FFE5E5E5" Margin="2,39,-2,12">
 
@@ -174,9 +174,15 @@
                         </Binding>
                     </TextBox>
                     <Label Content="Localidad" Canvas.Left="90" Canvas.Top="187"/>
-                    <Button x:Name="bt_pdf_veterinaro" Content="PDF"  Height="37" Width="120"  Canvas.Left="695" Canvas.Top="395" Click="PDF_veterinario" />
                     <ComboBox x:Name="nombreMascotas" SelectionChanged="mascVet" Canvas.Left="398" Canvas.Top="215" Width="120" />
                     <Button x:Name="siguienteVet" Content="Siguiente veterinario"  Height="37" Width="120"  Canvas.Left="845" Canvas.Top="231"  />
+                </Canvas>
+            </TabItem>
+            <TabItem Header="Ver Veterinarios" >
+                <Canvas Background="#FFE5E5E5" Margin="2,39,-2,12">
+                    <Button x:Name="bt_pdf_veterinaro" Content="PDF"  Height="37" Width="120" Click="PDF_veterinario" Canvas.Top="7" Canvas.Left="6" />
+
+                    <DataGrid x:Name="dg_lista_veterinario"   Height="405" Width="984"  Canvas.Top="50" />
                 </Canvas>
             </TabItem>
             <TabItem Header="Visitas veterinario">
