@@ -46,7 +46,7 @@
         </Canvas>
         <TabControl x:Name="agregarMasc" Margin="0,65,0,-364" Visibility="Visible">
             <TabItem Header="Nueva Mascota" Margin="-2,-2,-2,0" Height="20" VerticalAlignment="Top">
-                <Canvas x:Name="ventana" Visibility="Visible" Background="#FFE5E5E5" Margin="6,8,-6,-8">
+                <Canvas x:Name="ventana" Visibility="Visible" Background="#FFE5E5E5" Margin="6,14,-6,-14">
                     <Label Content="Nombre" FontSize="10" Canvas.Left="87" Height="21" Width="180" Canvas.Top="15"/>
                     <TextBox x:Name="txt_nombre"   TextWrapping="Wrap" Width="180" Height="25" RenderTransformOrigin="0.75,2.157"  Canvas.Left="90" Canvas.Top="35" />
                     <TextBox x:Name="txt_especie"  Width="106" Height="25" Canvas.Left="91" Canvas.Top="228" IsReadOnly="True" RenderTransformOrigin="0.368,0.502" Visibility="Hidden"/>
@@ -58,9 +58,9 @@
                     <TextBox x:Name="txt_chip"  TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157" Canvas.Left="397" Canvas.Top="117"/>
                     <Label Content="Adoptado" Canvas.Left="397" Canvas.Top="148"/>
                     <CheckBox x:Name="adoptado" Canvas.Left="465" Canvas.Top="155" Click="ver_txt_adopcion"/>
-                    <DatePicker x:Name="dp_fecha_adopcion" Visibility="Hidden" Height="25" Width="180" Canvas.Left="443" Canvas.Top="185" CalendarClosed="fecha_adopcion"  ></DatePicker>
-                    <TextBox x:Name="txt_fecha_adopcion"  TextWrapping="Wrap" Width="180" Height="25" RenderTransformOrigin="0.75,2.157" Canvas.Left="397" Canvas.Top="206"  Visibility="Visible"/>
-                    <TextBox x:Name="txt_lugar_adopcion"  TextWrapping="Wrap" Width="180" Height="25" RenderTransformOrigin="0.75,2.157" Canvas.Left="397" Canvas.Top="253"  Visibility="Visible"/>
+                    <DatePicker x:Name="dp_fecha_adopcion" Visibility="Hidden" Height="25" Width="180" Canvas.Left="398" Canvas.Top="203" CalendarClosed="fecha_adopcion"  ></DatePicker>
+                    <TextBox x:Name="txt_fecha_adopcion"  TextWrapping="Wrap" Width="180" Height="25" RenderTransformOrigin="0.75,2.157" Canvas.Left="397" Canvas.Top="206"  Visibility="Hidden"/>
+                    <TextBox x:Name="txt_lugar_adopcion"  TextWrapping="Wrap" Width="180" Height="25" RenderTransformOrigin="0.75,2.157" Canvas.Left="397" Canvas.Top="253"  Visibility="Hidden"/>
                     <TextBox x:Name="txt_sexo"  IsReadOnly="True"  Width="94" Height="25" RenderTransformOrigin="0.75,2.157"  Canvas.Left="271" Canvas.Top="268" Visibility="Hidden" />
                     <DatePicker x:Name="fecha" Height="25" Width="180" Canvas.Left="90" Canvas.Top="93" CalendarClosed="cargar_fecha_nac" ></DatePicker>
                     <Label Content="Sexo" Canvas.Left="90" Canvas.Top="252"/>
@@ -80,8 +80,8 @@
                     <Label Content="Color" FontSize="10" Canvas.Left="91" Height="22" Width="120" Canvas.Top="283"/>
                     <Label Content="Número cartilla sanitaria" FontSize="10" Canvas.Left="397" Height="21" Width="180" Canvas.Top="20"/>
                     <Label Content="Número del CHIP" FontSize="10" Canvas.Left="397" Height="21" Width="180" Canvas.Top="91"/>
-                    <Label Content="Fecha de adopción" FontSize="10" Canvas.Left="397" Height="21" Width="180" Canvas.Top="182"/>
-                    <Label Content="Lugar de adopción" FontSize="10" Canvas.Left="397" Height="21" Width="180" Canvas.Top="227"/>
+                    <Label x:Name="label_fecha" Content="Fecha de adopción" FontSize="10" Canvas.Left="397" Height="21" Width="180" Canvas.Top="182" Visibility="Hidden"/>
+                    <Label x:Name="label_lugar" Content="Lugar de adopción" FontSize="10" Canvas.Left="397" Height="21" Width="180" Canvas.Top="227" Visibility="Hidden"/>
                     <TextBox x:Name="txt_id"  TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157"  Canvas.Left="91" Canvas.Top="355" />
                     <Button x:Name="guardar_Copy" Content="Limpiar Controles" IsEnabled="True" Canvas.Left="645" Canvas.Top="516" Height="35" Width="110" Click="LimpiarControles_Click"/>
                 </Canvas>
@@ -160,7 +160,7 @@
                     <Label Content="Telefono Urgencias" Canvas.Left="417" Canvas.Top="99"/>
                     <Button Content="Guardar" Canvas.Left="695" Canvas.Top="103" Height="37" Width="120" Click="Guardar_Veterinaria"/>
                     <TextBox x:Name="txtId" Canvas.Left="408" Canvas.Top="284"  Width="120" />
-                    <Button x:Name="LimpiarControles" Content="Limpiar controles"  Height="37" Width="120" Click="LimpiarControles_Click" Canvas.Left="695" Canvas.Top="168"/>
+                    <Button x:Name="Limpiar_Controles" Content="Limpiar controles"  Height="37" Width="120" Click="LimpiarControles_Click" Canvas.Left="695" Canvas.Top="168"/>
                     <Button x:Name="Buscar" Content="Buscar veterinario"  Height="37" Width="120"  Canvas.Left="695" Canvas.Top="231" Click="Buscar_Click"/>
                     <Button x:Name="Modificar" Content="Modificar Datos"  Height="37" Width="120"  Canvas.Left="695" Canvas.Top="284" Click="Modificar_Click" />
                     <Button x:Name="Eliminar" Content="Eliminar Registro"  Height="37" Width="120"  Canvas.Left="695" Canvas.Top="343" Click="Eliminar_Click" />
