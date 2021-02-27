@@ -40,9 +40,9 @@ namespace ControlAnimales
             InitializeComponent();
 
             //  conexion AIDA 
-           // conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Aida\\Desktop\\PERRUNO\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
+            conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Aida\\Desktop\\PERRUNO\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
             //  conexion ALLENDE
-                conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Allende\\source\\repos\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
+            //    conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Allende\\source\\repos\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
 
             con = new SqlConnection(conexion);
             cargarEspecies();
@@ -232,10 +232,11 @@ namespace ControlAnimales
 
                 con.Close();
 
-            }
+            
         }
 
            
+        }
         private void guardar_Click(object sender, RoutedEventArgs e)
         {
 
@@ -990,10 +991,10 @@ namespace ControlAnimales
             lugarAdop = txt_lugar_adopcion.Text;
             ruta = ruta_imagen.Text;  
             idMAsc = txt_id.Text;
-
-            MessageBox.Show(nombre);
-            
-          
+            String buscar="\\";
+            String reemplazo = "\\\\";
+            String rataa= ruta.Replace(buscar,reemplazo);
+            MessageBox.Show(rataa);
 
             if(nombre=="" || edad==""|| raza == "" || color == ""){
                     MessageBox.Show("Los campos deben contener información");
@@ -1038,7 +1039,9 @@ namespace ControlAnimales
                                      FontFactory.GetFont(FontFactory.COURIER_OBLIQUE, 26f, Font.BOLD,
                                      new iTextSharp.text.BaseColor(64, 5, 56))));
                 //añade los datos al  documento
-                    doc.Add(new iTextSharp.text.Paragraph(txtTitulo));
+            
+
+                     doc.Add(new iTextSharp.text.Paragraph(txtTitulo));
                     doc.Add(new iTextSharp.text.Paragraph(fechaNaci));
                     doc.Add(new iTextSharp.text.Paragraph(edadP));
                     doc.Add(new iTextSharp.text.Paragraph(especieAniP));
@@ -1050,14 +1053,14 @@ namespace ControlAnimales
                     doc.Add(new iTextSharp.text.Paragraph(lugarAdopP));
              
                 // propiedades imagen
-                /* var posX = 500f;
-                 var posY = 800f;
+                 var posX = 350f;
+                 var posY = 300f;
 
-                 iTextSharp.text.Image image = iTextSharp.text.Image.GetInstance(ruta);
+                 iTextSharp.text.Image image = iTextSharp.text.Image.GetInstance(rataa);
                  image.SetAbsolutePosition(posX, posY);
-                 image.ScaleAbsoluteWidth(60f); //  Escalar el tamaño de la imagen
-                 image.ScaleAbsoluteHeight(60f);
-                 doc.Add(image); //añade imagen al documento*/
+                 //image.ScaleAbsoluteWidth(60f); //  Escalar el tamaño de la imagen
+               //  image.ScaleAbsoluteHeight(60f);
+                 doc.Add(image); //añade imagen al documento
 
 
 
@@ -1154,8 +1157,7 @@ namespace ControlAnimales
             cabecera.SetTotalWidth(arrayTamañoColumnas);
 
             //estilo de cabecera
-            Phrase nombre = new iTextSharp.text.Phrase(25f, new iTextSharp.text.Chunk("Nombre", FontFactory.GetFont(FontFactory.COURIER, 14f, Font.BOLD,
-                               new iTextSharp.text.BaseColor(64, 5, 56))));
+            Phrase nombre = new iTextSharp.text.Phrase(25f, new iTextSharp.text.Chunk ("Nombre", FontFactory.GetFont(FontFactory.COURIER, 14f, Font.BOLD,new iTextSharp.text.BaseColor(64, 5, 56))));
             Phrase fecha_nacimiento = new iTextSharp.text.Phrase(25f, new iTextSharp.text.Chunk("Fecha Nac ", FontFactory.GetFont(FontFactory.COURIER, 14f, Font.BOLD,
                                new iTextSharp.text.BaseColor(64, 5, 56))));
             Phrase edad = new iTextSharp.text.Phrase(25f, new iTextSharp.text.Chunk("Edad", FontFactory.GetFont(FontFactory.COURIER, 14f, Font.BOLD,
