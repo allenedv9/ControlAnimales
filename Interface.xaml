@@ -10,11 +10,13 @@
 
     <Window.Resources>
 
-        <!--  -->
-
         <ResourceDictionary>
+       <!--     <local:MascotaValida x:Key="data"/>  -->
+           
             <local:Veterinaria x:Key="data"/>
-
+            <local:MascotaValida x:Key="dataE"/>
+            
+            
             <Style x:Key="TextBoxCapturaError" TargetType="TextBox">
                 <Style.Triggers>
                     <Trigger Property="Validation.HasError" Value="true">
@@ -23,12 +25,8 @@
                     </Trigger>
                 </Style.Triggers>
             </Style>
-
         </ResourceDictionary>
     </Window.Resources>
-
-
-
 
     <Grid Margin="0,0,0,369">
         <ToolBar Background="#FF9E8682" Margin="0,0,0,250" >
@@ -45,7 +43,7 @@
             <Image x:Name="img_princ" Source="/imagenes/pug.jpg" Height="444" Width="800" Canvas.Top="33" Canvas.Left="2"/>
         </Canvas>
         <TabControl x:Name="agregarMasc" Margin="0,65,0,-364" Visibility="Visible">
-            <TabItem Header="Nueva Mascota" Margin="-2,-2,-2,0" Height="20" VerticalAlignment="Top">
+            <TabItem Header="Nueva Mascota" Margin="-2,-2,-2,2">
                 <Canvas x:Name="ventana" Visibility="Visible" Background="#FFE5E5E5" Margin="6,14,-6,-14">
                     <Label Content="Nombre" FontSize="10" Canvas.Left="87" Height="21" Width="180" Canvas.Top="15"/>
                     <TextBox x:Name="txt_nombre"   TextWrapping="Wrap" Width="180" Height="25" RenderTransformOrigin="0.75,2.157"  Canvas.Left="90" Canvas.Top="35" />
@@ -54,6 +52,7 @@
                     <RadioButton x:Name="macho" Content="Macho" Canvas.Left="143" Canvas.Top="258" Click="selecciona_sexo"/>
                     <RadioButton x:Name="hembra" Content="hembra" Canvas.Left="201" Canvas.Top="258" Click="selecciona_sexo"/>
                     <TextBox x:Name="txt_color"  TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157"  Canvas.Left="90" Canvas.Top="309" />
+                    
                     <TextBox x:Name="txt_cartilla" TextWrapping="Wrap" Width="180" Height="25" RenderTransformOrigin="0.75,2.157"  Canvas.Left="397" Canvas.Top="41" />
                     <TextBox x:Name="txt_chip"  TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157" Canvas.Left="397" Canvas.Top="117"/>
                     <Label Content="Adoptado" Canvas.Left="397" Canvas.Top="148"/>
@@ -67,7 +66,7 @@
                     <Label Content="Selecciona imagen" x:Name="selec_img" Canvas.Left="406" Canvas.Top="304" RenderTransformOrigin="7.434,1.775"/>
                     <CheckBox x:Name="check_imagen" Canvas.Left="525" Canvas.Top="309" Click="abre_seleccion_imagen"/>
                     <TextBox x:Name="ruta_imagen" Canvas.Left="406" Canvas.Top="335" Height="26" Width="313" Visibility="Hidden"/>
-                    <Image x:Name="imagenMascota" Height="167" Canvas.Left="669" Canvas.Top="148" Width="172"/>
+                    <Image x:Name="imagenMascota" Height="167" Canvas.Left="645" Canvas.Top="148" Width="172"/>
                     <ComboBox  x:Name="especie" Canvas.Left="88" Canvas.Top="207" Width="120" SelectionChanged="cargaRazas"  />
                     <ComboBox  x:Name="razas" Canvas.Left="231" Canvas.Top="208" Width="120" Visibility="Visible" SelectionChanged="recogerDato"/>
                     <Button x:Name="guardar" Content="Guardar" IsEnabled="True" Canvas.Left="786" Canvas.Top="516" Height="35" Width="110" Click="guardar_Click"/>
@@ -88,7 +87,7 @@
                     <Button x:Name="Buscar_masc" Content="Buscar Mascota" IsEnabled="True" Canvas.Left="786" Canvas.Top="458" Height="35" Width="110" Click="Buscar_mascota"/>
                     <Button x:Name="PDF_mascota_unica" Content="PDF Mascota" Canvas.Left="841" Canvas.Top="161" Click="PDF_mascota_Personal"/>
                     <Button x:Name="Actualizar_datos_Copy" Content="Modificar mascota" IsEnabled="True" Canvas.Left="786" Canvas.Top="395" Height="35" Width="110" Click="Modificar_mascotas"/>
-                   <Button x:Name="eliminar" Content="Eliminar mascota" IsEnabled="True" Canvas.Left="786" Canvas.Top="339" Height="35" Width="110" Click="eliminar_mascotas"/>
+                    <Button x:Name="eliminar" Content="Eliminar mascota" IsEnabled="True" Canvas.Left="786" Canvas.Top="339" Height="35" Width="110" Click="eliminar_mascotas"/>
                 </Canvas>
             </TabItem>
             <TabItem Header="Ver Mascotas" >
@@ -99,7 +98,7 @@
                 </Canvas>
             </TabItem>
         </TabControl>
-        <TabControl x:Name="veterinaria" Margin="0,65,0,-364" Visibility="Visible">
+        <TabControl x:Name="veterinaria" Margin="0,65,0,-364" Visibility="Hidden">
             <TabItem Header="Nueva/o Veterinaria" Margin="-2,-2,-2,2">
                 <Canvas x:Name="ventanaVeterinaria" Visibility="Visible" Background="#FFE5E5E5" Margin="2,39,-2,12">
 
@@ -163,7 +162,9 @@
                     <Label Content="Calle" Canvas.Left="95" Canvas.Top="115"/>
                     <Label Content="Telefono Clinica" Canvas.Left="411" Canvas.Top="35"/>
                     <Label Content="Telefono Urgencias" Canvas.Left="417" Canvas.Top="99"/>
-                    <Button Content="Guardar" Canvas.Left="695" Canvas.Top="103" Height="37" Width="120" Click="Guardar_Veterinaria"/>
+                    <Button Canvas.Left="695" Canvas.Top="103" Height="37" Width="120" Click="Guardar_Veterinaria" Content="Guardar"/>
+                  
+               <Button x:Name="PDF_vet_unico" Content="PDF único" Height="48" Width="85" Canvas.Left="695" Canvas.Top="44" Click="PDF_veterinario_unico" />
                     <TextBox x:Name="txtId" Canvas.Left="408" Canvas.Top="284"  Width="120" Visibility="Hidden" />
                     <Button x:Name="Limpiar_Controles" Content="Limpiar controles"  Height="37" Width="120" Click="LimpiarControles_Click" Canvas.Left="695" Canvas.Top="168"/>
                     <Button x:Name="Buscar" Content="Buscar veterinario"  Height="37" Width="120"  Canvas.Left="695" Canvas.Top="231" Click="Buscar_Click"/>
@@ -183,7 +184,7 @@
                     </TextBox>
                     <Label Content="Localidad" Canvas.Left="90" Canvas.Top="187"/>
                     <ComboBox x:Name="nombreMascotas" SelectionChanged="mascVet" Canvas.Left="398" Canvas.Top="215" Width="120" />
-               </Canvas>
+                </Canvas>
             </TabItem>
             <TabItem Header="Ver Veterinarios" >
                 <Canvas Background="#FFE5E5E5" Margin="2,39,-2,12">
@@ -215,7 +216,6 @@
                 </Canvas>
             </TabItem>
         </TabControl>
-
 
 
     </Grid>

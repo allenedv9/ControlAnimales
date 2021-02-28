@@ -278,9 +278,22 @@ namespace ControlAnimales
             {
                 MessageBox.Show(ex.StackTrace);
             }
+            
             con.Close();
             LimpiarControles();
             cargarMascotasDataGrid();
+
+      
+
+    
+          
+            BitmapImage bitmap;
+            bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            bitmap.UriSource = new Uri("C:\\Users\\Aida\\Desktop\\PERRUNO\\ControlAnimales\\bin\\Debug\\netcoreapp3.1\\Imagenes\\camera.png");
+            bitmap.EndInit();
+            imagenMascota.Source = bitmap;
+
         }
 
 
@@ -976,6 +989,85 @@ namespace ControlAnimales
         //GENERAR PDFS
         /*****************************************************************************************************************************/
 
+        //PDF de la tabla mascota personal
+        private void PDF_veterinario_unico(object sender, RoutedEventArgs e)
+        {
+            nombreVeterinaria = txt_nombre_veterinaria.Text;
+            clinica = txt_clinica.Text;
+            calle = txt_calle_veterinaria.Text;
+            localidad = txt_localidad.Text;
+            telefono = txt_telefono_clinica.Text;
+            telefonoUrgencias = txt_telefono_urgencias.Text;
+            if (nombreVeterinaria == "" || clinica == "" || telefono == "" ) {
+                MessageBox.Show("Los campos deben contener información");
+            }
+            else {
+                //crea documento
+                var PageSize = new iTextSharp.text.Rectangle(700f, 1024f);
+                FileStream fs = new FileStream("Veterinaria.pdf", FileMode.Create, FileAccess.Write, FileShare.None);
+                Document doc = new Document(PageSize);
+                iTextSharp.text.pdf.PdfWriter writer = PdfWriter.GetInstance(doc, fs);
+                doc.Open();
+
+                // propiedades titulo
+                Phrase nombre_vet = new iTextSharp.text.Phrase(40f, new iTextSharp.text.Chunk("            NOMBRE: " + nombreVeterinaria,
+                                       FontFactory.GetFont(FontFactory.COURIER_OBLIQUE, 26f, Font.BOLD,
+                                       new iTextSharp.text.BaseColor(64, 5, 56))));
+                Phrase fechaNaci = new iTextSharp.text.Phrase(40f, new iTextSharp.text.Chunk("     CLINICA: " + clinica,
+                                   FontFactory.GetFont(FontFactory.COURIER_OBLIQUE, 26f, Font.BOLD,
+                                   new iTextSharp.text.BaseColor(64, 5, 56))));
+                Phrase edadP = new iTextSharp.text.Phrase(40f, new iTextSharp.text.Chunk("        CALLE: " + calle,
+                                  FontFactory.GetFont(FontFactory.COURIER_OBLIQUE, 26f, Font.BOLD,
+                                  new iTextSharp.text.BaseColor(64, 5, 56))));
+                Phrase razaP = new iTextSharp.text.Phrase(40f, new iTextSharp.text.Chunk("      LOCALIDAD: " + localidad,
+                                  FontFactory.GetFont(FontFactory.COURIER_OBLIQUE, 26f, Font.BOLD,
+                                  new iTextSharp.text.BaseColor(64, 5, 56))));
+                Phrase sexoP = new iTextSharp.text.Phrase(40f, new iTextSharp.text.Chunk("           TELÉFONO: " + telefono,
+                                FontFactory.GetFont(FontFactory.COURIER_OBLIQUE, 26f, Font.BOLD,
+                                new iTextSharp.text.BaseColor(64, 5, 56))));
+                Phrase especieAniP = new iTextSharp.text.Phrase(40f, new iTextSharp.text.Chunk("    TELÉFONO URGENCIAS: " + telefonoUrgencias,
+                                FontFactory.GetFont(FontFactory.COURIER_OBLIQUE, 26f, Font.BOLD,
+                                new iTextSharp.text.BaseColor(64, 5, 56))));
+               
+                //añade los datos al  documento
+                doc.Add(new iTextSharp.text.Paragraph(nombre_vet));
+                doc.Add(new iTextSharp.text.Paragraph(fechaNaci));
+                doc.Add(new iTextSharp.text.Paragraph(edadP));
+                doc.Add(new iTextSharp.text.Paragraph(especieAniP));
+                doc.Add(new iTextSharp.text.Paragraph(razaP));
+                doc.Add(new iTextSharp.text.Paragraph(sexoP));
+                
+
+                // propiedades imagen logo 1
+                var posX = 250f;
+                var posY = 300f;
+                String ruta1 = "veterinaria.jpg";
+                BitmapImage bmp = new BitmapImage();
+                bmp.BeginInit();
+                bmp.UriSource = new Uri(ruta1, UriKind.Relative);
+                bmp.EndInit();
+
+                //ejecuta la ruta absoluta donde esta el ejecutable AQUI ES DONDE COLOCAMOS LA CARPETA IMAGENES QUE USAMOS EN ESTA APL
+                string path = System.IO.Directory.GetCurrentDirectory() + System.IO.Path.DirectorySeparatorChar + "Imagenes" + System.IO.Path.DirectorySeparatorChar + ruta1;       //     
+                iTextSharp.text.Image imagen = iTextSharp.text.Image.GetInstance(path);
+
+                imagen.SetAbsolutePosition(posX, posY);
+             
+                doc.Add(imagen);
+
+                // escribe pie de pagina
+                writer.PageEvent = new PiePagina();
+
+                doc.Close();
+
+                var p = new System.Diagnostics.Process();
+                p.StartInfo = new System.Diagnostics.ProcessStartInfo(@"Veterinaria.pdf") { UseShellExecute = true };
+                p.Start();
+
+            }
+        }
+
+        //PDF de la tabla mascota unico
         private void PDF_mascota_Personal(object sender, RoutedEventArgs e)
         {
             nombre = txt_nombre.Text;
@@ -1072,20 +1164,14 @@ namespace ControlAnimales
                 // propiedades imagen logo 2
                 var posX2 = 100f;
                 var posY2 = 100f;
-                String ruta2 = "huella.png";
                 BitmapImage bmp2 = new BitmapImage();
                 bmp2.BeginInit();
                 bmp2.UriSource = new Uri(ruta1, UriKind.Relative);
                 bmp2.EndInit();
-
-                //ejecuta la ruta absoluta donde esta el ejecutable AQUI ES DONDE COLOCAMOS LA CARPETA IMAGENES QUE USAMOS EN ESTA APL
-                string path2 = System.IO.Directory.GetCurrentDirectory() + System.IO.Path.DirectorySeparatorChar + "Imagenes" + System.IO.Path.DirectorySeparatorChar + ruta1;       //     
-                iTextSharp.text.Image imagen2 = iTextSharp.text.Image.GetInstance(path2);
-
+                iTextSharp.text.Image imagen2 = iTextSharp.text.Image.GetInstance(path);
                 imagen2.SetAbsolutePosition(posX2, posY2);
                 imagen2.ScaleAbsoluteWidth(80f); //  Escaral el tamaño de la imagen
                 imagen2.ScaleAbsoluteHeight(80f);
-                //  añadimos la imagen al documneto
                 doc.Add(imagen2);
 
                 // propiedades imagen logo 3
@@ -1097,16 +1183,14 @@ namespace ControlAnimales
                 bmp3.UriSource = new Uri(ruta3, UriKind.Relative);
                 bmp3.EndInit();
 
-                //ejecuta la ruta absoluta donde esta el ejecutable AQUI ES DONDE COLOCAMOS LA CARPETA IMAGENES QUE USAMOS EN ESTA APL
-                string path3 = System.IO.Directory.GetCurrentDirectory() + System.IO.Path.DirectorySeparatorChar + "Imagenes" + System.IO.Path.DirectorySeparatorChar + ruta1;       //     
-                iTextSharp.text.Image imagen3 = iTextSharp.text.Image.GetInstance(path2);
+                iTextSharp.text.Image imagen3 = iTextSharp.text.Image.GetInstance(path);
 
                 imagen3.SetAbsolutePosition(posX3, posY3);
                 imagen3.ScaleAbsoluteWidth(80f); //  Escaral el tamaño de la imagen
                 imagen3.ScaleAbsoluteHeight(80f);
                 //  añadimos la imagen al documneto
                 doc.Add(imagen3);
-                
+
                 // propiedades imagen logo 4
                 var posX4 = 400f;
                 var posY4 = 100f;
@@ -1116,20 +1200,31 @@ namespace ControlAnimales
                 bmp4.UriSource = new Uri(ruta4, UriKind.Relative);
                 bmp4.EndInit();
 
-                //ejecuta la ruta absoluta donde esta el ejecutable AQUI ES DONDE COLOCAMOS LA CARPETA IMAGENES QUE USAMOS EN ESTA APL
-                string path4 = System.IO.Directory.GetCurrentDirectory() + System.IO.Path.DirectorySeparatorChar + "Imagenes" + System.IO.Path.DirectorySeparatorChar + ruta1;       //     
-                iTextSharp.text.Image imagen4 = iTextSharp.text.Image.GetInstance(path4);
+                iTextSharp.text.Image imagen4 = iTextSharp.text.Image.GetInstance(path);
 
                 imagen4.SetAbsolutePosition(posX4, posY4);
                 imagen4.ScaleAbsoluteWidth(80f); //  Escaral el tamaño de la imagen
-                imagen.ScaleAbsoluteHeight(80f);
-                //  añadimos la imagen al documneto
+                imagen4.ScaleAbsoluteHeight(80f);
+
                 doc.Add(imagen4);
 
+                // propiedades imagen logo 5
+                var posX5 = 500f;
+                String ruta5 = "huella.png";
+                BitmapImage bmp5 = new BitmapImage();
+                bmp5.BeginInit();
+                bmp5.UriSource = new Uri(ruta5, UriKind.Relative);
+                bmp5.EndInit();
 
+                imagen4.SetAbsolutePosition(posX5, posY4);
+                imagen4.ScaleAbsoluteWidth(80f); //  Escaral el tamaño de la imagen
+                imagen4.ScaleAbsoluteHeight(80f);
+
+                doc.Add(imagen4);
+               
                 // propiedades imagen
                 var posXl = 200f;
-                 var posYl = 300f;
+                var posYl = 300f;
 
                  iTextSharp.text.Image image = iTextSharp.text.Image.GetInstance(rataa);
                  image.SetAbsolutePosition(posXl, posYl);
@@ -1151,8 +1246,8 @@ namespace ControlAnimales
 
                 }
         }
-    
 
+        //PDF de la tabla mascota
         private void PDF_mascota(object sender, RoutedEventArgs e)
         {
             try
