@@ -153,7 +153,7 @@ namespace ControlAnimales
 
         private void Buscar_mascota(object sender, RoutedEventArgs e)
         {
-            
+           
             txt_especie.Visibility = Visibility.Visible;
             txt_fecha.Visibility = Visibility.Visible;
             txt_raza.Visibility = Visibility.Visible;
@@ -228,9 +228,10 @@ namespace ControlAnimales
                 }
 
                 con.Close();
+                }
+             
 
             
-        }
 
            
         }
@@ -1000,32 +1001,40 @@ namespace ControlAnimales
                 doc.Open();
 
                 // propiedades titulo
-                Phrase nombre_vet = new iTextSharp.text.Phrase(40f, new iTextSharp.text.Chunk("            NOMBRE: " + nombreVeterinaria,
+                Phrase titulo = new iTextSharp.text.Phrase(40f, new iTextSharp.text.Chunk("            MI VETERINARIO  " ,
+                                      FontFactory.GetFont(FontFactory.COURIER_BOLDOBLIQUE, 26f, Font.ITALIC,
+                                      new iTextSharp.text.BaseColor(64, 5, 56))));
+                Phrase nombre_vet = new iTextSharp.text.Phrase(40f, new iTextSharp.text.Chunk("     NOMBRE VETERINARIO: " + nombreVeterinaria,
                                        FontFactory.GetFont(FontFactory.COURIER_OBLIQUE, 26f, Font.BOLD,
                                        new iTextSharp.text.BaseColor(64, 5, 56))));
-                Phrase fechaNaci = new iTextSharp.text.Phrase(40f, new iTextSharp.text.Chunk("     CLINICA: " + clinica,
+                Phrase fechaNaci = new iTextSharp.text.Phrase(40f, new iTextSharp.text.Chunk("        CLINICA: " + clinica,
                                    FontFactory.GetFont(FontFactory.COURIER_OBLIQUE, 26f, Font.BOLD,
                                    new iTextSharp.text.BaseColor(64, 5, 56))));
-                Phrase edadP = new iTextSharp.text.Phrase(40f, new iTextSharp.text.Chunk("        CALLE: " + calle,
+                Phrase edadP = new iTextSharp.text.Phrase(40f, new iTextSharp.text.Chunk("         CALLE: " + calle,
                                   FontFactory.GetFont(FontFactory.COURIER_OBLIQUE, 26f, Font.BOLD,
                                   new iTextSharp.text.BaseColor(64, 5, 56))));
                 Phrase razaP = new iTextSharp.text.Phrase(40f, new iTextSharp.text.Chunk("      LOCALIDAD: " + localidad,
                                   FontFactory.GetFont(FontFactory.COURIER_OBLIQUE, 26f, Font.BOLD,
                                   new iTextSharp.text.BaseColor(64, 5, 56))));
-                Phrase sexoP = new iTextSharp.text.Phrase(40f, new iTextSharp.text.Chunk("           TELÉFONO: " + telefono,
+                Phrase sexoP = new iTextSharp.text.Phrase(40f, new iTextSharp.text.Chunk("       TELÉFONO: " + telefono,
                                 FontFactory.GetFont(FontFactory.COURIER_OBLIQUE, 26f, Font.BOLD,
                                 new iTextSharp.text.BaseColor(64, 5, 56))));
-                Phrase especieAniP = new iTextSharp.text.Phrase(40f, new iTextSharp.text.Chunk("    TELÉFONO URGENCIAS: " + telefonoUrgencias,
+                Phrase especieAniP = new iTextSharp.text.Phrase(40f, new iTextSharp.text.Chunk("  TELÉFONO URGENCIAS: " + telefonoUrgencias,
                                 FontFactory.GetFont(FontFactory.COURIER_OBLIQUE, 26f, Font.BOLD,
                                 new iTextSharp.text.BaseColor(64, 5, 56))));
-               
+
                 //añade los datos al  documento
-                doc.Add(new iTextSharp.text.Paragraph(nombre_vet));
-                doc.Add(new iTextSharp.text.Paragraph(fechaNaci));
+                doc.Add(new iTextSharp.text.Paragraph(titulo));
+                doc.Add(new iTextSharp.text.Paragraph(fechaNaci));  
                 doc.Add(new iTextSharp.text.Paragraph(edadP));
-                doc.Add(new iTextSharp.text.Paragraph(especieAniP));
+               
                 doc.Add(new iTextSharp.text.Paragraph(razaP));
+                doc.Add(new iTextSharp.text.Paragraph(nombre_vet));
                 doc.Add(new iTextSharp.text.Paragraph(sexoP));
+             
+                doc.Add(new iTextSharp.text.Paragraph(especieAniP));
+               
+                
                 
 
                 // propiedades imagen logo 1
@@ -1223,7 +1232,7 @@ namespace ControlAnimales
                     doc.Add(imagen4);
 
 
-                } else if (especieAni == "Gato") {
+                } else if (especieAni == "Gato" || especieAni == "gato") {
 
                     // propiedades imagen logo gato
                     var posXg = 500f;
@@ -1245,7 +1254,7 @@ namespace ControlAnimales
                     doc.Add(imagen);
 
                 }
-                else if (especieAni == "Pez")
+                else if (especieAni == "Pez" || especieAni == "pez")
                 {
 
                     // propiedades imagen logo gato
