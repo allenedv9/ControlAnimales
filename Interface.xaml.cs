@@ -50,7 +50,7 @@ namespace ControlAnimales
             cargaMascotasVet();
             cargarMascotasDataGrid();
             cargarVeterinarioGrid();
-
+            cargaVisitasVeterinario();
         }
 
         private void eliminar_mascotas(object sender, RoutedEventArgs e)
@@ -354,13 +354,31 @@ namespace ControlAnimales
         /*****************************************************************************************************************************/
         //MODIFICAR LOS DATOS DE LA PANTALLA VETERINARIO//
         /*****************************************************************************************************************************/
+        //carga el dataGrid con datos de ta tabla veterinario
+        private void cargaVisitasVeterinario()
+        {
+            con.Open();
+            String query = "Select * from visitas_veterinario";
 
+            SqlDataAdapter miAdaptadorSql = new SqlDataAdapter(query, con);
+
+            using (miAdaptadorSql)
+            {
+                DataTable dataTablaVeterinario = new DataTable();
+                miAdaptadorSql.Fill(dataTablaVeterinario);
+
+                dg_lista_visitas.ItemsSource = dataTablaVeterinario.DefaultView;
+            }
+            con.Close();
+        }
         //carga el dataGrid con datos de ta tabla veterinario
         private void cargarVeterinarioGrid()
         {
             con.Open();
-            String query = "Select * from veterinario";
+            
+            String query = "Select v.clinica as Clinica, v.calle as Calle, v.localidad as Localidad, v.telefono as Teléfono, v.telefono_urgencias as Telf_Urgencias, m.nombre as Nombre FROM mascota as m, veterinario v WHERE  m.id_mascota =v.id_mascota";
 
+    
             SqlDataAdapter miAdaptadorSql = new SqlDataAdapter(query, con);
 
             using (miAdaptadorSql)
@@ -1318,8 +1336,9 @@ namespace ControlAnimales
                 {
 
                     // propiedades imagen logo gato
-                    var posXg = 200f;
-                    var posYg = 100f;
+                   
+                    var posXg = 500f;
+                    var posYg = 930f;
                     String rutag = "siluetaPez.png";
                     BitmapImage bmp = new BitmapImage();
                     bmp.BeginInit();
@@ -1331,8 +1350,8 @@ namespace ControlAnimales
                     iTextSharp.text.Image imagen = iTextSharp.text.Image.GetInstance(path);
 
                     imagen.SetAbsolutePosition(posXg, posYg);
-                    // imagen.ScaleAbsoluteWidth(80f); //  Escaral el tamaño de la imagen
-                    // imagen.ScaleAbsoluteHeight(80f);
+                     imagen.ScaleAbsoluteWidth(80f); //  Escaral el tamaño de la imagen
+                     imagen.ScaleAbsoluteHeight(80f);
 
                     doc.Add(imagen);
 
@@ -1341,8 +1360,8 @@ namespace ControlAnimales
                 {
 
                     // propiedades imagen logo gato
-                    var posXg = 200f;
-                    var posYg = 100f;
+                    var posXg = 500f;
+                    var posYg = 930f;
                     String rutag = "huellaPajaro.jpg";
                     BitmapImage bmp = new BitmapImage();
                     bmp.BeginInit();
@@ -1364,7 +1383,7 @@ namespace ControlAnimales
                 {
 
                     // propiedades imagen logo gato
-                    var posXg = 200f;
+                    var posXg = 500f;
                     var posYg = 100f;
                     String rutag = "roedorHuella.jpg";
                     BitmapImage bmp = new BitmapImage();
