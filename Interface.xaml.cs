@@ -40,9 +40,9 @@ namespace ControlAnimales
             InitializeComponent();
 
             //  conexion AIDA 
-             //   conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Aida\\Desktop\\PERRUNO\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
+               conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Aida\\Desktop\\PERRUNO\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
             //  conexion ALLENDE
-              conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Allende\\source\\repos\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
+            //   conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Allende\\source\\repos\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
 
             con = new SqlConnection(conexion);
             cargarEspecies();
@@ -181,26 +181,26 @@ namespace ControlAnimales
             }
             else
             {
-           
-            txt_especie.Visibility = Visibility.Visible;
+
+                txt_especie.Visibility = Visibility.Visible;
                 txt_fecha.Visibility = Visibility.Visible;
                 txt_raza.Visibility = Visibility.Visible;
                 txt_sexo.Visibility = Visibility.Visible;
 
                 con.Open();
 
-            if (txt_fecha.Text != "")
-            {
-                txt_fecha.Text = txt_fecha.Text.Substring(0, 10).ToString();
-            }
+                if (txt_fecha.Text != "")
+                {
+                    txt_fecha.Text = txt_fecha.Text.Substring(0, 10).ToString();
+                }
 
-            if (txt_fecha_adopcion.Text != "")
-            {
-                txt_fecha_adopcion.Text = txt_fecha_adopcion.Text.Substring(0, 10).ToString();
-            }
-            SqlCommand comando = new SqlCommand("SELECT * FROM mascota where nombre = @mascota", con);
-            comando.Parameters.AddWithValue("@mascota", txt_nombre.Text);
-            SqlDataReader registro = comando.ExecuteReader();
+                if (txt_fecha_adopcion.Text != "")
+                {
+                    txt_fecha_adopcion.Text = txt_fecha_adopcion.Text.Substring(0, 10).ToString();
+                }
+                SqlCommand comando = new SqlCommand("SELECT * FROM mascota where nombre = @mascota", con);
+                comando.Parameters.AddWithValue("@mascota", txt_nombre.Text);
+                SqlDataReader registro = comando.ExecuteReader();
                 if (registro.Read())
                 {
                     txt_nombre.Text = registro["nombre"].ToString();
@@ -216,36 +216,36 @@ namespace ControlAnimales
                     txt_id.Text = registro["id_mascota"].ToString();
                     ruta_imagen.Text = registro["imagen"].ToString();
 
-                  
-                        if (adoptadoCheck == "si")
-                        {
-                            txt_fecha_adopcion.Visibility = Visibility.Visible;
-                            label_fecha.Visibility = Visibility.Visible;
-                            label_lugar.Visibility = Visibility.Visible;
-                            txt_lugar_adopcion.Visibility = Visibility.Visible;
 
-                            txt_fecha_adopcion.Text = registro["fecha_adopcion"].ToString();
-                            txt_lugar_adopcion.Text = registro["lugar_adopcion"].ToString();
+                    if (adoptadoCheck == "si")
+                    {
+                        txt_fecha_adopcion.Visibility = Visibility.Visible;
+                        label_fecha.Visibility = Visibility.Visible;
+                        label_lugar.Visibility = Visibility.Visible;
+                        txt_lugar_adopcion.Visibility = Visibility.Visible;
 
-                        }
-                        else
-                        {
-                            txt_fecha_adopcion.Visibility = Visibility.Hidden;
-                            label_fecha.Visibility = Visibility.Hidden;
-                            label_lugar.Visibility = Visibility.Hidden;
-                            txt_lugar_adopcion.Visibility = Visibility.Hidden;
-                        }
-                        // txt_lugar_adopcion.Text = registro["lugar_adopcion"].ToString();
                         txt_fecha_adopcion.Text = registro["fecha_adopcion"].ToString();
-                        ruta_imagen.Text = registro["imagen"].ToString();
-                        check_imagen.Visibility = Visibility.Hidden;
-                        selec_img.Visibility = Visibility.Hidden;
-                    
+                        txt_lugar_adopcion.Text = registro["lugar_adopcion"].ToString();
 
-                con.Close();
+                    }
+                    else
+                    {
+                        txt_fecha_adopcion.Visibility = Visibility.Hidden;
+                        label_fecha.Visibility = Visibility.Hidden;
+                        label_lugar.Visibility = Visibility.Hidden;
+                        txt_lugar_adopcion.Visibility = Visibility.Hidden;
+                    }
+                    // txt_lugar_adopcion.Text = registro["lugar_adopcion"].ToString();
+                    txt_fecha_adopcion.Text = registro["fecha_adopcion"].ToString();
+                    ruta_imagen.Text = registro["imagen"].ToString();
+                    check_imagen.Visibility = Visibility.Hidden;
+                    selec_img.Visibility = Visibility.Hidden;
+
+
+                    con.Close();
                 }
-             
 
+            }
             
 
         }
@@ -302,9 +302,9 @@ namespace ControlAnimales
         private void recogerDato(object sender, SelectionChangedEventArgs e)
         {
             ComboBox cb = (ComboBox)sender;
-
+        
             DataRowView drv = (DataRowView)cb.SelectedItem;
-            string cadena3 = drv.Row[1].ToString();
+           string   cadena3 = drv.Row[1].ToString();
             txt_raza.Text = cadena3;
         }
 
@@ -433,7 +433,7 @@ namespace ControlAnimales
             comando.ExecuteNonQuery();
             MessageBox.Show("Datosa insertados");
             con.Close();
-
+            cargarVeterinarioGrid();
 
         }
         //Eliminar veterinaria
@@ -581,6 +581,7 @@ namespace ControlAnimales
             ruta_imagen.Text = "";
             txt_id.Text = "";
             imagenMascota.Visibility=Visibility.Hidden;
+            txt_raza.Text = "";
 
             txt_fecha_adopcion.Visibility = Visibility.Hidden;
             label_fecha.Visibility = Visibility.Hidden;
@@ -627,7 +628,7 @@ namespace ControlAnimales
             txt_fecha_adopcion.Text = "";
             ruta_imagen.Text = "";
             txt_id.Text = "";
-          
+            txt_raza.Text = "";
             check_imagen.IsChecked = false;
             adoptado.IsChecked = false;
             imagenMascota.Visibility = Visibility.Hidden;
