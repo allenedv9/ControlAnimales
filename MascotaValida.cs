@@ -37,20 +37,22 @@ namespace ControlAnimales
                 //Admite de 3 a 50 caracteres de texto
                 if (path == "Num_chip")
                 {
-                    Regex Expresión = new Regex(@"^[0-9]{12}$");
+                    Regex Expresión = new Regex(@"^[0-9]{15}$");
 
                     if (!Expresión.IsMatch(this.Num_chip))
                     {
-                        result = "Núm chip Incorrecto. 12 digitos numéricos";
+                        result = "Núm chip Incorrecto. 15 digitos numéricos";
+                        return result;
                     }
                 }
                 if (path == "Num_cartilla")
                 {
 
-                    Regex regex = new Regex(@"^[0-9]{5}$");
-                    if (!regex.IsMatch(this.Num_chip))
+                    Regex regex = new Regex(@"^[a-z A_Z]{2}[0-9]{10}$");
+                    if (!regex.IsMatch(this.Num_cartilla))
                     {
-                        result = "Núm chip Incorrecto. 5 digitos numéricos";
+                        result = "Núm cartilla Incorrecto. dos letras y 10  digitos numéricos";
+                        return result;
                     }
 
                 }

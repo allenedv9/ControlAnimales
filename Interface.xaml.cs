@@ -40,9 +40,9 @@ namespace ControlAnimales
             InitializeComponent();
 
             //  conexion AIDA 
-          //  conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Aida\\Desktop\\PERRUNO\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
+         conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Aida\\Desktop\\PERRUNO\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
             //  conexion ALLENDE
-              conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Allende\\source\\repos\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
+              //   conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Allende\\source\\repos\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
 
             con = new SqlConnection(conexion);
             cargarEspecies();
@@ -282,17 +282,6 @@ namespace ControlAnimales
             con.Close();
             LimpiarControles();
             cargarMascotasDataGrid();
-
-      
-
-    
-          
-            BitmapImage bitmap;
-            bitmap = new BitmapImage();
-            bitmap.BeginInit();
-            bitmap.UriSource = new Uri("C:\\Users\\Aida\\Desktop\\PERRUNO\\ControlAnimales\\bin\\Debug\\netcoreapp3.1\\Imagenes\\camera.png");
-            bitmap.EndInit();
-            imagenMascota.Source = bitmap;
 
         }
 
@@ -579,7 +568,7 @@ namespace ControlAnimales
             txt_fecha_adopcion.Text = "";
             ruta_imagen.Text = "";
             txt_id.Text = "";
-            imagenMascota = null;
+            imagenMascota.Visibility=Visibility.Hidden;
 
             txt_fecha_adopcion.Visibility = Visibility.Hidden;
             label_fecha.Visibility = Visibility.Hidden;
@@ -626,9 +615,10 @@ namespace ControlAnimales
             txt_fecha_adopcion.Text = "";
             ruta_imagen.Text = "";
             txt_id.Text = "";
-            imagenMascota = null;
+          
             check_imagen.IsChecked = false;
             adoptado.IsChecked = false;
+            imagenMascota.Visibility = Visibility.Hidden;
 
             txt_fecha_adopcion.Visibility = Visibility.Hidden;
             label_fecha.Visibility = Visibility.Hidden;

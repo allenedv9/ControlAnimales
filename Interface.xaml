@@ -52,9 +52,29 @@
                     <RadioButton x:Name="macho" Content="Macho" Canvas.Left="143" Canvas.Top="258" Click="selecciona_sexo"/>
                     <RadioButton x:Name="hembra" Content="hembra" Canvas.Left="201" Canvas.Top="258" Click="selecciona_sexo"/>
                     <TextBox x:Name="txt_color"  TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157"  Canvas.Left="90" Canvas.Top="309" />
-                    
-                    <TextBox x:Name="txt_cartilla" TextWrapping="Wrap" Width="180" Height="25" RenderTransformOrigin="0.75,2.157"  Canvas.Left="397" Canvas.Top="41" />
-                    <TextBox x:Name="txt_chip"  TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157" Canvas.Left="397" Canvas.Top="117"/>
+
+                    <TextBox x:Name="txt_cartilla"  Style="{StaticResource TextBoxCapturaError}" TextWrapping="Wrap" Width="180" Height="25" RenderTransformOrigin="0.75,2.157"  Canvas.Left="397" Canvas.Top="41" >
+                        <TextBox.Text>
+                            <Binding Path="Num_cartilla" Source="{StaticResource dataE}"
+                         ValidatesOnExceptions="True"
+                         UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <DataErrorValidationRule/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                    <TextBox x:Name="txt_chip" Style="{StaticResource TextBoxCapturaError}"  TextWrapping="Wrap" Width="180" Height="26" RenderTransformOrigin="0.75,2.157" Canvas.Left="397" Canvas.Top="117">
+                        <TextBox.Text>
+                            <Binding Path="Num_chip" Source="{StaticResource dataE}"
+                         ValidatesOnExceptions="True"
+                         UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <DataErrorValidationRule/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
                     <Label Content="Adoptado" Canvas.Left="397" Canvas.Top="148"/>
                     <CheckBox x:Name="adoptado" Canvas.Left="465" Canvas.Top="155" Click="ver_txt_adopcion"/>
                     <DatePicker x:Name="dp_fecha_adopcion" Visibility="Hidden" Height="25" Width="180" Canvas.Left="398" Canvas.Top="203" CalendarClosed="fecha_adopcion"  ></DatePicker>
