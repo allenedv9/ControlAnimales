@@ -40,9 +40,9 @@ namespace ControlAnimales
             InitializeComponent();
 
             //  conexion AIDA 
-               conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Aida\\Desktop\\PERRUNO\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
+            //   conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Aida\\Desktop\\PERRUNO\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
             //  conexion ALLENDE
-            //   conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Allende\\source\\repos\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
+               conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Allende\\source\\repos\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
 
             con = new SqlConnection(conexion);
             cargarEspecies();
@@ -110,12 +110,49 @@ namespace ControlAnimales
 
         private void Modificar_visita_vet(object sender, RoutedEventArgs e)
         {
+            visFecha = txt_fecha_visita.Text;
+            visDescripcion = txt_descripcion_visita.Text;
+            visPrecio = txt_precio_visita.Text;
+            visClinica = txt_clinica.Text;
+            visIdMascota = txt_mascota_visita.Text;
+            visIdVeterinario = txt_clinica_vet.Text;
+            visTratamiento = txt_tratamiento.Text;
+            visDuracion = txt_duracion.Text;
+            visDescripcionTratamiento = txt_descripcion_visita.Text;
+            visFecha = visFecha.Substring(0, 10);
+            con = new SqlConnection(conexion);
+            con.Open();
+            try
+            {
 
+                String query = "UPDATE visita_veterinario set       nombre = '" + nombre + "', fecha_nacimiento = '" + fechaNac + "', edad = '" + edad + "', especie = '" + especieAni + "', raza = '" + raza + "', sexo = '" + sexo + "', color = '" + color + "', num_cartilla_sanitaria = '" + cartilla + "', num_chip = '" + numChip + "', adoptado = '" + adoptadoCheck + "', fecha_adopcion = '" + fechaAdop + "', lugar_adopcion = '" + lugarAdop + "', imagen = '" + ruta + "' WHERE id_mascota = '" + idMAsc + "'";
+                // MessageBox.Show(query);
+                SqlCommand comando = new SqlCommand(query, con);
+                comando.ExecuteNonQuery();
+                MessageBox.Show("Datos Actualizados");
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se ha podido realizar la actualización de los datos");
+            }
+
+
+            con.Close();
+            LimpiarControles();
         }
 
         private void Eliminar_visita_vet(object sender, RoutedEventArgs e)
         {
-
+            visFecha = txt_fecha_visita.Text;
+            con = new SqlConnection(conexion);
+            con.Open();
+            String query = "DELETE from visita_veterinario where fecha_visita = '" + visFecha + "'";
+            SqlCommand comando = new SqlCommand(query, con);
+            comando.ExecuteNonQuery();
+            MessageBox.Show("Datos Borrados");
+            con.Close();
+            LimpiarControles();
         }
 
         private void PDF_visita_unico(object sender, RoutedEventArgs e)
