@@ -26,7 +26,7 @@ namespace ControlAnimales
         String conexion, cadena2, cadena3, cadena5, nombre, fechaNac, especieAni, edad, raza,
                sexo, color, cartilla, numChip, adoptadoCheck, lugarAdop, fechaAdop, ruta, id;
         String nombreVeterinaria, clinica, calle, localidad, telefono, telefonoUrgencias, cad, idMAsc, cadNombre, txtNom;
-        String visFecha, visDescripcion, visPrecio, visClinica, visIdMascota, visIdVeterinario, visTratamiento, visDuracion, visDescripcionTratamiento, tratamientoChek;
+        String cad2, visFecha, visDescripcion, visPrecio, visClinica, visIdMascota, visIdVeterinario, visTratamiento, visDuracion, visDescripcionTratamiento, tratamientoChek;
 
 
 
@@ -48,7 +48,6 @@ namespace ControlAnimales
             cargarEspecies();
             cargaMascotas();
             cargaMascotasVet();
-            cargarVeterinario();
             cargarMascotasDataGrid();
             cargarVeterinarioGrid();
 
@@ -374,27 +373,7 @@ namespace ControlAnimales
         }
 
         //carga combo de veterinario en vista veterinario
-        private void cargarVeterinario()
-        {
-            try
-            {
-                //abrimos la conexion
-                con.Open();
-            }
-            catch (Exception ee) { MessageBox.Show(ee.Message); }
-            string query = "SELECT * FROM veterinario";
-            SqlDataAdapter miAdaptadorSql = new SqlDataAdapter(query, con);
-
-            using (miAdaptadorSql)
-            {
-                DataTable veterinario = new DataTable();
-                miAdaptadorSql.Fill(veterinario);
-                carga_vet.DisplayMemberPath = "clinica";
-                carga_vet.SelectedValuePath = "id_veterinario";
-                carga_vet.ItemsSource = veterinario.DefaultView;
-            }
-            con.Close();
-        }
+        
 
         //carga combo
         private void cargar_masc_veterinario(object sender, SelectionChangedEventArgs e)
@@ -404,6 +383,23 @@ namespace ControlAnimales
             DataRowView drv = (DataRowView)cb.SelectedItem;
             cadena5 = drv.Row[0].ToString();
             txt_mascota_visita.Text = cadena5;
+           // cad2 = drv.Row[0].ToString();
+          //  MessageBox.Show(cadena5);
+
+           
+                con.Open();
+                SqlCommand comando = new SqlCommand("SELECT clinica FROM veterinario where id_mascota = @mascota", con);
+                comando.Parameters.AddWithValue("@mascota", txt_mascota_visita.Text);
+                SqlDataReader registro = comando.ExecuteReader();
+                if (registro.Read())
+                {
+
+                txt_clinica_vet.Text = registro["clinica"].ToString();
+
+                }
+                con.Close();
+            
+
         }
 
 
@@ -496,6 +492,7 @@ namespace ControlAnimales
             //MessageBox.Show(cad);
             txtId.Text = cad;
             txtNombre.Text = cadNombre;
+           
         }
 
 
