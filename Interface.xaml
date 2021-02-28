@@ -303,7 +303,7 @@
             <TabItem Header="Ver Visitas Vetrinario" FontFamily="Ink Free " FontWeight="Bold"  Height="25" Background="#FFCFABDA" >
                 <Canvas Background="#75202121" Margin="10,10,9,8">
                     <DataGrid x:Name="dg_lista_visitas"   Height="387" Width="884"  Canvas.Top="37" Canvas.Left="15" />
-                    <Button Style="{StaticResource btn1}" x:Name="bt_pdf_lista_veterinaro" Content="Generar PDF"   Canvas.Left="719" Canvas.Top="366" />
+                    <Button Style="{StaticResource btn1}" x:Name="bt_pdf_lista_veterinaro" Content="Generar PDF"   Canvas.Left="719" Canvas.Top="366" Click="PDF_visitas_veterinario" />
 
                 </Canvas>
             </TabItem>
