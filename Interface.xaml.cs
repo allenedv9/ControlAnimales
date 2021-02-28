@@ -1088,9 +1088,12 @@ namespace ControlAnimales
                     Document doc = new Document(PageSize);
                     iTextSharp.text.pdf.PdfWriter writer = PdfWriter.GetInstance(doc, fs);
                     doc.Open();
-               
+
 
                 // propiedades titulo
+                Phrase Titulo = new iTextSharp.text.Phrase(40f, new iTextSharp.text.Chunk("              MI MASCOTA",
+                                      FontFactory.GetFont(FontFactory.COURIER_BOLDOBLIQUE, 26f, Font.ITALIC,
+                                      new iTextSharp.text.BaseColor(64, 5, 56))));
                 Phrase txtTitulo = new iTextSharp.text.Phrase(40f, new iTextSharp.text.Chunk("           NOMBRE: " + nombre,
                                        FontFactory.GetFont(FontFactory.COURIER_OBLIQUE, 26f, Font.BOLD,
                                        new iTextSharp.text.BaseColor(64, 5, 56))));
@@ -1115,14 +1118,18 @@ namespace ControlAnimales
                      Phrase cartillaP = new iTextSharp.text.Phrase(40f, new iTextSharp.text.Chunk("      NÚMERO CARTILLA: " + cartilla,
                                      FontFactory.GetFont(FontFactory.COURIER_OBLIQUE, 26f, Font.BOLD,
                                      new iTextSharp.text.BaseColor(64, 5, 56))));
-                      Phrase fechaAdopP = new iTextSharp.text.Phrase(40f, new iTextSharp.text.Chunk("        FECHA ADOPCIÓN: " + fechaAdop,
+                Phrase numChipP = new iTextSharp.text.Phrase(40f, new iTextSharp.text.Chunk("      NÚMERO CHIP: " + numChip,
+                                     FontFactory.GetFont(FontFactory.COURIER_OBLIQUE, 26f, Font.BOLD,
+                                     new iTextSharp.text.BaseColor(64, 5, 56))));
+                Phrase fechaAdopP = new iTextSharp.text.Phrase(40f, new iTextSharp.text.Chunk("        FECHA ADOPCIÓN: " + fechaAdop,
                                      FontFactory.GetFont(FontFactory.COURIER_OBLIQUE, 26f, Font.BOLD,
                                      new iTextSharp.text.BaseColor(64, 5, 56))));
                       Phrase lugarAdopP = new iTextSharp.text.Phrase(40f, new iTextSharp.text.Chunk("         LUGAR ADOPCIÓN: " + lugarAdop,
                                      FontFactory.GetFont(FontFactory.COURIER_OBLIQUE, 26f, Font.BOLD,
                                      new iTextSharp.text.BaseColor(64, 5, 56))));
                 //añade los datos al  documento
-                    doc.Add(new iTextSharp.text.Paragraph(txtTitulo));
+                doc.Add(new iTextSharp.text.Paragraph(Titulo));
+                doc.Add(new iTextSharp.text.Paragraph(txtTitulo));
                     doc.Add(new iTextSharp.text.Paragraph(fechaNaci));
                     doc.Add(new iTextSharp.text.Paragraph(edadP));
                     doc.Add(new iTextSharp.text.Paragraph(especieAniP));
@@ -1130,99 +1137,199 @@ namespace ControlAnimales
                     doc.Add(new iTextSharp.text.Paragraph(sexoP));
                     doc.Add(new iTextSharp.text.Paragraph(colorP));
                     doc.Add(new iTextSharp.text.Paragraph(cartillaP));
+                    doc.Add(new iTextSharp.text.Paragraph(numChipP));
                     doc.Add(new iTextSharp.text.Paragraph(fechaAdopP));
                     doc.Add(new iTextSharp.text.Paragraph(lugarAdopP));
-                
-                // propiedades imagen logo 1
-                var posX = 200f;
-                var posY = 100f;
-                String ruta1 = "huella.png";
-                BitmapImage bmp = new BitmapImage();
-                bmp.BeginInit();
-                bmp.UriSource = new Uri(ruta1, UriKind.Relative);
-                bmp.EndInit();
 
-                //ejecuta la ruta absoluta donde esta el ejecutable AQUI ES DONDE COLOCAMOS LA CARPETA IMAGENES QUE USAMOS EN ESTA APL
-                string path = System.IO.Directory.GetCurrentDirectory() + System.IO.Path.DirectorySeparatorChar + "Imagenes" + System.IO.Path.DirectorySeparatorChar + ruta1;       //     
-                iTextSharp.text.Image imagen = iTextSharp.text.Image.GetInstance(path);
 
-                imagen.SetAbsolutePosition(posX, posY);
-                imagen.ScaleAbsoluteWidth(80f); //  Escaral el tamaño de la imagen
-                imagen.ScaleAbsoluteHeight(80f);
+                if (especieAni == "Perro" || especieAni == "perro") {
+                    // propiedades imagen logo 1
+                    var posX = 200f;
+                    var posY = 100f;
+                    String ruta1 = "huella.png";
+                    BitmapImage bmp = new BitmapImage();
+                    bmp.BeginInit();
+                    bmp.UriSource = new Uri(ruta1, UriKind.Relative);
+                    bmp.EndInit();
 
-                doc.Add(imagen);
+                    //ejecuta la ruta absoluta donde esta el ejecutable AQUI ES DONDE COLOCAMOS LA CARPETA IMAGENES QUE USAMOS EN ESTA APL
+                    string path = System.IO.Directory.GetCurrentDirectory() + System.IO.Path.DirectorySeparatorChar + "Imagenes" + System.IO.Path.DirectorySeparatorChar + ruta1;       //     
+                    iTextSharp.text.Image imagen = iTextSharp.text.Image.GetInstance(path);
 
-                // propiedades imagen logo 2
-                var posX2 = 100f;
-                var posY2 = 100f;
-                BitmapImage bmp2 = new BitmapImage();
-                bmp2.BeginInit();
-                bmp2.UriSource = new Uri(ruta1, UriKind.Relative);
-                bmp2.EndInit();
-                iTextSharp.text.Image imagen2 = iTextSharp.text.Image.GetInstance(path);
-                imagen2.SetAbsolutePosition(posX2, posY2);
-                imagen2.ScaleAbsoluteWidth(80f); //  Escaral el tamaño de la imagen
-                imagen2.ScaleAbsoluteHeight(80f);
-                doc.Add(imagen2);
+                    imagen.SetAbsolutePosition(posX, posY);
+                    imagen.ScaleAbsoluteWidth(80f); //  Escaral el tamaño de la imagen
+                    imagen.ScaleAbsoluteHeight(80f);
 
-                // propiedades imagen logo 3
-                var posX3 = 300f;
-                var posY3 = 100f;
-                String ruta3 = "huella.png";
-                BitmapImage bmp3 = new BitmapImage();
-                bmp3.BeginInit();
-                bmp3.UriSource = new Uri(ruta3, UriKind.Relative);
-                bmp3.EndInit();
+                    doc.Add(imagen);
 
-                iTextSharp.text.Image imagen3 = iTextSharp.text.Image.GetInstance(path);
+                    // propiedades imagen logo 2
+                    var posX2 = 100f;
+                    var posY2 = 100f;
+                    BitmapImage bmp2 = new BitmapImage();
+                    bmp2.BeginInit();
+                    bmp2.UriSource = new Uri(ruta1, UriKind.Relative);
+                    bmp2.EndInit();
+                    iTextSharp.text.Image imagen2 = iTextSharp.text.Image.GetInstance(path);
+                    imagen2.SetAbsolutePosition(posX2, posY2);
+                    imagen2.ScaleAbsoluteWidth(80f); //  Escaral el tamaño de la imagen
+                    imagen2.ScaleAbsoluteHeight(80f);
+                    doc.Add(imagen2);
 
-                imagen3.SetAbsolutePosition(posX3, posY3);
-                imagen3.ScaleAbsoluteWidth(80f); //  Escaral el tamaño de la imagen
-                imagen3.ScaleAbsoluteHeight(80f);
-                //  añadimos la imagen al documneto
-                doc.Add(imagen3);
+                    // propiedades imagen logo 3
+                    var posX3 = 300f;
+                    var posY3 = 100f;
+                    String ruta3 = "huella.png";
+                    BitmapImage bmp3 = new BitmapImage();
+                    bmp3.BeginInit();
+                    bmp3.UriSource = new Uri(ruta3, UriKind.Relative);
+                    bmp3.EndInit();
 
-                // propiedades imagen logo 4
-                var posX4 = 400f;
-                var posY4 = 100f;
-                String ruta4 = "huella.png";
-                BitmapImage bmp4 = new BitmapImage();
-                bmp4.BeginInit();
-                bmp4.UriSource = new Uri(ruta4, UriKind.Relative);
-                bmp4.EndInit();
+                    iTextSharp.text.Image imagen3 = iTextSharp.text.Image.GetInstance(path);
 
-                iTextSharp.text.Image imagen4 = iTextSharp.text.Image.GetInstance(path);
+                    imagen3.SetAbsolutePosition(posX3, posY3);
+                    imagen3.ScaleAbsoluteWidth(80f); //  Escaral el tamaño de la imagen
+                    imagen3.ScaleAbsoluteHeight(80f);
+                    //  añadimos la imagen al documneto
+                    doc.Add(imagen3);
 
-                imagen4.SetAbsolutePosition(posX4, posY4);
-                imagen4.ScaleAbsoluteWidth(80f); //  Escaral el tamaño de la imagen
-                imagen4.ScaleAbsoluteHeight(80f);
+                    // propiedades imagen logo 4
+                    var posX4 = 400f;
+                    var posY4 = 100f;
+                    String ruta4 = "huella.png";
+                    BitmapImage bmp4 = new BitmapImage();
+                    bmp4.BeginInit();
+                    bmp4.UriSource = new Uri(ruta4, UriKind.Relative);
+                    bmp4.EndInit();
 
-                doc.Add(imagen4);
+                    iTextSharp.text.Image imagen4 = iTextSharp.text.Image.GetInstance(path);
 
-                // propiedades imagen logo 5
-                var posX5 = 500f;
-                String ruta5 = "huella.png";
-                BitmapImage bmp5 = new BitmapImage();
-                bmp5.BeginInit();
-                bmp5.UriSource = new Uri(ruta5, UriKind.Relative);
-                bmp5.EndInit();
+                    imagen4.SetAbsolutePosition(posX4, posY4);
+                    imagen4.ScaleAbsoluteWidth(80f); //  Escaral el tamaño de la imagen
+                    imagen4.ScaleAbsoluteHeight(80f);
 
-                imagen4.SetAbsolutePosition(posX5, posY4);
-                imagen4.ScaleAbsoluteWidth(80f); //  Escaral el tamaño de la imagen
-                imagen4.ScaleAbsoluteHeight(80f);
+                    doc.Add(imagen4);
 
-                doc.Add(imagen4);
-               
+                    // propiedades imagen logo 5
+                    var posX5 = 500f;
+                    String ruta5 = "huella.png";
+                    BitmapImage bmp5 = new BitmapImage();
+                    bmp5.BeginInit();
+                    bmp5.UriSource = new Uri(ruta5, UriKind.Relative);
+                    bmp5.EndInit();
+
+                    imagen4.SetAbsolutePosition(posX5, posY4);
+                    imagen4.ScaleAbsoluteWidth(80f); //  Escaral el tamaño de la imagen
+                    imagen4.ScaleAbsoluteHeight(80f);
+
+                    doc.Add(imagen4);
+
+
+                } else if (especieAni == "Gato") {
+
+                    // propiedades imagen logo gato
+                    var posXg = 500f;
+                    var posYg = 930f;
+                    String rutag = "huella_gato.png";
+                    BitmapImage bmp = new BitmapImage();
+                    bmp.BeginInit();
+                    bmp.UriSource = new Uri(rutag, UriKind.Relative);
+                    bmp.EndInit();
+
+                    //ejecuta la ruta absoluta donde esta el ejecutable AQUI ES DONDE COLOCAMOS LA CARPETA IMAGENES QUE USAMOS EN ESTA APL
+                    string path = System.IO.Directory.GetCurrentDirectory() + System.IO.Path.DirectorySeparatorChar + "Imagenes" + System.IO.Path.DirectorySeparatorChar + rutag;       //     
+                    iTextSharp.text.Image imagen = iTextSharp.text.Image.GetInstance(path);
+
+                    imagen.SetAbsolutePosition(posXg, posYg);
+                    imagen.ScaleAbsoluteWidth(80f); //  Escaral el tamaño de la imagen
+                   imagen.ScaleAbsoluteHeight(80f);
+
+                    doc.Add(imagen);
+
+                }
+                else if (especieAni == "Pez")
+                {
+
+                    // propiedades imagen logo gato
+                    var posXg = 200f;
+                    var posYg = 100f;
+                    String rutag = "siluetaPez.png";
+                    BitmapImage bmp = new BitmapImage();
+                    bmp.BeginInit();
+                    bmp.UriSource = new Uri(rutag, UriKind.Relative);
+                    bmp.EndInit();
+
+                    //ejecuta la ruta absoluta donde esta el ejecutable AQUI ES DONDE COLOCAMOS LA CARPETA IMAGENES QUE USAMOS EN ESTA APL
+                    string path = System.IO.Directory.GetCurrentDirectory() + System.IO.Path.DirectorySeparatorChar + "Imagenes" + System.IO.Path.DirectorySeparatorChar + rutag;       //     
+                    iTextSharp.text.Image imagen = iTextSharp.text.Image.GetInstance(path);
+
+                    imagen.SetAbsolutePosition(posXg, posYg);
+                    // imagen.ScaleAbsoluteWidth(80f); //  Escaral el tamaño de la imagen
+                    // imagen.ScaleAbsoluteHeight(80f);
+
+                    doc.Add(imagen);
+
+                }
+                else if (especieAni == "Ave")
+                {
+
+                    // propiedades imagen logo gato
+                    var posXg = 200f;
+                    var posYg = 100f;
+                    String rutag = "huellaPajaro.jpg";
+                    BitmapImage bmp = new BitmapImage();
+                    bmp.BeginInit();
+                    bmp.UriSource = new Uri(rutag, UriKind.Relative);
+                    bmp.EndInit();
+
+                    //ejecuta la ruta absoluta donde esta el ejecutable AQUI ES DONDE COLOCAMOS LA CARPETA IMAGENES QUE USAMOS EN ESTA APL
+                    string path = System.IO.Directory.GetCurrentDirectory() + System.IO.Path.DirectorySeparatorChar + "Imagenes" + System.IO.Path.DirectorySeparatorChar + rutag;       //     
+                    iTextSharp.text.Image imagen = iTextSharp.text.Image.GetInstance(path);
+
+                    imagen.SetAbsolutePosition(posXg, posYg);
+                     imagen.ScaleAbsoluteWidth(80f); //  Escaral el tamaño de la imagen
+                     imagen.ScaleAbsoluteHeight(80f);
+
+                    doc.Add(imagen);
+
+                }
+                else if (especieAni == "Roedor")
+                {
+
+                    // propiedades imagen logo gato
+                    var posXg = 200f;
+                    var posYg = 100f;
+                    String rutag = "roedorHuella.jpg";
+                    BitmapImage bmp = new BitmapImage();
+                    bmp.BeginInit();
+                    bmp.UriSource = new Uri(rutag, UriKind.Relative);
+                    bmp.EndInit();
+
+                    //ejecuta la ruta absoluta donde esta el ejecutable AQUI ES DONDE COLOCAMOS LA CARPETA IMAGENES QUE USAMOS EN ESTA APL
+                    string path = System.IO.Directory.GetCurrentDirectory() + System.IO.Path.DirectorySeparatorChar + "Imagenes" + System.IO.Path.DirectorySeparatorChar + rutag;       //     
+                    iTextSharp.text.Image imagen = iTextSharp.text.Image.GetInstance(path);
+
+                    imagen.SetAbsolutePosition(posXg, posYg);
+                    // imagen.ScaleAbsoluteWidth(80f); //  Escaral el tamaño de la imagen
+                    // imagen.ScaleAbsoluteHeight(80f);
+
+                    doc.Add(imagen);
+
+                }
                 // propiedades imagen
-                var posXl = 200f;
-                var posYl = 300f;
 
-                 iTextSharp.text.Image image = iTextSharp.text.Image.GetInstance(rataa);
-                 image.SetAbsolutePosition(posXl, posYl);
-                // image.ScaleAbsoluteWidth(60f); //  Escalar el tamaño de la imagen
-                //image.ScaleAbsoluteHeight(60f);
-                 doc.Add(image); //añade imagen al documento
 
+
+                if (rataa != "")
+                {
+                    var posXl = 200f;
+                    var posYl = 250f;
+
+                    iTextSharp.text.Image image = iTextSharp.text.Image.GetInstance(rataa);
+                    image.SetAbsolutePosition(posXl, posYl);
+                    // image.ScaleAbsoluteWidth(60f); //  Escalar el tamaño de la imagen
+                    //image.ScaleAbsoluteHeight(60f);
+                    doc.Add(image); //añade imagen al documento
+                }
 
 
                 // escribe pie de pagina
