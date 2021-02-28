@@ -26,7 +26,7 @@ namespace ControlAnimales
         String conexion, cadena2, cadena3, cadena5, nombre, fechaNac, especieAni, edad, raza,
                sexo, color, cartilla, numChip, adoptadoCheck, lugarAdop, fechaAdop, ruta, id;
         String nombreVeterinaria, clinica, calle, localidad, telefono, telefonoUrgencias, cad, idMAsc, cadNombre, txtNom;
-        String cad2, visFecha, visDescripcion, visPrecio, visClinica, visIdMascota, visIdVeterinario, visTratamiento, visDuracion, visDescripcionTratamiento, tratamientoChek;
+        String idVet, cad2, visFecha, visDescripcion, visPrecio, visClinica, visIdMascota, visIdVeterinario, visTratamiento, visDuracion, visDescripcionTratamiento, tratamientoChek;
 
 
 
@@ -77,17 +77,21 @@ namespace ControlAnimales
             visFecha = txt_fecha_visita.Text;
             visDescripcion = txt_descripcion_visita.Text;
             visPrecio = txt_precio_visita.Text;
-            visClinica = txt_clinica.Text;
+           
             visIdMascota = txt_mascota_visita.Text;
             visIdVeterinario = txt_clinica_vet.Text;
             visTratamiento = txt_tratamiento.Text;
             visDuracion = txt_duracion.Text;
             visDescripcionTratamiento = txt_descripcion_visita.Text;
+            if(visFecha != "")
+            {
+
             visFecha = visFecha.Substring(0, 10);
+            }
 
 
             con = new SqlConnection(conexion);
-            String query = "Insert into visitas_veterinario values( '" + visFecha + "','" + visDescripcion + "', '" + visPrecio + "', '" + visIdMascota + "', '" + visIdVeterinario + "', '" + tratamientoChek + "', '" + visDuracion + "', '" + visDescripcionTratamiento + "')";
+            String query = "Insert into visitas_veterinario values( '" + visFecha + "','" + visDescripcion + "', '" + visPrecio + "', '" + visIdMascota + "', '" + idVet + "', '" + tratamientoChek + "', '" + visDuracion + "', '" + visDescripcionTratamiento + "')";
             SqlCommand comando = new SqlCommand(query, con);
             con.Open();
             comando.ExecuteNonQuery();
@@ -340,8 +344,9 @@ namespace ControlAnimales
             ComboBox cb = (ComboBox)sender;
         
             DataRowView drv = (DataRowView)cb.SelectedItem;
-           string   cadena3 = drv.Row[1].ToString();
+            cadena3 = drv.Row[1].ToString();
             txt_raza.Text = cadena3;
+
         }
 
 
@@ -425,14 +430,15 @@ namespace ControlAnimales
 
            
                 con.Open();
-                SqlCommand comando = new SqlCommand("SELECT clinica FROM veterinario where id_mascota = @mascota", con);
+                SqlCommand comando = new SqlCommand("SELECT clinica, nombre_veterinario, id_veterinario FROM veterinario where id_mascota = @mascota", con);
                 comando.Parameters.AddWithValue("@mascota", txt_mascota_visita.Text);
                 SqlDataReader registro = comando.ExecuteReader();
                 if (registro.Read())
                 {
 
                 txt_clinica_vet.Text = registro["clinica"].ToString();
-
+                txt_nombre_vet.Text = registro["nombre_veterinario"].ToString();
+                idVet = registro["id_veterinario"].ToString();
                 }
                 con.Close();
             
@@ -600,6 +606,7 @@ namespace ControlAnimales
             txt_precio_visita.Text = "";
             txt_tratamiento.Text = "";
             txt_duracion.Text = "";
+            txt_nombre_vet.Text = "";
             //Mascota
             txt_nombre.Text = "";
             txt_fecha.Text = "";
@@ -975,12 +982,16 @@ namespace ControlAnimales
                 tratamientoChek = "SI";
                 txt_tratamiento.Visibility = Visibility.Visible;
                 txt_duracion.Visibility = Visibility.Visible;
+                duracion_trat.Visibility = Visibility.Visible;
+                descp_trat.Visibility = Visibility.Visible;
             }
             else
             {
                 tratamientoChek = "NO";
                 txt_tratamiento.Visibility = Visibility.Hidden;
                 txt_duracion.Visibility = Visibility.Hidden;
+                duracion_trat.Visibility = Visibility.Hidden;
+                descp_trat.Visibility = Visibility.Hidden;
             }
         }
 
