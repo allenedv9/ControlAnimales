@@ -40,9 +40,9 @@ namespace ControlAnimales
             InitializeComponent();
 
             //  conexion AIDA 
-                conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Aida\\Desktop\\PERRUNO\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
+             //   conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Aida\\Desktop\\PERRUNO\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
             //  conexion ALLENDE
-            //  conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Allende\\source\\repos\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
+              conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Allende\\source\\repos\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
 
             con = new SqlConnection(conexion);
             cargarEspecies();
@@ -104,7 +104,28 @@ namespace ControlAnimales
             txt_fecha_visita.Text = fecha_visita;
         }
 
-       
+        private void Buscar_visita_vet(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Modificar_visita_vet(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Eliminar_visita_vet(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void PDF_visita_unico(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
+
 
 
 
@@ -153,13 +174,20 @@ namespace ControlAnimales
 
         private void Buscar_mascota(object sender, RoutedEventArgs e)
         {
-            
-            txt_especie.Visibility = Visibility.Visible;
-            txt_fecha.Visibility = Visibility.Visible;
-            txt_raza.Visibility = Visibility.Visible;
-            txt_sexo.Visibility = Visibility.Visible;
+            if (txt_nombre.Text == "")
+            {
+                MessageBox.Show("Introduce nombre de mascota");
 
-            con.Open();
+            }
+            else
+            {
+           
+            txt_especie.Visibility = Visibility.Visible;
+                txt_fecha.Visibility = Visibility.Visible;
+                txt_raza.Visibility = Visibility.Visible;
+                txt_sexo.Visibility = Visibility.Visible;
+
+                con.Open();
 
             if (txt_fecha.Text != "")
             {
@@ -173,24 +201,8 @@ namespace ControlAnimales
             SqlCommand comando = new SqlCommand("SELECT * FROM mascota where nombre = @mascota", con);
             comando.Parameters.AddWithValue("@mascota", txt_nombre.Text);
             SqlDataReader registro = comando.ExecuteReader();
-            if (registro.Read())
-            {
-                txt_nombre.Text = registro["nombre"].ToString();
-                txt_fecha.Text = registro["fecha_nacimiento"].ToString();
-                txt_edad.Text = registro["edad"].ToString();
-                txt_raza.Text = registro["raza"].ToString();
-                txt_sexo.Text = registro["sexo"].ToString();
-                txt_especie.Text = registro["especie"].ToString();
-                txt_color.Text = registro["color"].ToString();
-                txt_cartilla.Text = registro["num_cartilla_sanitaria"].ToString();
-                txt_chip.Text = registro["num_chip"].ToString();
-                adoptadoCheck = registro["adoptado"].ToString();
-                txt_id.Text = registro["id_mascota"].ToString();
-                ruta_imagen.Text = registro["imagen"].ToString();
-
-                if (adoptadoCheck == "si")
+                if (registro.Read())
                 {
-
                     txt_nombre.Text = registro["nombre"].ToString();
                     txt_fecha.Text = registro["fecha_nacimiento"].ToString();
                     txt_edad.Text = registro["edad"].ToString();
@@ -202,37 +214,40 @@ namespace ControlAnimales
                     txt_chip.Text = registro["num_chip"].ToString();
                     adoptadoCheck = registro["adoptado"].ToString();
                     txt_id.Text = registro["id_mascota"].ToString();
-                    if (adoptadoCheck == "si")
-                    {
-                        txt_fecha_adopcion.Visibility = Visibility.Visible;
-                        label_fecha.Visibility = Visibility.Visible;
-                        label_lugar.Visibility = Visibility.Visible;
-                        txt_lugar_adopcion.Visibility = Visibility.Visible;
-
-                        txt_fecha_adopcion.Text = registro["fecha_adopcion"].ToString();
-                        txt_lugar_adopcion.Text = registro["lugar_adopcion"].ToString();
-
-                    }
-                    else
-                    {
-                        txt_fecha_adopcion.Visibility = Visibility.Hidden;
-                        label_fecha.Visibility = Visibility.Hidden;
-                        label_lugar.Visibility = Visibility.Hidden;
-                        txt_lugar_adopcion.Visibility = Visibility.Hidden;
-                    }
-                    // txt_lugar_adopcion.Text = registro["lugar_adopcion"].ToString();
-                    txt_fecha_adopcion.Text = registro["fecha_adopcion"].ToString();
                     ruta_imagen.Text = registro["imagen"].ToString();
-                    check_imagen.Visibility = Visibility.Hidden;
-                    selec_img.Visibility = Visibility.Hidden;
+
+                  
+                        if (adoptadoCheck == "si")
+                        {
+                            txt_fecha_adopcion.Visibility = Visibility.Visible;
+                            label_fecha.Visibility = Visibility.Visible;
+                            label_lugar.Visibility = Visibility.Visible;
+                            txt_lugar_adopcion.Visibility = Visibility.Visible;
+
+                            txt_fecha_adopcion.Text = registro["fecha_adopcion"].ToString();
+                            txt_lugar_adopcion.Text = registro["lugar_adopcion"].ToString();
+
+                        }
+                        else
+                        {
+                            txt_fecha_adopcion.Visibility = Visibility.Hidden;
+                            label_fecha.Visibility = Visibility.Hidden;
+                            label_lugar.Visibility = Visibility.Hidden;
+                            txt_lugar_adopcion.Visibility = Visibility.Hidden;
+                        }
+                        // txt_lugar_adopcion.Text = registro["lugar_adopcion"].ToString();
+                        txt_fecha_adopcion.Text = registro["fecha_adopcion"].ToString();
+                        ruta_imagen.Text = registro["imagen"].ToString();
+                        check_imagen.Visibility = Visibility.Hidden;
+                        selec_img.Visibility = Visibility.Hidden;
+                    
+
+                    con.Close();
+               
+
                 }
+            }
 
-                con.Close();
-
-            
-        }
-
-           
         }
         private void guardar_Click(object sender, RoutedEventArgs e)
         {
