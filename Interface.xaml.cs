@@ -25,7 +25,7 @@ namespace ControlAnimales
         SqlConnection con;
         String conexion, cadena2, cadena3, cadena5, nombre, fechaNac, especieAni, edad, raza,
                sexo, color, cartilla, numChip, adoptadoCheck, lugarAdop, fechaAdop, ruta, id;
-        String nombreVeterinaria, clinica, calle, localidad, telefono, telefonoUrgencias, cad, idMAsc, cadNombre;
+        String nombreVeterinaria, clinica, calle, localidad, telefono, telefonoUrgencias, cad, idMAsc, cadNombre, txtNom;
         String visFecha, visDescripcion, visPrecio, visClinica, visIdMascota, visIdVeterinario, visTratamiento, visDuracion, visDescripcionTratamiento, tratamientoChek;
 
 
@@ -40,9 +40,9 @@ namespace ControlAnimales
             InitializeComponent();
 
             //  conexion AIDA 
-            conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Aida\\Desktop\\PERRUNO\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
+          //  conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Aida\\Desktop\\PERRUNO\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
             //  conexion ALLENDE
-            //    conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Allende\\source\\repos\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
+              conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Allende\\source\\repos\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
 
             con = new SqlConnection(conexion);
             cargarEspecies();
@@ -494,6 +494,7 @@ namespace ControlAnimales
             cadNombre = drv.Row[1].ToString();
             //MessageBox.Show(cad);
             txtId.Text = cad;
+            txtNombre.Text = cadNombre;
         }
 
 

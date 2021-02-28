@@ -184,6 +184,7 @@
                     </TextBox>
                     <Label Content="Localidad" Canvas.Left="90" Canvas.Top="187"/>
                     <ComboBox x:Name="nombreMascotas" SelectionChanged="mascVet" Canvas.Left="398" Canvas.Top="215" Width="120" />
+                    <TextBox x:Name="txtNombre" Canvas.Left="412" Canvas.Top="325"  Width="120" Visibility="Hidden" />
                 </Canvas>
             </TabItem>
             <TabItem Header="Ver Veterinarios" >
