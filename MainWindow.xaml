@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ControlAnimales"
         mc:Ignorable="d"
-        Title="Control Mascotas" Height="700" Width="1000" MouseDown="click"
+        Title="Control Mascotas" Height="600" Width="1000" MouseDown="click"
         ResizeMode="CanMinimize"
        >
-    <Grid Background="#75E6D3E8"  >
+    <Grid Background="#750B5E8D"  >
         <Image Margin="108,33,82,80" Source="/Imagenes/logo.png" />
-        <Label Background="#669D5369" Content="         REALIZADO POR: Allende Eguía del Valle y Aida Vicente Martín                    &#x9;&#x9;&#x9;         2º-DAM CEIP Santa Catalina" HorizontalAlignment="Center" Margin="0,381,0,0" VerticalAlignment="Top" Width="800" Height="35"/>
+        <Label FontSize="13"  Padding="10" FontWeight="Bold" Width="1000" Height="58" Margin="0,526,0,0" VerticalAlignment="Top" Content="    REALIZADO POR: Allende Eguía del Valle y Aida Vicente Martín              Proyecto 2º evaluación DISEÑO DE INTERFACES          2º-DAM CEIP Santa Catalina" Background="#FF8B4685"/>
 
 
     </Grid>

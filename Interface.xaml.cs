@@ -40,9 +40,9 @@ namespace ControlAnimales
             InitializeComponent();
 
             //  conexion AIDA 
-         conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Aida\\Desktop\\PERRUNO\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
+        // conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Aida\\Desktop\\PERRUNO\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
             //  conexion ALLENDE
-              //   conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Allende\\source\\repos\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
+                 conexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Allende\\source\\repos\\ControlAnimales\\Mascotas.mdf;Integrated Security=True;Connect Timeout=30";
 
             con = new SqlConnection(conexion);
             cargarEspecies();
@@ -104,10 +104,7 @@ namespace ControlAnimales
             txt_fecha_visita.Text = fecha_visita;
         }
 
-        private void txt_clinica_vet_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
+       
 
 
 
@@ -1256,8 +1253,6 @@ namespace ControlAnimales
             }
             catch (Exception ee)
             {
-                MessageBox.Show(ee.Message);
-                MessageBox.Show(ee.StackTrace);
             }
 
             //crea documento
