@@ -273,8 +273,8 @@
                     <DatePicker x:Name="fecha_vis" Height="32" Width="180" Canvas.Left="388" Canvas.Top="120" CalendarClosed="cargar_fecha_vis"  />
 
                     <ComboBox x:Name="nombreMascotasVet"  Canvas.Left="94" Canvas.Top="57" Width="120" SelectionChanged="cargar_masc_veterinario"/>
-
                     <TextBox Style="{StaticResource tb}"  x:Name="txt_mascota_visita" Visibility="hidden"   Canvas.Left="90" Canvas.Top="79" />
+
                     <TextBox Style="{StaticResource tb}"  x:Name="txt_clinica_vet"   Canvas.Left="90" Canvas.Top="137"   />
                     <TextBox Style="{StaticResource tb}"  x:Name="txt_nombre_vet"  Canvas.Left="90" Canvas.Top="198"   />
                     <TextBox Style="{StaticResource tb}"  x:Name="txt_descripcion_visita"  Canvas.Left="90" Canvas.Top="256" Height="96"/>
@@ -297,7 +297,7 @@
                     <Label Style="{StaticResource label}" Content="Fecha visita" Canvas.Left="387" Canvas.Top="92" />
                     <Label Style="{StaticResource label}" Content="Descripción tratamiento" Canvas.Left="392" Canvas.Top="192" Width="184" />
                     <Label Style="{StaticResource label}" Content="Duración tratamiento" Canvas.Left="393" Canvas.Top="293" Width="184" />
-
+                    
                 </Canvas>
             </TabItem>
         </TabControl>
