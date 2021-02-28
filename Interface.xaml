@@ -95,8 +95,8 @@
         <Canvas x:Name="img_principal" Visibility="Hidden" Margin="0,75,0,-514">
             <Image x:Name="img_princ" Source="/imagenes/pug.jpg" Height="600" Width="982" Canvas.Top="-48" Canvas.Left="8"/>
         </Canvas>
-         <TabControl x:Name="agregarMasc" Margin="-4,86,0,-499" Visibility="Visible"  Background="#FFCFABDA" HorizontalAlignment="Center" Width="950">
-           <TabItem Header="Nueva Mascota" FontFamily="Ink Free " FontWeight="Bold" Width="100" Height="25" Background="#FFCFABDA">
+        <TabControl x:Name="agregarMasc" Margin="-4,86,0,-499" Visibility="Visible"  Background="#FFCFABDA" HorizontalAlignment="Center" Width="950">
+            <TabItem Header="Nueva Mascota" FontFamily="Ink Free " FontWeight="Bold" Width="100" Height="25" Background="#FFCFABDA">
                 <Canvas x:Name="ventana" Visibility="Visible" Background="#FFCFABDA" Height="450" Margin="-1,0,1,0">
                     <RadioButton Style="{StaticResource rb}" x:Name="macho" Content="Macho" Canvas.Left="80" Canvas.Top="289" Click="selecciona_sexo"/>
                     <RadioButton Style="{StaticResource rb}" x:Name="hembra" Content="Hembra" Canvas.Left="146" Canvas.Top="289" Click="selecciona_sexo"/>
@@ -257,11 +257,11 @@
 
                 </Canvas>
             </TabItem>
-            <TabItem Header="Ver Veterinarios" >
-                <Canvas Background="#FFE5E5E5" Margin="2,39,-2,12">
-                    <Button x:Name="bt_pdf_veterinaro" Content="PDF"  Height="37" Width="120" Click="PDF_veterinario" Canvas.Top="7" Canvas.Left="6" />
+            <TabItem Header="Ver Veterinarios" FontFamily="Ink Free " FontWeight="Bold" Width="100" Height="25" Background="#FFCFABDA" >
+                <Canvas Background="#75202121" Margin="10,10,9,8">
+                    <DataGrid x:Name="dg_lista_veterinario"   Height="387" Width="884"  Canvas.Top="37" Canvas.Left="15" />
+                    <Button Style="{StaticResource btn1}" x:Name="bt_pdf_veterinaro" Content="Generar PDF"  Click="PDF_veterinario" Canvas.Left="719" Canvas.Top="366" />
 
-                    <DataGrid x:Name="dg_lista_veterinario"   Height="405" Width="984"  Canvas.Top="50" />
                 </Canvas>
             </TabItem>
             <TabItem Header="Visitas veterinario">
