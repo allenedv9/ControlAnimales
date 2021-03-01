@@ -173,7 +173,7 @@
                 </Canvas>
             </TabItem>
         </TabControl>
-        <TabControl x:Name="veterinaria"  Margin="-4,86,0,-499" Visibility="Visible"  Background="#FFCFABDA" HorizontalAlignment="Center" Width="950">
+        <TabControl x:Name="veterinaria"  Margin="-4,86,0,-499" Visibility="hidden"  Background="#FFCFABDA" HorizontalAlignment="Center" Width="950">
             <TabItem Header="Nueva/o Veterinaria" FontFamily="Ink Free " FontWeight="Bold" Width="100" Height="25" Background="#FFCFABDA">
                 <Canvas x:Name="ventanaVeterinaria" Visibility="Visible" Background="#FFAF5DF3" Height="450" Margin="-3,0,3,0">
 
