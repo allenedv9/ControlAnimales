@@ -90,6 +90,8 @@
             <Separator Width="3" Background="#FF05425F"/>
             <Button x:Name="galeria" IsEnabled="False" ToolTip="Falta programar esta sección"  Background="#FFCFABDA" VerticalAlignment="Center" BorderThickness="1" BorderBrush="#FF000000" Height="60" Width="125" FontSize="20" FontFamily="Ink Free" FontWeight="Bold" Content="Galeria" Click="galeria_Click" />
             <Separator Width="3" Background="#FF05425F"/>
+            <Button x:Name="Ayuda"  ToolTip="Pincha aquí para obtyener una ayuda"  Background="#FFCFABDA" VerticalAlignment="Center" BorderThickness="1" BorderBrush="#FF000000" Height="60" Width="125" FontSize="20" FontFamily="Ink Free" FontWeight="Bold" Content="Ayuda" Click="Ayuda_Click"  />
+
         </ToolBar>
 
         <Canvas x:Name="img_principal" Visibility="Visible" Margin="0,75,0,-514">
@@ -303,7 +305,7 @@
             <TabItem Header="Ver Visitas Vetrinario" FontFamily="Ink Free " FontWeight="Bold"  Height="25" Background="#FFCFABDA" >
                 <Canvas Background="#75202121" Margin="10,10,9,8">
                     <DataGrid x:Name="dg_lista_visitas"   Height="387" Width="884"  Canvas.Top="37" Canvas.Left="15" />
-                    <Button Style="{StaticResource btn1}" x:Name="bt_pdf_lista_veterinaro" Content="Generar PDF"   Canvas.Left="719" Canvas.Top="366" Click="PDF_visitas_veterinario" />
+                    <Button Style="{StaticResource btn1}" IsEnabled="False" x:Name="bt_pdf_lista_veterinaro" Content="Generar PDF"   Canvas.Left="719" Canvas.Top="366" Click="PDF_visitas_veterinario" />
 
                 </Canvas>
             </TabItem>
