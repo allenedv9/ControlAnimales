@@ -165,7 +165,7 @@ namespace ControlAnimales
         private void Ayuda_Click(object sender, RoutedEventArgs e)
         {
             var p = new Process();
-            p.StartInfo = new ProcessStartInfo("C:\\Users\\Allende\\source\\repos\\ControlAnimales\\bin\\Debug\\netcoreapp3.1\\Ayuda\\controldemascotas.pdf")
+            p.StartInfo = new ProcessStartInfo("C:\\Users\\Allende\\source\\repos\\ControlAnimales\\ControlMascotas.pdf")
             {
                 UseShellExecute = true
             };
