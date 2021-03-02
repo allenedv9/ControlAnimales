@@ -1,0 +1,12 @@
+Hola Fernando, aclarar una cosita antes de que abras el proyecto.
+Durante el curso hemos tenido problemas a la hora de poner las rutas relativas
+de las imagenes, por ello seguramente tengas algun problema para visualizar 
+alguna imagen.
+Antes de empezar en la linea 44
+hay dos variables con la conexion de aida a la BBDD y la de allende
+copia tu ruta ahi.
+Cuando generamos los PDF de cada animal las rutas en la BBDD tambien son diferentes asi que 
+si quieres cambia la ruta de algun registro para que puedas ver los diferentes PDFs
+
+En la linea 168 tambien tenemos dos rutas para abrir el archivo de ayuda
+para que te funcione pon tu ruta.
